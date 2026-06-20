@@ -1734,8 +1734,8 @@ self.addEventListener('fetch', e => {
   }
   .series-header {
     display: grid;
-    grid-template-columns: 32px 1fr 1fr 80px 80px 30px;
-    gap: 4px;
+    grid-template-columns: 28px 52px 56px 72px 68px 30px;
+    gap: 3px;
     padding: 0 0 8px;
     border-bottom: 1px solid var(--border);
     margin-bottom: 4px;
@@ -1750,8 +1750,8 @@ self.addEventListener('fetch', e => {
   }
   .series-row {
     display: grid;
-    grid-template-columns: 32px 1fr 1fr 80px 80px 30px;
-    gap: 4px;
+    grid-template-columns: 28px 52px 56px 72px 68px 30px;
+    gap: 3px;
     align-items: center;
     padding: 6px 0;
     border-bottom: 1px solid var(--border);
@@ -1784,23 +1784,24 @@ self.addEventListener('fetch', e => {
   .serie-peso-wrap {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     background: var(--bg);
     border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 6px 8px;
+    border-radius: 8px;
+    padding: 5px 5px;
     transition: border-color 0.15s;
     min-width: 0;
+    max-width: 68px;
   }
   .serie-peso-wrap:focus-within {
     border-color: var(--green);
     background: var(--green-light);
   }
   .serie-peso {
-    width: 36px;
+    width: 28px;
     border: none;
     background: transparent;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 800;
     color: var(--text);
     font-family: inherit;
