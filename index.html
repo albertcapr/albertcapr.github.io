@@ -9478,18 +9478,23 @@ function renderMisPlantillas() {
             // Campo reps reales + peso/RPE para todos los ejercicios
             // Calcular RIR en tiempo real desde el input
             var repsHechas = parseInt(s.repsReales) || 0;
+            var pesoNumSerie = parseFloat(s.peso) || 0;
             var metaMaxEj  = parseInt(String(e.reps||'0').split('-')[1]) || parseInt(String(e.reps||'0').split('-')[0]) || 0;
             var rirVal     = (repsHechas > 0 && metaMaxEj > 0) ? Math.max(0, metaMaxEj - repsHechas) : null;
+            var recId = 'rec_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx;
             var repsRealesInput = '<div style="display:flex;flex-direction:column;align-items:center;gap:1px;">' +
               '<div class="serie-peso-wrap' + (repsHechas ? ' serie-completada' : '') + '">' +
-                '<input class="serie-peso" type="number" inputmode="numeric" placeholder="0" value="' + (s.repsReales||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'repsReales\',this.value)" onfocus="this.select()" title="Reps realizadas">' +
+                '<input class="serie-peso" type="number" inputmode="numeric" placeholder="0" value="' + (s.repsReales||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'repsReales\',this.value);calcRecPeso(\'' + recId + '\',' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',this.value,null,\'' + (e.reps||'') + '\',\'' + (datos.nivel||'intermedio') + '\')" onfocus="this.select()" title="Reps realizadas">' +
                 '<span class="serie-peso-unit" style="font-size:9px;">rep</span>' +
               '</div>' +
               (rirVal !== null ? '<div style="font-size:9px;font-weight:800;color:var(--green);">RIR&nbsp;' + rirVal + '</div>' : '') +
             '</div>';
             var pesoInput = repsRealesInput + (isBWplan
               ? '<div class="serie-peso-wrap"><input class="serie-peso" type="number" inputmode="numeric" placeholder="—" value="' + (s.rpe||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'rpe\',this.value)" onfocus="this.select()" style="width:40px;"><span class="serie-peso-unit" style="font-size:9px;">RPE</span></div>'
-              : '<div class="serie-peso-wrap"><input class="serie-peso" type="number" inputmode="decimal" placeholder="0" value="' + (s.peso||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'peso\',this.value);showRM(this,' + repsNum + ',\'rm_mp_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx + '\')" onfocus="this.select()"><span class="serie-peso-unit">kg</span></div>');
+              : '<div class="serie-peso-wrap"><input class="serie-peso" type="number" inputmode="decimal" placeholder="0" value="' + (s.peso||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'peso\',this.value);showRM(this,' + repsNum + ',\'rm_mp_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx + '\');calcRecPeso(\'' + recId + '\',' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',null,this.value,\'' + (e.reps||'') + '\',\'' + (datos.nivel||'intermedio') + '\')" onfocus="this.select()"><span class="serie-peso-unit">kg</span></div>');
+
+            // Calcular recomendación inicial si ya hay datos
+            var recHtml = generarRecPesoHtml(repsHechas, pesoNumSerie || pesoNum, e.reps, datos.nivel||'intermedio');
 
             return '<div class="series-row' + compClass + '">' +
               '<div class="serie-num">' + (sIdx+1) + '</div>' +
@@ -9499,7 +9504,8 @@ function renderMisPlantillas() {
               '<button class="btn-camara-serie" onclick="abrirAnalizadorTecnica(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'' + (e.nombre||'').replace(/'/g,'') + '\')" title="Analizar técnica con cámara" style="background:var(--green);border:none;border-radius:7px;color:white;font-size:14px;padding:6px 8px;cursor:pointer;flex-shrink:0;min-width:32px;">📹</button>' +
             '</div>' +
             '<div id="rm_mp_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx + '" style="' + (rmVal > 0 ? '' : 'display:none;') + 'text-align:right;padding:2px 14px 5px;font-size:10px;font-weight:700;color:var(--green);">1RM ≈ ' + (rmVal > 0 ? rmVal : '') + ' kg</div>' +
-            renderAnalisisSerie(s.analisis, sIdx + 1);
+            renderAnalisisSerie(s.analisis, sIdx + 1) +
+            '<div id="' + recId + '" style="margin-top:2px;">' + recHtml + '</div>';
           }).join('');
 
           var ytUrl = e.yt || ('https://www.youtube.com/results?search_query=' + encodeURIComponent(e.nombre + ' ejercicio técnica'));
@@ -15337,6 +15343,67 @@ function generarInformeFallback(detalle, totalReps, validasCount, pctCorrectas, 
   fb += '\u26a1 <strong>Esfuerzo:</strong> ' + esfuerzo + '<br><br>';
   fb += '<em>Sigue as\u00ed. Cada serie te hace m\u00e1s fuerte.</em>';
   return '<div style="font-size:13px;line-height:1.75;color:var(--text-muted);">' + fb + '</div>';
+}
+
+function generarRecPesoHtml(repsHechas, pesoNum, repsStr, nivel) {
+  repsHechas = parseInt(repsHechas) || 0;
+  pesoNum    = parseFloat(pesoNum)  || 0;
+  if (repsHechas <= 0) return '';
+
+  var partes  = String(repsStr||'').split('-');
+  var metaMin = parseInt(partes[0]) || 0;
+  var metaMax = parseInt(partes[1]) || metaMin;
+  if (!metaMin) return '';
+
+  var incr = nivel === 'principiante' ? 1.25 : nivel === 'avanzado' ? 5 : 2.5;
+  var rir  = metaMax - repsHechas; // puede ser negativo si pasa del máximo
+  var msg  = '', col = '';
+
+  if (repsHechas < metaMin) {
+    // No llegó al mínimo → bajar peso
+    if (pesoNum > 0) {
+      var baj = Math.max(incr, Math.round(pesoNum * 0.1 / incr) * incr);
+      var np  = Math.max(0, Math.round((pesoNum - baj) * 4) / 4);
+      msg = '⬇️ <strong>Baja a ' + np + ' kg</strong> — hiciste ' + repsHechas + ' de ' + metaMin + ' reps mínimas. Con menos peso podrás completar el rango y entrenar bien.';
+      col = '#F87171';
+    } else {
+      msg = '⚠️ Hiciste ' + repsHechas + ' de ' + metaMin + ' reps mínimas. Reduce la dificultad del ejercicio.';
+      col = '#F87171';
+    }
+  } else if (repsHechas >= metaMax) {
+    // Llegó o superó el máximo → subir peso
+    if (pesoNum > 0) {
+      var np2 = Math.round((pesoNum + incr) * 4) / 4;
+      msg = '⬆️ <strong>Sube a ' + np2 + ' kg</strong> — completaste las ' + metaMax + ' reps máximas. Tu cuerpo está listo para más carga.';
+      col = '#34D399';
+    } else {
+      msg = '⬆️ Completaste el máximo de ' + metaMax + ' reps. Considera añadir carga o una variante más difícil.';
+      col = '#34D399';
+    }
+  } else {
+    // Dentro del rango → mantener y progresar hacia el máximo
+    var restantes = metaMax - repsHechas;
+    if (pesoNum > 0) {
+      msg = '✅ <strong>Mantén ' + pesoNum + ' kg</strong> — estás en el rango (' + repsHechas + '/' + metaMax + ' reps). Intenta ' + restantes + ' rep' + (restantes > 1 ? 's' : '') + ' más la próxima serie.';
+    } else {
+      msg = '✅ Dentro del rango (' + repsHechas + '/' + metaMax + ' reps). Intenta ' + restantes + ' rep' + (restantes > 1 ? 's' : '') + ' más la próxima serie.';
+    }
+    col = '#60A5FA';
+  }
+
+  return '<div style="margin:4px 0 8px;padding:10px 14px;background:rgba(0,0,0,0.25);border-left:4px solid ' + col + ';border-radius:0 10px 10px 0;font-size:13px;color:#fff;line-height:1.6;">' + msg + '</div>';
+}
+
+function calcRecPeso(recId, planId, dia, eIdx, sIdx, newReps, newPeso, repsStr, nivel) {
+  var el = document.getElementById(recId);
+  if (!el) return;
+  // Get current values from the serie data
+  var plan = misPlantillas.find(function(p){ return p.id === planId; });
+  if (!plan) return;
+  var s = plan.plantilla && plan.plantilla[dia] && plan.plantilla[dia][eIdx] && plan.plantilla[dia][eIdx].seriesData && plan.plantilla[dia][eIdx].seriesData[sIdx];
+  var repsHechas = parseInt(newReps !== null ? newReps : (s && s.repsReales)) || 0;
+  var pesoNum    = parseFloat(newPeso !== null ? newPeso : (s && s.peso)) || 0;
+  el.innerHTML = generarRecPesoHtml(repsHechas, pesoNum, repsStr, nivel);
 }
 
 function toggleAnalisisPanel(btn) {
