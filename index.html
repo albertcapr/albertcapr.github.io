@@ -8715,6 +8715,7 @@ function renderPlantilla() {
       '</div>';
   } else {
     ejercDia.forEach(function(e, idx) {
+      var isUniLeg = isUnilateralLeg(e.nombre);
       // Build series rows
       var numS = e.numSeries || parseInt((e.series || '3').split('-').pop()) || 3;
       if (!e.seriesData || e.seriesData.length !== numS) {
