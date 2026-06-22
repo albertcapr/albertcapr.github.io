@@ -1734,7 +1734,7 @@ self.addEventListener('fetch', e => {
   }
   .series-header {
     display: grid;
-    grid-template-columns: 28px 52px 56px 1fr 1fr 32px;
+    grid-template-columns: 28px 52px 56px 1fr 1fr;
     gap: 3px;
     padding: 0 0 8px;
     border-bottom: 1px solid var(--border);
@@ -1750,7 +1750,7 @@ self.addEventListener('fetch', e => {
   }
   .series-row {
     display: grid;
-    grid-template-columns: 28px 52px 56px 1fr 1fr 32px;
+    grid-template-columns: 28px 52px 56px 1fr 1fr;
     gap: 3px;
     align-items: center;
     padding: 6px 0;
@@ -1760,11 +1760,6 @@ self.addEventListener('fetch', e => {
     .series-row {
       grid-template-columns: 28px 48px 50px 1fr 1fr;
       grid-template-rows: auto auto;
-    }
-    .series-row .btn-camara-serie {
-      grid-column: 5;
-      grid-row: 1;
-      justify-self: end;
     }
   }
   .series-row:last-child { border-bottom: none; }
@@ -2324,7 +2319,7 @@ self.addEventListener('fetch', e => {
 
   /* Powerlifting progress */
   .pl-section {
-    margin: 0 20px 16px;
+    margin: 0 12px 16px;
     background: var(--card);
     border: 1.5px solid var(--border);
     border-radius: var(--radius);
@@ -2346,22 +2341,28 @@ self.addEventListener('fetch', e => {
   .pl-nivel-bar-wrap { margin-bottom: 6px; }
   .pl-nivel-labels {
     display: flex; justify-content: space-between;
-    font-size: 9px; color: var(--text-hint);
-    margin-bottom: 4px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.3px;
+    font-size: 8px; color: var(--text-hint);
+    margin-bottom: 4px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0px;
+    overflow: hidden;
+  }
+  .pl-nivel-labels span {
+    flex: 1; text-align: center; overflow: hidden;
+    text-overflow: clip; white-space: nowrap;
+    font-size: 8px; padding: 0 1px;
   }
   .pl-bar-track {
-    height: 10px; border-radius: 5px;
-    background: var(--border); overflow: hidden;
+    height: 12px; border-radius: 6px;
+    background: var(--border); overflow: visible;
     position: relative;
   }
   .pl-bar-fill {
-    height: 100%; border-radius: 5px;
+    height: 100%; border-radius: 6px;
     transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
   }
   .pl-bar-marker {
     position: absolute; top: -3px;
-    width: 16px; height: 16px;
+    width: 18px; height: 18px;
     border-radius: 50%;
     border: 2.5px solid white;
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
@@ -2369,15 +2370,15 @@ self.addEventListener('fetch', e => {
     transition: left 0.6s cubic-bezier(0.34,1.56,0.64,1);
   }
   .pl-stats-row {
-    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+    display: flex; gap: 6px; margin-top: 10px; flex-wrap: nowrap;
   }
   .pl-stat {
-    flex: 1; min-width: 70px;
+    flex: 1; min-width: 0;
     background: var(--bg); border-radius: 8px;
-    padding: 8px 10px; text-align: center;
+    padding: 8px 6px; text-align: center;
   }
-  .pl-stat-val { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1; }
-  .pl-stat-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
+  .pl-stat-val { font-size: 16px; font-weight: 800; color: var(--text); line-height: 1; }
+  .pl-stat-label { font-size: 9px; color: var(--text-muted); margin-top: 2px; font-weight: 600; }
   .pl-nivel-badge {
     display: inline-block; padding: 3px 10px;
     border-radius: 20px; font-size: 11px; font-weight: 700;
@@ -2841,8 +2842,8 @@ self.addEventListener('fetch', e => {
   }
   /* Series editables en mis hits */
   .hit-series-row {
-    display: grid; grid-template-columns: 28px 1fr 80px;
-    gap: 6px; align-items: center; padding: 5px 0;
+    display: grid; grid-template-columns: 28px 1fr 60px 70px;
+    gap: 4px; align-items: center; padding: 5px 0;
     border-bottom: 1px solid var(--border);
   }
   .hit-series-row:last-child { border-bottom: none; }
@@ -7244,7 +7245,7 @@ var EJERCICIOS = [
   { id:480, grupo:'Hombros', nombre:'Remo al mentón con barra plana', equip:'barra_plana', tipo:'Tirón', musculo:'Deltoides medial, Trapecio superior', secundario:'Bíceps, Supraespinoso', agarre:'Prono estrecho, sube hasta la barbilla', dificultad:'Principiante', emoji:'⬆️', yt:'https://www.youtube.com/results?search_query=remo+mentón+barra+plana+hombros', tip:'Codos siempre sobre las muñecas. No subir por encima de la barbilla.' },
   { id:481, grupo:'Pecho', nombre:'Flexiones en anillas', equip:'sin_equip', tipo:'Empuje', musculo:'Pectoral mayor, Core, Estabilizadores', secundario:'Tríceps, Deltoides', agarre:'Anillas a altura de caderas, cuerpo en diagonal', dificultad:'Avanzado', emoji:'⭕', yt:'https://www.youtube.com/results?search_query=push+up+anillas+pecho+inestable', tip:'Cuanto más horizontal el cuerpo, más difícil. Las anillas giran hacia dentro al bajar.' },
   { id:482, grupo:'Piernas', nombre:'Sentadilla con salto (Jump Squat)', equip:'sin_equip', tipo:'Empuje', musculo:'Cuádriceps, Glúteos, Gemelos', secundario:'Core, Isquiotibiales', agarre:'Corporal, manos detrás de la cabeza', dificultad:'Intermedio', emoji:'🦘', yt:'https://www.youtube.com/results?search_query=jump+squat+sentadilla+salto+pliométrico', tip:'Aterriza suavemente con rodillas flexionadas. Potencia y cardio en uno.' },
-  { id:483, grupo:'Core', nombre:'V-Up (Elevación en V)', equip:'sin_equip', tipo:'Core', musculo:'Recto abdominal completo', secundario:'Psoas, Oblicuos', agarre:'Tumbado, sube simultáneamente piernas y torso', dificultad:'Intermedio', emoji:'✌️', yt:'https://www.youtube.com/results?search_query=v+up+abdomen+completo+técnica', tip:'Los brazos van hacia los pies. Baja controladamente. Más difícil que el crunch normal.' },
+  { id:483, grupo:'Core', nombre:'V-Up (Elevación en V)', equip:'sin_equip', tipo:'Core', musculo:'Recto abdominal completo', secundario:'Psoas, Oblicuos', agarre:'Tumbado, sube simultáneamente piernas y torso', dificultad:'Intermedio', emoji:'✌️', yt:'https://www.youtube.com/results?search_query=v+up+abdominal+exercise+how+to+form', tip:'Los brazos van hacia los pies. Baja controladamente. Más difícil que el crunch normal.' },
   { id:484, grupo:'Piernas', nombre:'Frog Jump (Salto de rana)', equip:'sin_equip', tipo:'Empuje', musculo:'Glúteos, Cuádriceps, Gemelos', secundario:'Core, Aductores', agarre:'Pies abiertos, toca el suelo con manos y salta', dificultad:'Intermedio', emoji:'🐸', yt:'https://www.youtube.com/results?search_query=frog+jump+salto+rana+explosivo', tip:'Explosivo hacia arriba y adelante. Excelente para fuerza explosiva del tren inferior.' },
   { id:485, grupo:'Hombros', nombre:'Lateral Raise Isométrico en pared', equip:'sin_equip', tipo:'Empuje', musculo:'Deltoides medial, Supraespinoso', secundario:'Trapecio superior', agarre:'Brazo empuja lateralmente contra la pared', dificultad:'Principiante', emoji:'🧱', yt:'https://www.youtube.com/results?search_query=isométrico+hombro+pared+deltoides', tip:'Empuja con fuerza contra la pared durante 10-30s. Activa deltoides sin material.' },
   { id:486, grupo:'Tríceps', nombre:'Fondos en paralelas con lastre', equip:'sin_equip', tipo:'Empuje', musculo:'Tríceps, Pectoral inferior, Deltoides anterior', secundario:'Core, Serrato', agarre:'Paralelas, cinturón con disco', dificultad:'Elite', emoji:'🏆', yt:'https://www.youtube.com/results?search_query=fondos+paralelas+lastre+tríceps', tip:'Solo con lastre cuando dominas 15+ repeticiones sin peso adicional.' },
@@ -8753,6 +8754,7 @@ function renderPlantilla() {
           '<div class="plan-ejerc-tipo">' + (e.tipo || '') + ' · ' + (e.musculo || '') + '</div>' +
           '<div class="plan-ejerc-name">' + e.nombre + '</div>' +
           getNivelAviso(e) +
+          (isUniLeg ? '<div style="background:#EFF6FF;border:1.5px solid #BFDBFE;border-radius:8px;padding:7px 10px;margin-bottom:8px;font-size:11px;font-weight:700;color:#1D4ED8;">🦵 Ejercicio unilateral — anota reps y peso por cada pierna</div>' : '') +
           '<div class="plan-ejerc-params" style="margin-bottom:10px;">' +
             '<span class="plan-param">📊 ' + e.series + ' series</span>' +
             '<span class="plan-param">🔁 ' + e.reps + ' reps</span>' +
@@ -9461,39 +9463,107 @@ function renderMisPlantillas() {
         if (ejercsDia.length === 0) return '';
 
         var ejercRows = ejercsDia.map(function(e, eIdx) {
-          var isBWplan = isBW(e.nombre);
+          var isBWplan  = isBW(e.nombre);
+          var isUniLeg  = isUnilateralLeg(e.nombre);
 
-          // Exactly same style as Plantilla
-          var ist = 'border:2px solid var(--border);border-radius:8px;background:var(--card);font-size:18px;font-weight:800;color:var(--text);text-align:center;padding:8px 4px;width:100%;box-sizing:border-box;outline:none;font-family:inherit;-webkit-appearance:none;';
-
-          // Header igual que plantilla
-          var seriesHtml = '<div class="series-header"><span>Serie</span><span>Reps</span><span>Descanso</span><span>Hechas</span><span>' + (isBWplan ? 'RPE' : 'kg') + '</span></div>';
+          // Header: unilateral legs get extra columns for D/I
+          var seriesHtml;
+          if (isUniLeg) {
+            seriesHtml = '<div style="display:grid;grid-template-columns:28px 1fr 1fr;gap:3px;padding:0 0 6px;border-bottom:1px solid var(--border);margin-bottom:4px;">' +
+              '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-hint);text-align:center;">S</span>' +
+              '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">' +
+                '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#3B82F6;text-align:center;">🦵 Der</span>' +
+                '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#3B82F6;text-align:center;">' + (isBWplan ? 'rep' : 'kg') + '</span>' +
+              '</div>' +
+              '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">' +
+                '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#A855F7;text-align:center;">🦵 Izq</span>' +
+                '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#A855F7;text-align:center;">' + (isBWplan ? 'rep' : 'kg') + '</span>' +
+              '</div>' +
+            '</div>';
+          } else {
+            seriesHtml = '<div class="series-header"><span>Serie</span><span>Reps</span><span>Descanso</span><span>Hechas</span><span>' + (isBWplan ? 'RPE' : 'kg') + '</span></div>';
+          }
 
           seriesHtml += (e.seriesData || []).map(function(s, sIdx) {
             var repsNum = parseInt(String(e.reps||'10').split('-')[0]) || 10;
             var pesoNum = parseFloat(s.peso) || 0;
             var rmVal   = (!isBWplan && pesoNum > 0) ? calcRM(pesoNum, repsNum) : 0;
             var compClass = s.completada ? ' serie-completada' : '';
-
-            // Campo reps reales + peso/RPE para todos los ejercicios
-            // Calcular RIR en tiempo real desde el input
             var repsHechas = parseInt(s.repsReales) || 0;
             var pesoNumSerie = parseFloat(s.peso) || 0;
-            var metaMaxEj  = parseInt(String(e.reps||'0').split('-')[1]) || parseInt(String(e.reps||'0').split('-')[0]) || 0;
+            var metaMinEj  = parseInt(String(e.reps||'0').split('-')[0]) || 0;
+            var metaMaxEj  = parseInt(String(e.reps||'0').split('-')[1]) || metaMinEj;
             var rirVal     = (repsHechas > 0 && metaMaxEj > 0) ? Math.max(0, metaMaxEj - repsHechas) : null;
-            var recId = 'rec_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx;
+            var rirId      = 'rir_mp_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx;
+            var recId      = 'rec_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx;
+
+            // ── UNILATERAL LEG: separate D / I rows ──────────────────
+            if (isUniLeg) {
+              var sides = [
+                { key:'D', label:'Der', color:'#3B82F6', repsKey:'repsRealesD', pesoKey: isBWplan ? 'rpeD' : 'pesoD' },
+                { key:'I', label:'Izq', color:'#A855F7', repsKey:'repsRealesI', pesoKey: isBWplan ? 'rpeI' : 'pesoI' }
+              ];
+              var sideInputs = sides.map(function(side) {
+                var repsVal  = s[side.repsKey] || '';
+                var pesoVal  = s[side.pesoKey] || '';
+                var repsH    = parseInt(repsVal) || 0;
+                var rirS     = (repsH > 0 && metaMaxEj > 0) ? Math.max(0, metaMaxEj - repsH) : null;
+                var rirSId   = 'rir_' + side.key + '_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx;
+                var rm1SId   = 'rm1_' + side.key + '_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx;
+                var pesoH    = parseFloat(pesoVal) || 0;
+                var rm1Val   = (!isBWplan && pesoH > 0) ? calcRM(pesoH, repsH || repsNum) : 0;
+
+                var rirDisp = rirS !== null
+                  ? '<div id="' + rirSId + '" style="font-size:9px;font-weight:800;color:' + (rirS===0?'#DC2626':rirS<=2?'#F59E0B':'var(--green)') + ';">RIR&nbsp;' + rirS + '</div>'
+                  : (metaMaxEj > 0
+                    ? '<div id="' + rirSId + '" style="font-size:9px;color:var(--text-hint);">meta&nbsp;' + metaMaxEj + '</div>'
+                    : '<div id="' + rirSId + '"></div>');
+
+                var repsInput = '<div style="display:flex;flex-direction:column;align-items:center;gap:1px;">' +
+                  '<div class="serie-peso-wrap' + (repsH ? ' serie-completada' : '') + '" style="border-color:' + (repsH ? side.color : '') + ';">' +
+                    '<input class="serie-peso" type="number" inputmode="numeric" placeholder="0" value="' + repsVal + '"' +
+                      ' oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'' + side.repsKey + '\',this.value);actualizarRIR(\'' + rirSId + '\',this.value,\'' + (e.reps||'') + '\')"' +
+                      ' onfocus="this.select()" title="Reps ' + side.label + '">' +
+                    '<span class="serie-peso-unit" style="font-size:9px;">rep</span>' +
+                  '</div>' +
+                  rirDisp +
+                '</div>';
+
+                var pesoInput2 = isBWplan
+                  ? '<div class="serie-peso-wrap"><input class="serie-peso" type="number" inputmode="numeric" placeholder="RPE" value="' + pesoVal + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'' + side.pesoKey + '\',this.value)" onfocus="this.select()" style="width:36px;"><span class="serie-peso-unit" style="font-size:9px;">RPE</span></div>'
+                  : '<div style="display:flex;flex-direction:column;align-items:center;gap:1px;">' +
+                      '<div class="serie-peso-wrap"><input class="serie-peso" type="number" inputmode="decimal" placeholder="0" value="' + pesoVal + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'' + side.pesoKey + '\',this.value);actualizarRM1Lado(\'' + rm1SId + '\',this.value,' + repsNum + ')" onfocus="this.select()"><span class="serie-peso-unit">kg</span></div>' +
+                      '<div id="' + rm1SId + '" style="font-size:9px;font-weight:800;color:' + side.color + ';' + (rm1Val > 0 ? '' : 'display:none;') + '">' + (rm1Val > 0 ? '1RM ≈ ' + rm1Val : '') + '</div>' +
+                    '</div>';
+
+                return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;align-items:start;">' +
+                  repsInput + pesoInput2 +
+                '</div>';
+              }).join('');
+
+              return '<div style="display:grid;grid-template-columns:28px 1fr 1fr;gap:6px;align-items:start;padding:8px 0;border-bottom:1px solid var(--border);">' +
+                '<div class="serie-num">' + (sIdx+1) + '</div>' +
+                sideInputs +
+              '</div>';
+            }
+
+            // ── STANDARD (bilateral) ─────────────────────────────────
+            var rirHtml = rirVal !== null
+              ? '<div id="' + rirId + '" style="font-size:9px;font-weight:800;color:var(--green);">RIR&nbsp;' + rirVal + '</div>'
+              : (metaMaxEj > 0
+                ? '<div id="' + rirId + '" style="font-size:9px;font-weight:700;color:var(--text-hint);">meta&nbsp;' + metaMaxEj + '&nbsp;rep</div>'
+                : '<div id="' + rirId + '"></div>');
             var repsRealesInput = '<div style="display:flex;flex-direction:column;align-items:center;gap:1px;">' +
               '<div class="serie-peso-wrap' + (repsHechas ? ' serie-completada' : '') + '">' +
-                '<input class="serie-peso" type="number" inputmode="numeric" placeholder="0" value="' + (s.repsReales||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'repsReales\',this.value);calcRecPeso(\'' + recId + '\',' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',this.value,null,\'' + (e.reps||'') + '\',\'' + (datos.nivel||'intermedio') + '\')" onfocus="this.select()" title="Reps realizadas">' +
+                '<input class="serie-peso" type="number" inputmode="numeric" placeholder="0" value="' + (s.repsReales||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'repsReales\',this.value);actualizarRIR(\'' + rirId + '\',this.value,\'' + (e.reps||'') + '\');calcRecPeso(\'' + recId + '\',' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',this.value,null,\'' + (e.reps||'') + '\',\'' + (datos.nivel||'intermedio') + '\')" onfocus="this.select()" title="Reps realizadas">' +
                 '<span class="serie-peso-unit" style="font-size:9px;">rep</span>' +
               '</div>' +
-              (rirVal !== null ? '<div style="font-size:9px;font-weight:800;color:var(--green);">RIR&nbsp;' + rirVal + '</div>' : '') +
+              rirHtml +
             '</div>';
             var pesoInput = repsRealesInput + (isBWplan
               ? '<div class="serie-peso-wrap"><input class="serie-peso" type="number" inputmode="numeric" placeholder="—" value="' + (s.rpe||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'rpe\',this.value)" onfocus="this.select()" style="width:40px;"><span class="serie-peso-unit" style="font-size:9px;">RPE</span></div>'
               : '<div class="serie-peso-wrap"><input class="serie-peso" type="number" inputmode="decimal" placeholder="0" value="' + (s.peso||'') + '" oninput="updateSerieGuardado(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'peso\',this.value);showRM(this,' + repsNum + ',\'rm_mp_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx + '\');calcRecPeso(\'' + recId + '\',' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',null,this.value,\'' + (e.reps||'') + '\',\'' + (datos.nivel||'intermedio') + '\')" onfocus="this.select()"><span class="serie-peso-unit">kg</span></div>');
 
-            // Calcular recomendación inicial si ya hay datos
             var recHtml = generarRecPesoHtml(repsHechas, pesoNumSerie || pesoNum, e.reps, datos.nivel||'intermedio');
 
             return '<div class="series-row' + compClass + '">' +
@@ -9501,7 +9571,6 @@ function renderMisPlantillas() {
               '<div class="serie-reps">' + e.reps + '</div>' +
               '<div class="serie-descanso">' + (e.descanso||'') + '</div>' +
               pesoInput +
-              '<button class="btn-camara-serie" onclick="abrirAnalizadorTecnica(' + plan.id + ',\'' + d + '\',' + eIdx + ',' + sIdx + ',\'' + (e.nombre||'').replace(/'/g,'') + '\')" title="Analizar técnica con cámara" style="background:var(--green);border:none;border-radius:7px;color:white;font-size:14px;padding:6px 8px;cursor:pointer;flex-shrink:0;min-width:32px;">📹</button>' +
             '</div>' +
             '<div id="rm_mp_' + plan.id + '_' + d + '_' + eIdx + '_' + sIdx + '" style="' + (rmVal > 0 ? '' : 'display:none;') + 'text-align:right;padding:2px 14px 5px;font-size:10px;font-weight:700;color:var(--green);">1RM ≈ ' + (rmVal > 0 ? rmVal : '') + ' kg</div>' +
             renderAnalisisSerie(s.analisis, sIdx + 1) +
@@ -9533,11 +9602,34 @@ function renderMisPlantillas() {
           '</div>';
         }).join('');
 
+        // Extra data keys for calories and steps
+        var calVal = (plan.extraDia && plan.extraDia[d] && plan.extraDia[d].calorias) || '';
+        var panelId = 'extra_' + plan.id + '_' + d;
+        var toggleId = 'toggle_extra_' + plan.id + '_' + d;
+
+        var resultadoId = 'res_' + plan.id + '_' + d;
+
+        var extraPanel =
+          '<div style="padding:0 16px 10px;">' +
+            '<button id="' + toggleId + '" onclick="toggleExtraDia(\'' + panelId + '\',\'' + toggleId + '\')" style="width:100%;background:none;border:1.5px dashed var(--border);border-radius:10px;padding:8px 12px;font-size:12px;font-weight:700;color:var(--text-muted);cursor:pointer;text-align:left;display:flex;align-items:center;gap:6px;font-family:inherit;">' + (calVal ? '➖ Ocultar actividad' : '🔥 ¿Cuántos pasos necesito hoy?') + '</button>' +
+            '<div id="' + panelId + '" style="display:' + (calVal ? 'block' : 'none') + ';margin-top:8px;background:var(--bg);border-radius:12px;padding:14px;border:1.5px solid var(--border);">' +
+              '<div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">🔥 Calorías quemadas en el entreno</div>' +
+              '<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">' +
+                '<div style="flex:1;display:flex;align-items:center;gap:6px;background:var(--card);border:2px solid var(--green);border-radius:10px;padding:10px 14px;">' +
+                  '<input type="number" inputmode="numeric" placeholder="ej. 750" value="' + calVal + '" oninput="saveExtraDia(' + plan.id + ',\'' + d + '\',\'calorias\',this.value);calcPasosDesdeKcal(\'' + resultadoId + '\',this.value,\'' + (datos.objetivo||'mantenimiento') + '\',\'' + (datos.peso||70) + '\')" onfocus="this.select()" style="flex:1;background:none;border:none;outline:none;font-size:22px;font-weight:800;color:var(--text);font-family:inherit;width:0;min-width:0;">' +
+                  '<span style="font-size:13px;font-weight:700;color:var(--text-muted);">kcal</span>' +
+                '</div>' +
+              '</div>' +
+              '<div id="' + resultadoId + '">' + (calVal ? calcPasosDesdeKcalHtml(calVal, datos.objetivo||'mantenimiento', datos.peso||70) : '<div style="font-size:12px;color:var(--text-muted);text-align:center;padding:8px 0;">Introduce las kcal quemadas para ver tus pasos recomendados 👆</div>') + '</div>' +
+            '</div>' +
+          '</div>';
+
         return '<div style="margin-bottom:4px;">' +
           '<div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--green);padding:8px 16px 6px;">' +
             (NDIAS[d] || d) + ' · ' + ejercsDia.length + ' ejercicios' +
           '</div>' +
           '<div style="padding:0 16px 4px;">' + ejercRows + '</div>' +
+          extraPanel +
         '</div>';
       }).join('');
 
@@ -9583,6 +9675,144 @@ function updateSerieGuardado(planId, dia, eIdx, sIdx, field, val) {
 // Legacy function kept for compatibility
 function updatePesoGuardado(planId, dia, eIdx, sIdx, val) {
   updateSerieGuardado(planId, dia, eIdx, sIdx, 'peso', val);
+}
+
+// Toggle extra activity panel per day
+function toggleExtraDia(panelId, toggleId) {
+  var panel = document.getElementById(panelId);
+  var btn   = document.getElementById(toggleId);
+  if (!panel) return;
+  var open = panel.style.display !== 'none';
+  panel.style.display = open ? 'none' : 'block';
+  if (btn) btn.innerHTML = open ? '🔥 ¿Cuántos pasos necesito hoy?' : '➖ Ocultar actividad';
+}
+
+// Update 1RM for unilateral leg side (D or I)
+function actualizarRM1Lado(rm1Id, pesoStr, repsNum) {
+  var el = document.getElementById(rm1Id);
+  if (!el) return;
+  var peso = parseFloat(pesoStr) || 0;
+  if (peso <= 0) { el.style.display = 'none'; el.textContent = ''; return; }
+  var rm = calcRM(peso, repsNum || 10);
+  el.textContent = '1RM ≈ ' + rm;
+  el.style.display = '';
+}
+
+// Update RIR display live (called oninput on reps)
+function actualizarRIR(rirId, repsStr, metaRepsStr) {
+  var el = document.getElementById(rirId);
+  if (!el) return;
+  var reps     = parseInt(repsStr) || 0;
+  var metaMin  = parseInt((metaRepsStr||'').split('-')[0]) || 0;
+  var metaMax  = parseInt((metaRepsStr||'').split('-')[1]) || metaMin;
+  if (reps <= 0) {
+    el.style.display = '';
+    el.style.color   = 'var(--text-hint)';
+    el.style.fontWeight = '700';
+    el.textContent   = metaMax > 0 ? 'meta ' + metaMax + ' rep' : '';
+    return;
+  }
+  var rir = Math.max(0, metaMax - reps);
+  el.style.display = '';
+  el.style.color   = rir === 0 ? '#DC2626' : rir <= 2 ? '#F59E0B' : 'var(--green)';
+  el.style.fontWeight = '800';
+  el.textContent   = 'RIR ' + rir;
+}
+
+// Update 1RM display live in Mis HITs
+function actualizarRM1Hit(rm1Id, repsStr, diaIdx, eIdx, sIdx, hitId) {
+  var el = document.getElementById(rm1Id);
+  if (!el) return;
+  var hit = misHits.find(function(h){ return h.id === hitId; });
+  if (!hit) return;
+  var s = hit.diasData[diaIdx] && hit.diasData[diaIdx].ejercs[eIdx] && hit.diasData[diaIdx].ejercs[eIdx].series[sIdx];
+  if (!s) return;
+  var peso = parseFloat(s.peso) || 0;
+  var reps = parseInt(repsStr) || parseInt(String(hit.params.reps||'10').split('-')[0]) || 10;
+  if (peso <= 0 || reps <= 0) { el.style.display = 'none'; return; }
+  var rm = calcRM(peso, reps);
+  el.style.display = '';
+  el.textContent   = '1RM ≈ ' + rm;
+}
+
+// Save calories for a day into the plan object
+function saveExtraDia(planId, dia, field, val) {
+  var plan = misPlantillas.find(function(p){ return p.id === planId; });
+  if (!plan) return;
+  if (!plan.extraDia) plan.extraDia = {};
+  if (!plan.extraDia[dia]) plan.extraDia[dia] = {};
+  plan.extraDia[dia][field] = val;
+  guardarDatosUsuario();
+}
+
+// Update DOM with steps result (called oninput)
+function calcPasosDesdeKcal(resultadoId, kcalStr, objetivo, peso) {
+  var el = document.getElementById(resultadoId);
+  if (!el) return;
+  var kcal = parseFloat(kcalStr);
+  if (!kcal || kcal <= 0) {
+    el.innerHTML = '<div style="font-size:12px;color:var(--text-muted);text-align:center;padding:8px 0;">Introduce las kcal quemadas para ver tus pasos recomendados 👆</div>';
+    return;
+  }
+  el.innerHTML = calcPasosDesdeKcalHtml(kcalStr, objetivo, peso);
+}
+
+// Generate the steps result HTML from kcal burned
+function calcPasosDesdeKcalHtml(kcalStr, objetivo, peso) {
+  var kcalEntreno = parseFloat(kcalStr) || 0;
+  if (kcalEntreno <= 0) return '';
+
+  var pesoNum = parseFloat(peso) || 70;
+
+  // Target kcal from steps based on objective (from getPasosObj base * 0.04 kcal/step)
+  var pasosMeta = getPasosObj(objetivo).entreno; // steps goal on training days
+  var kcalMetaPasos = Math.round(pasosMeta * 0.04);
+
+  // Remaining kcal to cover with steps
+  var kcalRestante = Math.max(0, kcalMetaPasos - kcalEntreno);
+
+  // If kcal from training already exceeds walking goal → minimal steps for health
+  var pasosMin = 3000; // minimum healthy steps
+  var pasos, mensaje, color, emoji;
+
+  if (kcalEntreno >= kcalMetaPasos) {
+    pasos = pasosMin;
+    color = 'var(--green)';
+    emoji = '🏆';
+    mensaje = 'Con <b>' + Math.round(kcalEntreno) + ' kcal</b> quemadas en el entreno ya has cubierto tu objetivo de actividad. Solo necesitas <b>' + pasosMin.toLocaleString('es-ES') + ' pasos mínimos</b> para la circulación y recuperación.';
+  } else {
+    // kcal per step: ~0.04 * (weight correction vs 70kg reference)
+    var kcalPorPaso = 0.04 * (pesoNum / 70);
+    pasos = Math.round(kcalRestante / kcalPorPaso);
+    // Cap between 1000 and 15000
+    pasos = Math.max(1000, Math.min(15000, pasos));
+    color = objetivo === 'grasa' ? '#DC2626' : objetivo === 'recomposicion' ? '#D97706' : 'var(--green)';
+    emoji = objetivo === 'grasa' ? '🔥' : '👟';
+    var consejoObj = {
+      grasa:         '💡 Reparte los pasos: 20 min antes del entreno y el resto después para maximizar la quema de grasa.',
+      hipertrofia:   '💡 Camina suave. Los pasos son para la recuperación, no para quemar calorías extra.',
+      fuerza:        '💡 Caminata tranquila. Evita cardio intenso que interfiera con la recuperación muscular.',
+      recomposicion: '💡 20 min de caminata post-entreno mejora la sensibilidad a la insulina y la recuperación.',
+      mantenimiento: '💡 Distribuye los pasos durante el día, no hace falta hacerlos de una sola vez.'
+    }[objetivo] || '💡 Distribuye los pasos a lo largo del día.';
+    mensaje = 'Te quedan <b>' + Math.round(kcalRestante) + ' kcal</b> por cubrir con pasos.<br>' + consejoObj;
+  }
+
+  var minutos = Math.round(pasos / 100);
+
+  return '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">' +
+    '<div style="background:var(--card);border-radius:10px;padding:12px;text-align:center;">' +
+      '<div style="font-size:28px;font-weight:900;color:' + color + ';line-height:1;">' + emoji + ' ' + pasos.toLocaleString('es-ES') + '</div>' +
+      '<div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:3px;text-transform:uppercase;">Pasos recomendados</div>' +
+    '</div>' +
+    '<div style="background:var(--card);border-radius:10px;padding:12px;text-align:center;">' +
+      '<div style="font-size:28px;font-weight:900;color:var(--text);line-height:1;">' + minutos + ' min</div>' +
+      '<div style="font-size:10px;color:var(--text-muted);font-weight:700;margin-top:3px;text-transform:uppercase;">Caminando</div>' +
+    '</div>' +
+  '</div>' +
+  '<div style="font-size:12px;color:var(--text);line-height:1.7;background:var(--card);border-radius:10px;padding:10px 12px;border-left:3px solid ' + color + ';">' +
+    mensaje +
+  '</div>';
 }
 
 // ==================== POWERLIFTING PROGRESS ====================
@@ -10404,7 +10634,7 @@ var ASSESS_QUESTIONS = [
       { val:'remo',       emoji:'🚣', name:'Remo ergómetro (Concept2)', desc:'Rowing, intervalos de remo' },
       { val:'bike',       emoji:'🚵', name:'Assault/Echo Bike',          desc:'Bike sprints, TABATA bike' },
       { val:'correr',     emoji:'🏃', name:'Correr (exterior)',           desc:'Running 400m, 800m, 1 milla — sin máquina' },
-      { val:'nada',       emoji:'💪', name:'Solo peso corporal',          desc:'Burpees, air squat, push-up — sin nada' }
+      { val:'nada',       emoji:'💪', name:'Peso corporal',               desc:'Burpees, air squat, push-up — combínalo con otros materiales' }
     ]
   }
 ];
@@ -10611,13 +10841,7 @@ function toggleMultiOpt(qId, val) {
   if (!assessAnswers[qId]) assessAnswers[qId] = [];
   var idx2 = assessAnswers[qId].indexOf(val);
   if (idx2 === -1) {
-    // If "nada" selected, clear rest; if other selected, remove "nada"
-    if (val === 'nada') assessAnswers[qId] = ['nada'];
-    else {
-      var nadaIdx = assessAnswers[qId].indexOf('nada');
-      if (nadaIdx !== -1) assessAnswers[qId].splice(nadaIdx, 1);
-      assessAnswers[qId].push(val);
-    }
+    assessAnswers[qId].push(val);
   } else {
     assessAnswers[qId].splice(idx2, 1);
   }
@@ -10637,8 +10861,41 @@ function renderAssessResult() {
   hitUserLevel = { idx: nivelIdx, gen: gen, nd: nd, equip: equip, dias: diasDisp2, tiempo: tiempoSes2 };
 
   var esH = gen === 'hombre';
-  var estructura = nd.estructura.split(' | ').map(function(s){ return '• ' + s; }).join('<br>');
   var cargas = (esH ? nd.cargas_h : nd.cargas_m).split(' | ').map(function(s){ return '• ' + s; }).join('<br>');
+
+  // Build estructura dynamically from user's real answers
+  var diasTexto = diasDisp2 + ' días/semana · ' + tiempoSes2 + ' min/sesión';
+  var tiempoTrab2 = Math.max(10, tiempoSes2 - 13);
+  var estructuraItems;
+  if (tiempoSes2 <= 30) {
+    estructuraItems = [
+      '5 min calentamiento rápido',
+      tiempoTrab2 + ' min WOD express (TABATA o AMRAP corto)',
+      '3 min vuelta a la calma'
+    ];
+  } else if (tiempoSes2 <= 45) {
+    estructuraItems = [
+      '8 min calentamiento + movilidad',
+      (nivelIdx === 0 ? '10 min técnica básica' : '10 min fuerza (E2MOM)'),
+      (tiempoTrab2 - 10) + ' min WOD (' + (nivelIdx===0?'EMOM o FOR TIME':nivelIdx===1?'AMRAP o FOR TIME':'AMRAP o CHIPPER') + ')',
+      '5 min vuelta a la calma'
+    ];
+  } else if (tiempoSes2 <= 60) {
+    estructuraItems = [
+      '10 min calentamiento + movilidad',
+      (nivelIdx === 0 ? '15 min técnica y fuerza básica' : nivelIdx===1 ? '15 min fuerza (E2MOM/OTM)' : '20 min fuerza pesada (90%+ 1RM)'),
+      (tiempoTrab2 - 15) + ' min WOD (' + (nivelIdx===0?'EMOM o FOR TIME':nivelIdx===1?'AMRAP o CHIPPER':'AMRAP o FOR TIME') + ')',
+      '5 min vuelta a la calma'
+    ];
+  } else {
+    estructuraItems = [
+      '12 min calentamiento + skill',
+      (nivelIdx === 0 ? '20 min técnica y fuerza' : nivelIdx===1 ? '20 min fuerza (E2MOM)' : '25 min fuerza olímpica (90%+ 1RM)'),
+      (tiempoTrab2 - 25) + ' min WOD (' + (nivelIdx===0?'AMRAP o FOR TIME':nivelIdx===1?'CHIPPER o AMRAP':'CHIPPER o benchmark') + ')',
+      (nivelIdx >= 1 ? '10 min accesorio y vuelta a la calma' : '5 min vuelta a la calma')
+    ];
+  }
+  var estructura = estructuraItems.map(function(s){ return '• ' + s; }).join('<br>');
 
   // Equipment list
   var equipNames = {
@@ -10674,7 +10931,7 @@ function renderAssessResult() {
       '</div>' +
       '<div style="background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px;">' +
         '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--green);margin-bottom:6px;">📅 Frecuencia y estructura</div>' +
-        '<div style="font-size:12px;color:var(--text);margin-bottom:6px;">' + (esH ? nd.dias_h : nd.dias_m) + '</div>' +
+        '<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:6px;">📅 ' + diasTexto + '</div>' +
         '<div style="font-size:12px;color:var(--text);line-height:1.8;">' + estructura + '</div>' +
       '</div>' +
       '<div style="background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:12px;margin-bottom:14px;">' +
@@ -10716,7 +10973,7 @@ function generarRutina() {
       { n:'Hollow Body Hold', m:'Core, Transverso', tip:'Lumbar pegada al suelo, brazos y piernas bajos.', yt:'hollow body hold hit', icon:'🍌' },
       { n:'Pistol Squat (progresión)', m:'Cuádriceps, Equilibrio', tip:'Empieza asistido con silla o puerta.', yt:'pistol squat hit progression', icon:'🔫' },
       { n:'Mountain Climber', m:'Core, Psoas', tip:'Caderas bajas, rodillas al pecho alternando rápido.', yt:'mountain climber hit', icon:'🧗' },
-      { n:'V-up', m:'Recto abdominal', tip:'Elevar piernas y torso simultáneo, tocar pies arriba.', yt:'vup hit', icon:'🔼' },
+      { n:'V-up', m:'Recto abdominal', tip:'Elevar piernas y torso simultáneo, tocar pies arriba.', yt:'v up exercise core tutorial', icon:'🔼' },
       { n:'Jump Squat', m:'Cuádriceps, Glúteo', tip:'Explosividad máxima, aterrizaje amortiguado.', yt:'jump squat hit', icon:'🦘' },
       { n:'Wall Walk', m:'Deltoides, Core', tip:'Manos caminan hacia la pared hasta posición HSPU.', yt:'wall walk hit', icon:'🧗' }
     ],
@@ -10783,76 +11040,174 @@ function generarRutina() {
     ]
   };
 
-  // Build weekly routine based on level and equipment
-  var ALL_DIAS = ['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+  // ── Días disponibles ────────────────────────────────────────
   var DIAS_SEMANA;
-  if (diasDisp === 2) DIAS_SEMANA = ['Lunes','Jueves'];
+  if      (diasDisp <= 2) DIAS_SEMANA = ['Lunes','Jueves'];
   else if (diasDisp === 3) DIAS_SEMANA = ['Lunes','Miércoles','Viernes'];
   else if (diasDisp === 4) DIAS_SEMANA = ['Lunes','Martes','Jueves','Viernes'];
-  else DIAS_SEMANA = ['Lunes','Martes','Miércoles','Jueves','Sábado'];
+  else                     DIAS_SEMANA = ['Lunes','Martes','Miércoles','Jueves','Sábado'];
 
-  var FOCOS = {
-    0: [
-      { foco:'Full Body + Técnica', tipo:'EMOM' },
-      { foco:'Cardio + Core', tipo:'FOR TIME' },
-      { foco:'Fuerza + Metabólico', tipo:'AMRAP' }
-    ],
-    1: [
-      { foco:'Fuerza + Técnica olímpica', tipo:'E2MOM + AMRAP' },
-      { foco:'Cardio + Gimnástico', tipo:'FOR TIME' },
-      { foco:'Full Body + Core', tipo:'AMRAP' },
-      { foco:'Fuerza + Metabólico', tipo:'CHIPPER' }
-    ],
-    2: [
-      { foco:'Técnica olímpica + Fuerza máxima', tipo:'OTM + E2MOM' },
-      { foco:'Gimnástico + Cardio', tipo:'FOR TIME' },
-      { foco:'Fuerza compuesta + WOD benchmark', tipo:'AMRAP 20 min' },
-      { foco:'Cardio intenso + Core', tipo:'TABATA' },
-      { foco:'Full body competitivo', tipo:'CHIPPER' }
-    ]
+  // ── Tiempo real de trabajo ──────────────────────────────────
+  // Descontamos 8min calentamiento + 5min vuelta a la calma
+  var tiempoTrabajo = Math.max(10, tiempoSes - 13);
+
+  // ── Ejercicios por nivel y dificultad ───────────────────────
+  // Nivel 0: solo ejercicios accesibles (sin olímpicos, sin muscle-up)
+  // Nivel 1: ejercicios medios (puede haber kipping, KB avanzado)
+  // Nivel 2: todos incluidos
+  var NIVEL_EXCLUIR = {
+    0: ['Kipping Pull-up','Bar Muscle-up','Ring Muscle-up','KB Snatch','Snatch (Power)',
+        'Overhead Squat (OHS)','Power Clean','Wall Walk','KB Turkish Get-up',
+        'Rope Climb (técnica)','Chest-to-Bar (C2B)','V-up','Pistol Squat (progresión)'],
+    1: ['Bar Muscle-up','Ring Muscle-up','Snatch (Power)','Overhead Squat (OHS)',
+        'KB Turkish Get-up','Rope Climb (técnica)'],
+    2: []
   };
+  var excluir = NIVEL_EXCLUIR[nivelIdx] || [];
 
-  // Collect available exercises
+  // Collect all exercises for selected equipment
   var ejercsDisponibles = [].concat(ejerciciosPorEquip.nada);
   equip.forEach(function(e) {
     if (e !== 'nada' && ejerciciosPorEquip[e]) {
       ejercsDisponibles = ejercsDisponibles.concat(ejerciciosPorEquip[e]);
     }
   });
-  // Deduplicate
+  // Deduplicate and filter by level
   var seen = {};
   ejercsDisponibles = ejercsDisponibles.filter(function(e) {
-    if (seen[e.n]) return false; seen[e.n] = true; return true;
+    if (seen[e.n]) return false;
+    if (excluir.indexOf(e.n) !== -1) return false;
+    seen[e.n] = true;
+    return true;
   });
 
-  // Parameters
-  // Adjust params based on time available
+  // ── Número de ejercicios según tiempo y nivel ───────────────
+  // Cada ejercicio en un WOD ocupa ~3-5 min (trabajo + transición)
+  // EMOM: 1 min/ejercicio → usamos tiempoTrabajo directo
+  // FOR TIME / AMRAP: 3-4 min/ejercicio promedio
+  // Fuerza (series): más tiempo por ejercicio (series × descanso)
+  function calcNumEjercs(tipo, tiempo, nivel) {
+    var t = (tipo || '').toUpperCase();
+    if (t.indexOf('EMOM') !== -1 || t.indexOf('E2MOM') !== -1) {
+      // 1 ejercicio = 1 min (EMOM) o 2 min (E2MOM)
+      var minPorEj = t.indexOf('E2MOM') !== -1 ? 2 : 1;
+      return Math.max(3, Math.min(nivel===0?6:nivel===1?8:10, Math.floor(tiempo / minPorEj)));
+    }
+    if (t.indexOf('TABATA') !== -1) {
+      // TABATA: 4 min por ejercicio (8 rondas × 30s)
+      return Math.max(2, Math.min(nivel===0?3:nivel===1?4:5, Math.floor(tiempo / 4)));
+    }
+    if (t.indexOf('FOR TIME') !== -1 || t.indexOf('AMRAP') !== -1 || t.indexOf('CHIPPER') !== -1) {
+      // ~3-4 min por ejercicio
+      return Math.max(3, Math.min(nivel===0?4:nivel===1?6:8, Math.floor(tiempo / 3.5)));
+    }
+    // Fuerza/series: pocas ejercicios, más series
+    return nivel === 0 ? 3 : nivel === 1 ? 4 : 5;
+  }
+
+  // ── Timer exacto según tipo y tiempo ────────────────────────
+  function calcTimerWod(tipo, tiempo, numEj, nivel) {
+    var t = (tipo || '').toUpperCase();
+    if (t.indexOf('TABATA') !== -1) {
+      // Timer de trabajo = 20s siempre; ajustamos rondas según tiempo
+      var rondasTab = Math.max(4, Math.min(nivel===0?6:nivel===1?8:12, Math.floor((tiempo * 60) / 30)));
+      var restTab   = nivel === 0 ? 15 : nivel === 1 ? 10 : 8;
+      return { sec:20, rest:restTab, rounds:rondasTab, tabata:true, restEditable:true,
+               label:'⚡ TABATA · 20s trabajo / ' + restTab + 's descanso · ' + rondasTab + ' rondas (~' + Math.round(rondasTab*30/60) + ' min)' };
+    }
+    if (t.indexOf('E2MOM') !== -1) {
+      // Timer = 2 min por ejercicio, total = numEj × 2 min
+      return { sec:120, rest:0, rounds:0, tabata:false, restEditable:false,
+               label:'⏰ E2MOM · ' + numEj + ' ejercicios · 2 min c/u · ' + (numEj*2) + ' min total' };
+    }
+    if (t.indexOf('EMOM') !== -1) {
+      // Timer = 1 min, total = numEj × 1 min
+      var descObj = nivel===0 ? '20-25s' : nivel===1 ? '15-20s' : '10-15s';
+      return { sec:60, rest:0, rounds:0, tabata:false, restEditable:false,
+               label:'⏰ EMOM · ' + numEj + ' ejercicios · 1 min c/u · ' + numEj + ' min total · obj. ' + descObj + ' desc' };
+    }
+    if (t.indexOf('FOR TIME') !== -1) {
+      // Cap = tiempo disponible completo
+      var capSec = tiempo * 60;
+      return { sec:capSec, rest:0, rounds:0, tabata:false, restEditable:false,
+               label:'🏁 FOR TIME · Cap ' + tiempo + ' min · ' + numEj + ' ejercicios · máxima velocidad' };
+    }
+    if (t.indexOf('AMRAP') !== -1) {
+      var amSec = tiempo * 60;
+      return { sec:amSec, rest:0, rounds:0, tabata:false, restEditable:false,
+               label:'🔄 AMRAP · ' + tiempo + ' min · ' + numEj + ' ejercicios · máximas rondas' };
+    }
+    if (t.indexOf('CHIPPER') !== -1) {
+      var chipSec = tiempo * 60;
+      return { sec:chipSec, rest:0, rounds:0, tabata:false, restEditable:false,
+               label:'🔨 CHIPPER · ' + tiempo + ' min · ' + numEj + ' ejercicios · de arriba a abajo' };
+    }
+    if (t.indexOf('DEATH') !== -1) {
+      return { sec:60, rest:0, rounds:0, tabata:false, restEditable:false,
+               label:'💀 DEATH BY · 1 min por ronda · hasta el fallo' };
+    }
+    // Fuerza/descanso entre series
+    var descSec = nivel===0 ? 60 : nivel===1 ? 90 : 150;
+    var descStr = nivel===0 ? '60s' : nivel===1 ? '90s' : '2:30';
+    return { sec:descSec, rest:0, rounds:0, tabata:false, restEditable:true,
+             label:'⏱️ Descanso entre series · ' + descStr + ' · ' + (nivel===0?'Principiante':nivel===1?'Intermedio':'Avanzado') };
+  }
+
+  // ── Parámetros de series según nivel y tiempo ───────────────
   var baseParams = [
-    { series:3, reps:'10-15', descanso:'45 seg', peso_tip:'Peso ligero-medio. Anota qué peso usas y cómo te sientes.' },
-    { series:4, reps:'8-12',  descanso:'90 seg', peso_tip:'Peso moderado. Sube 2.5kg cuando completes todas las reps con buena técnica.' },
-    { series:4, reps:'5-8',   descanso:'2-3 min', peso_tip:'Peso alto (75-85% 1RM). Registra cada serie por separado.' }
+    { series:3, reps:'12-15', descanso:'60 seg', peso_tip:'Peso ligero que puedas controlar bien. Anota cómo te sientes cada serie.' },
+    { series:4, reps:'8-12',  descanso:'90 seg', peso_tip:'Peso moderado. Sube 2.5kg cuando completes todas las reps.' },
+    { series:5, reps:'5-8',   descanso:'2 min',  peso_tip:'Peso alto (75-85% 1RM). Registra cada serie por separado.' }
   ][nivelIdx];
   var params = Object.assign({}, baseParams);
-  if (tiempoSes <= 30) { params.series = Math.max(2, params.series - 1); params.descanso = '30 seg'; }
+  if (tiempoSes <= 30) { params.series = Math.max(2, params.series - 2); params.descanso = '45 seg'; }
   else if (tiempoSes <= 45) { params.series = Math.max(2, params.series - 1); }
-  else if (tiempoSes >= 90) { params.series = params.series + 1; }
+  else if (tiempoSes >= 90) { params.series += 1; }
+  params.tiempoSes = tiempoSes;
 
-  var cargas = (esH ? getNivelInfo(nivelIdx,gen).cargas_h : getNivelInfo(nivelIdx,gen).cargas_m);
+  // ── Focos por nivel ─────────────────────────────────────────
+  var FOCOS = {
+    0: [
+      { foco:'Full Body · Técnica básica',   tipo:'EMOM' },
+      { foco:'Cardio + Core',                tipo:'FOR TIME' },
+      { foco:'Fuerza + Metabólico',          tipo:'AMRAP' }
+    ],
+    1: [
+      { foco:'Fuerza + Técnica',             tipo:'E2MOM' },
+      { foco:'Cardio + Gimnástico',          tipo:'FOR TIME' },
+      { foco:'Full Body + Core',             tipo:'AMRAP' },
+      { foco:'Fuerza Metabólica',            tipo:'CHIPPER' }
+    ],
+    2: [
+      { foco:'Técnica olímpica + Fuerza',    tipo:'E2MOM' },
+      { foco:'Gimnástico + Cardio',          tipo:'FOR TIME' },
+      { foco:'Fuerza máxima + WOD',          tipo:'AMRAP' },
+      { foco:'Cardio intenso + Core',        tipo:'TABATA' },
+      { foco:'Full body competitivo',        tipo:'CHIPPER' }
+    ]
+  };
 
-  // Build days
+  // ── Construir días ──────────────────────────────────────────
   var dias = DIAS_SEMANA.map(function(dia, i) {
-    var foco = FOCOS[nivelIdx][i % FOCOS[nivelIdx].length];
-    // Pick 4-6 exercises
-    var numEjercs = nivelIdx === 0 ? 4 : nivelIdx === 1 ? 5 : 6;
-    var startIdx = (i * numEjercs) % Math.max(ejercsDisponibles.length - numEjercs, 1);
-    var ejercsDia = [];
-    for (var j = 0; j < numEjercs; j++) {
-      ejercsDia.push(ejercsDisponibles[(startIdx + j) % ejercsDisponibles.length]);
-    }
-    return { dia: dia, foco: foco.foco, tipo: foco.tipo, ejercs: ejercsDia };
+    var foco    = FOCOS[nivelIdx][i % FOCOS[nivelIdx].length];
+    var numEj   = calcNumEjercs(foco.tipo, tiempoTrabajo, nivelIdx);
+    var timer   = calcTimerWod(foco.tipo, tiempoTrabajo, numEj, nivelIdx);
+
+    // Pick exercises: shuffle pool differently each day
+    var pool = ejercsDisponibles.slice();
+    // Simple deterministic shuffle per day index
+    var shuffled = pool.slice().sort(function(a,b) {
+      var ha = 0, hb = 0;
+      for (var k=0; k<a.n.length; k++) ha += a.n.charCodeAt(k) * (i+1) * (k+1);
+      for (var k=0; k<b.n.length; k++) hb += b.n.charCodeAt(k) * (i+1) * (k+1);
+      return (ha % 97) - (hb % 97);
+    });
+    var ejercsDia = shuffled.slice(0, Math.min(numEj, shuffled.length));
+
+    return { dia:dia, foco:foco.foco, tipo:foco.tipo, ejercs:ejercsDia, timer:timer };
   });
 
-  rutinaGenerada = { nivelIdx: nivelIdx, gen: gen, equip: equip, dias: dias, params: params, tiempoSes: tiempoSes, diasDisp: diasDisp };
+  rutinaGenerada = { nivelIdx:nivelIdx, gen:gen, equip:equip, dias:dias, params:params, tiempoSes:tiempoSes, tiempoTrabajo:tiempoTrabajo, diasDisp:diasDisp };
 
   // Show rutina screen
   document.getElementById('hitAssessOverlay').classList.remove('open');
@@ -10871,7 +11226,12 @@ function mostrarRutina() {
   // Build days HTML
   var diasHtml = r.dias.map(function(dia) {
     var ejercsHtml = dia.ejercs.map(function(e, ei) {
-      var ytUrl = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(e.yt || e.n + ' hit');
+      var ytQuery = e.yt || (e.n + ' exercise tutorial');
+      // Avoid music results for short/ambiguous names by ensuring "exercise" is in query
+      if (ytQuery.split(' ').length <= 3 && ytQuery.indexOf('exercise') === -1 && ytQuery.indexOf('tutorial') === -1) {
+        ytQuery = ytQuery + ' exercise tutorial';
+      }
+      var ytUrl = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(ytQuery);
       // Detect bodyweight exercises - no weight field
       var BW_KEYWORDS = ['squat','burpee','push-up','pull-up','muscle-up','t2b','toes','ring row',
         'dip','hspu','handstand','wall walk','hollow','plank','situp','v-up','mountain',
@@ -10965,25 +11325,24 @@ function mostrarRutina() {
 
     var diaId = 'wod-' + dia.dia.replace(/[^a-z]/gi,'');
 
-    // Smart timer per WOD type
-    var tipoWod = dia.tipo.toUpperCase();
-    var timerCfg;
-    if (tipoWod.indexOf('TABATA') !== -1) {
-      timerCfg = { sec: 20, label: '🔥 TABATA — 20s trabajo', color: '#DC2626', sub: '20s ON · 10s OFF · 8 rondas', rest: 10, rounds: 8, isTabata: true };
-    } else if (tipoWod.indexOf('EMOM') !== -1 || tipoWod.indexOf('OTM') !== -1) {
-      timerCfg = { sec: 60, label: '⏰ EMOM — 1 minuto', color: '#7C3AED', sub: 'Completa el trabajo dentro del minuto', rest: 0, rounds: 0 };
-    } else if (tipoWod.indexOf('E2MOM') !== -1) {
-      timerCfg = { sec: 120, label: '⏰ E2MOM — 2 minutos', color: '#7C3AED', sub: 'Completa el trabajo dentro de los 2 min', rest: 0, rounds: 0 };
-    } else if (tipoWod.indexOf('FOR TIME') !== -1 || tipoWod.indexOf('CHIPPER') !== -1 || tipoWod.indexOf('RFT') !== -1) {
-      timerCfg = { sec: tiempoSes * 60, label: '🏁 FOR TIME — ' + tiempoSes + ' min', color: '#059669', sub: 'Completa todo lo antes posible · Cap: ' + tiempoSes + ' min', rest: 0, rounds: 0 };
-    } else if (tipoWod.indexOf('AMRAP') !== -1) {
-      var amrapMin = tiempoSes >= 60 ? 20 : tiempoSes >= 45 ? 15 : 10;
-      timerCfg = { sec: amrapMin * 60, label: '🔄 AMRAP — ' + amrapMin + ' min', color: '#0284C7', sub: 'Máximas rondas en ' + amrapMin + ' minutos', rest: 0, rounds: 0 };
-    } else if (tipoWod.indexOf('DEATH') !== -1) {
-      timerCfg = { sec: 60, label: '💀 DEATH BY — cada minuto', color: '#1F2937', sub: '+1 rep cada minuto hasta fallar', rest: 0, rounds: 0 };
-    } else {
-      timerCfg = { sec: params.descanso && params.descanso.indexOf('min') !== -1 ? parseInt(params.descanso)*60 : parseInt(params.descanso)||90, label: '⏱️ Descanso entre series', color: '#1D9E75', sub: 'Descansa ' + (params.descanso||'90 seg') + ' entre series', rest: 0, rounds: 0 };
-    }
+    // Use pre-calculated timer from generarRutina (already calibrated to nivel + tiempo)
+    var tipoWod  = dia.tipo.toUpperCase();
+    var diaTimer = dia.timer || {};
+    var COLOR_MAP = {
+      'TABATA':'#DC2626','EMOM':'#7C3AED','E2MOM':'#7C3AED',
+      'FOR TIME':'#059669','AMRAP':'#0284C7','CHIPPER':'#059669',
+      'DEATH':'#1F2937','default':'#1D9E75'
+    };
+    var tColor = tipoWod.indexOf('TABATA')!==-1?'#DC2626':tipoWod.indexOf('E2MOM')!==-1?'#7C3AED':tipoWod.indexOf('EMOM')!==-1?'#7C3AED':tipoWod.indexOf('FOR TIME')!==-1||tipoWod.indexOf('CHIPPER')!==-1?'#059669':tipoWod.indexOf('AMRAP')!==-1?'#0284C7':tipoWod.indexOf('DEATH')!==-1?'#1F2937':'#1D9E75';
+    var timerCfg = {
+      sec:     diaTimer.sec     || 60,
+      label:   diaTimer.label   || dia.tipo,
+      rest:    diaTimer.rest    || 0,
+      rounds:  diaTimer.rounds  || 0,
+      isTabata:diaTimer.tabata  || false,
+      color:   tColor,
+      sub:     'Nivel: ' + (r.nivelIdx===0?'Principiante':r.nivelIdx===1?'Intermedio':'Avanzado') + ' · Sesión: ' + tiempoSes + ' min'
+    };
 
     var timerLabel = timerCfg.label.replace(/"/g,"'").replace(/'/g,'&#39;');
     var timerBlock =
@@ -12296,6 +12655,18 @@ function isBW(nombre) {
   return BW_KEYWORDS_GLOBAL.some(function(k){ return nl.indexOf(k) !== -1; });
 }
 
+var UNILATERAL_LEG_KEYWORDS = [
+  'zancada','step-up','step up','pistol','búlgara','bulgara',
+  'una pierna','un pie','a una pierna',
+  'puente de glúteos a un','peso muerto a una',
+  'elevación de gemelos a una','split squat'
+];
+
+function isUnilateralLeg(nombre) {
+  var nl = (nombre || '').toLowerCase();
+  return UNILATERAL_LEG_KEYWORDS.some(function(k){ return nl.indexOf(k) !== -1; });
+}
+
 
 function guardarDiaEnHits(diaIdx) {
   if (!rutinaGenerada) return;
@@ -12346,6 +12717,8 @@ function guardarDiaEnHits(diaIdx) {
   } else {
     misHits.unshift({
       id: Date.now(), nombre:nombre, fecha:fechaStr,
+      nivelIdx: r.nivelIdx !== undefined ? r.nivelIdx : 1,
+      tiempoSes: r.tiempoSes || 45,
       nivelNombre:nd.nombre, nivelColor:nd.color, nivelEmoji:nd.emoji,
       gen:r.gen, params:Object.assign({},r.params),
       diasData:[{dia:dia.dia, foco:dia.foco, tipo:dia.tipo, timer:savedTimer, ejercs:ejercsData}]
@@ -12420,6 +12793,8 @@ function confirmarGuardarHit() {
     id: Date.now(),
     nombre: nombre,
     fecha: new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'}),
+    nivelIdx: r.nivelIdx !== undefined ? r.nivelIdx : 1,
+    tiempoSes: r.tiempoSes || 45,
     nivelNombre: nd.nombre,
     nivelColor: nd.color,
     nivelEmoji: nd.emoji,
@@ -12551,9 +12926,10 @@ function getWodExplicacion(tipo, foco, ejercs) {
     explicacion = {
       titulo: '⏰ EMOM — Every Minute On the Minute',
       color: '#7C3AED',
-      desc: 'Cada vez que el reloj llega a :00 empiezas el bloque de trabajo. El descanso es el tiempo que te sobre dentro del minuto. Con ' + numEj + ' ejercicios tienes un WOD de alta densidad.',
+      desc: 'Cada minuto haces UN ejercicio distinto. Con ' + numEj + ' ejercicios, cada ronda completa dura ' + numEj + ' minutos. El descanso es lo que te sobre de cada minuto — objetivo: terminar en 35-45s y descansar 15-25s.',
       consejos: [
-        '📐 Elige un peso/intensidad que puedas completar en 35-45s. El objetivo es descansar al menos 15s.',
+        '📐 Con ' + numEj + ' ejercicios tienes ' + numEj + ' minutos por ronda completa. Elige un peso que termines en 35-45s.',
+        '⏱️ Descanso real = 60s − tiempo de trabajo. Intenta mantener siempre más de 15s de descanso.',
         '⚡ Si terminas con más de 30s de sobra → sube la intensidad la próxima ronda.',
         '❌ Si no terminas dentro del minuto → reduce reps o peso sin parar el reloj.',
         '💡 Foco de hoy: ' + foco + '. Mantén la técnica aunque el tiempo apriete.',
@@ -12716,6 +13092,17 @@ function cambiarTimerHit(tId, delta) {
   if (disp) disp.textContent = formatTimerSec(newSec);
 }
 
+function cambiarDescHit(tId, delta) {
+  // Edit TABATA rest seconds
+  var btn = document.getElementById('wbtn-' + tId);
+  if (!btn) return;
+  var cur = parseInt(btn.getAttribute('data-rest')) || 10;
+  var newRest = Math.max(5, Math.min(60, cur + delta));
+  btn.setAttribute('data-rest', newRest);
+  var disp = document.getElementById('rdisp-' + tId);
+  if (disp) disp.textContent = formatTimerSec(newRest);
+}
+
 function renderMisHits() {
   var container = document.getElementById('misHitsScreen');
   if (!container) return;
@@ -12751,28 +13138,62 @@ function renderMisHits() {
       var diasHtml = hit.diasData.map(function(dia, diaIdx) {
         var diaEjercsHtml = dia.ejercs.map(function(e, eIdx) {
           var pct = calcEjercProgreso(e);
-          var ytUrl = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(e.yt || e.n + ' hit');
+          var ytQuery = e.yt || (e.n + ' exercise tutorial');
+      // Avoid music results for short/ambiguous names by ensuring "exercise" is in query
+      if (ytQuery.split(' ').length <= 3 && ytQuery.indexOf('exercise') === -1 && ytQuery.indexOf('tutorial') === -1) {
+        ytQuery = ytQuery + ' exercise tutorial';
+      }
+      var ytUrl = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(ytQuery);
 
+          var metaRepsHit = String(hit.params.reps || '10');
+          var metaMinHit  = parseInt(metaRepsHit.split('-')[0]) || 0;
+          var metaMaxHit  = parseInt(metaRepsHit.split('-')[1]) || metaMinHit;
           var seriesHtml = e.series.map(function(s, sIdx) {
-            var pesoCol;
+            var repsHechasHit = parseInt(s.repsReales) || 0;
+            var rirHit        = (repsHechasHit > 0 && metaMaxHit > 0) ? Math.max(0, metaMaxHit - repsHechasHit) : null;
+            var rirIdHit      = 'rir_hit_' + hit.id + '_' + diaIdx + '_' + eIdx + '_' + sIdx;
+            var rm1IdHit      = 'rm1_hit_' + hit.id + '_' + diaIdx + '_' + eIdx + '_' + sIdx;
+
+            // Columna reps realizadas + RIR (todos los ejercicios)
+            var repsRealesHit = '<div style="display:flex;flex-direction:column;align-items:center;gap:1px;">' +
+              '<div class="hit-peso-wrap' + (repsHechasHit ? ' serie-completada' : '') + '">' +
+                '<input class="hit-peso-input" type="number" inputmode="numeric" placeholder="0" value="' + (s.repsReales||'') + '" ' +
+                  'oninput="updateHitPeso(' + hit.id + ',' + diaIdx + ',' + eIdx + ',' + sIdx + ',\'repsReales\',this.value);actualizarRIR(\'' + rirIdHit + '\',this.value,\'' + metaRepsHit + '\')' + (!e.bw ? ';actualizarRM1Hit(\'' + rm1IdHit + '\',this.value,' + diaIdx + ',' + eIdx + ',' + sIdx + ',' + hit.id + ')' : '') + '" ' +
+                  'onfocus="this.select()" style="width:38px;">' +
+                '<span class="hit-peso-unit" style="font-size:9px;">rep</span>' +
+              '</div>' +
+              (rirHit !== null
+                ? '<div id="' + rirIdHit + '" style="font-size:9px;font-weight:800;color:var(--green);">RIR&nbsp;' + rirHit + '</div>'
+                : (metaMaxHit > 0
+                  ? '<div id="' + rirIdHit + '" style="font-size:9px;font-weight:700;color:var(--text-hint);">meta&nbsp;' + metaMaxHit + '&nbsp;rep</div>'
+                  : '<div id="' + rirIdHit + '"></div>')) +
+            '</div>';
+
+            // BW: solo campo de reps realizadas + RIR (sin duplicado)
+            // Con peso: reps realizadas + kg/1RM
             if (e.bw) {
-              pesoCol = '<div class="hit-peso-wrap">' +
-                '<input class="hit-peso-input" type="number" inputmode="numeric" placeholder="reps" value="' + (s.reps||'') + '" ' +
-                  'onchange="updateHitPeso(' + hit.id + ',' + diaIdx + ',' + eIdx + ',' + sIdx + ',\'reps\',this.value)" ' +
-                  'onfocus="this.select()" style="width:44px;">' +
-                '<span class="hit-peso-unit">reps</span>' +
-              '</div>';
-            } else {
-              pesoCol = '<div class="hit-peso-wrap">' +
-                '<input class="hit-peso-input" type="number" inputmode="decimal" placeholder="0" value="' + (s.peso||'') + '" ' +
-                  'onchange="updateHitPeso(' + hit.id + ',' + diaIdx + ',' + eIdx + ',' + sIdx + ',\'peso\',this.value)" ' +
-                  'onfocus="this.select()">' +
-                '<span class="hit-peso-unit">kg</span>' +
+              return '<div class="hit-series-row" style="grid-template-columns:28px 1fr 80px;">' +
+                '<div class="hit-serie-num">' + (sIdx+1) + '</div>' +
+                '<div class="hit-serie-info">' + (hit.params.reps||'') + ' · ' + (hit.params.descanso||'') + '</div>' +
+                repsRealesHit +
               '</div>';
             }
+            var pesoHitNum = parseFloat(s.peso) || 0;
+            var repsHitNum = metaMinHit || 10;
+            var rm1HitVal  = (pesoHitNum > 0 && repsHitNum > 0) ? calcRM(pesoHitNum, repsHitNum) : 0;
+            var pesoCol = '<div style="display:flex;flex-direction:column;align-items:center;gap:1px;">' +
+              '<div class="hit-peso-wrap">' +
+                '<input class="hit-peso-input" type="number" inputmode="decimal" placeholder="0" value="' + (s.peso||'') + '" ' +
+                  'oninput="updateHitPeso(' + hit.id + ',' + diaIdx + ',' + eIdx + ',' + sIdx + ',\'peso\',this.value);actualizarRM1Hit(\'' + rm1IdHit + '\',\'' + repsHechasHit + '\',' + diaIdx + ',' + eIdx + ',' + sIdx + ',' + hit.id + ')" ' +
+                  'onfocus="this.select()">' +
+                '<span class="hit-peso-unit">kg</span>' +
+              '</div>' +
+              '<div id="' + rm1IdHit + '" style="font-size:9px;font-weight:800;color:var(--green);' + (rm1HitVal > 0 ? '' : 'display:none;') + '">1RM&nbsp;≈&nbsp;' + (rm1HitVal > 0 ? rm1HitVal : '') + '</div>' +
+            '</div>';
             return '<div class="hit-series-row">' +
               '<div class="hit-serie-num">' + (sIdx+1) + '</div>' +
               '<div class="hit-serie-info">' + (hit.params.reps||'') + ' · ' + (hit.params.descanso||'') + '</div>' +
+              repsRealesHit +
               pesoCol +
             '</div>';
           }).join('');
@@ -12798,54 +13219,117 @@ function renderMisHits() {
         var tId = 'mh-' + hit.id + '-' + diaIdx;
         var tipo = (dia.tipo || '').toUpperCase();
 
-        // Auto-generate timer config from WOD type
+        // ── Timer: usar el guardado (dia.timer) si existe, si no recalcular ──
+        var hitNivel   = hit.nivelIdx !== undefined ? hit.nivelIdx : 1;
+        var tiempoSes  = hit.tiempoSes ? parseInt(hit.tiempoSes) : 45;
+        var tiempoTrab = Math.max(10, tiempoSes - 13);
+        var numEjDia   = dia.ejercs ? dia.ejercs.length : 4;
+        var tColorMap  = tipo.indexOf('TABATA')!==-1?'#DC2626':tipo.indexOf('E2MOM')!==-1?'#7C3AED':tipo.indexOf('EMOM')!==-1?'#7C3AED':tipo.indexOf('FOR TIME')!==-1||tipo.indexOf('CHIPPER')!==-1?'#059669':tipo.indexOf('AMRAP')!==-1?'#0284C7':tipo.indexOf('DEATH')!==-1?'#1F2937':'#1D9E75';
+
+        // If dia.timer was pre-calculated and saved, use it directly
+        var savedDiaTimer = dia.timer || null;
         var autoTimer;
-        if (tipo.indexOf('TABATA') !== -1) {
-          autoTimer = { sec:20, label:'⚡ TABATA — 20s trabajo / 10s descanso', tabata:true, rest:10, rounds:8, color:'#DC2626', btnLabel:'TABATA' };
-        } else if (tipo.indexOf('E2MOM') !== -1) {
-          autoTimer = { sec:120, label:'⏰ E2MOM — 2 minutos por ronda', tabata:false, rest:0, rounds:0, color:'#7C3AED', btnLabel:'E2MOM' };
-        } else if (tipo.indexOf('EMOM') !== -1) {
-          autoTimer = { sec:60, label:'⏰ EMOM — 1 minuto por ronda', tabata:false, rest:0, rounds:0, color:'#7C3AED', btnLabel:'EMOM' };
-        } else if (tipo.indexOf('FOR TIME') !== -1) {
-          var capMin = hit.params && hit.params.tiempoSes ? hit.params.tiempoSes : 20;
-          autoTimer = { sec:capMin*60, label:'🏁 FOR TIME — Cap ' + capMin + ' min', tabata:false, rest:0, rounds:0, color:'#059669', btnLabel:'FOR TIME' };
-        } else if (tipo.indexOf('AMRAP') !== -1) {
-          var amMin = hit.params && hit.params.tiempoSes ? Math.floor(hit.params.tiempoSes/2) : 10;
-          autoTimer = { sec:amMin*60, label:'🔄 AMRAP — ' + amMin + ' minutos', tabata:false, rest:0, rounds:0, color:'#0284C7', btnLabel:'AMRAP' };
-        } else if (tipo.indexOf('DEATH') !== -1) {
-          autoTimer = { sec:60, label:'💀 DEATH BY — cada minuto +1 rep', tabata:false, rest:0, rounds:0, color:'#1F2937', btnLabel:'DEATH BY' };
+        if (savedDiaTimer && savedDiaTimer.label) {
+          autoTimer = {
+            sec:          savedDiaTimer.sec    || 60,
+            rest:         savedDiaTimer.rest   || 0,
+            rounds:       savedDiaTimer.rounds || 0,
+            tabata:       savedDiaTimer.tabata || false,
+            restEditable: savedDiaTimer.restEditable || false,
+            label:        savedDiaTimer.label,
+            color:        tColorMap,
+            btnLabel:     tipo.split(' ')[0] || 'Iniciar'
+          };
         } else {
-          var descSec = hit.params && hit.params.descanso ? (hit.params.descanso.indexOf('min')!==-1 ? parseInt(hit.params.descanso)*60 : parseInt(hit.params.descanso)||90) : 90;
-          autoTimer = { sec:descSec, label:'⏱️ Descanso entre series', tabata:false, rest:0, rounds:0, color:'#1D9E75', btnLabel:'Descanso' };
+          // Fallback: recalculate from nivel + tiempo
+          var descBaseSec = hitNivel===0?60:hitNivel===1?90:150;
+          var descBaseStr = hitNivel===0?'60s':hitNivel===1?'90s':'2:30';
+          var tabRest = hitNivel===0?15:hitNivel===1?10:8;
+          var tabRnds = hitNivel===0?6:hitNivel===1?8:10;
+          var descObj = hitNivel===0?'20-25s':hitNivel===1?'15-20s':'10-15s';
+          if (tipo.indexOf('TABATA')!==-1) {
+            autoTimer = { sec:20, rest:tabRest, rounds:tabRnds, tabata:true, restEditable:true, color:tColorMap, btnLabel:'TABATA',
+              label:'⚡ TABATA · 20s trabajo / '+tabRest+'s descanso · '+tabRnds+' rondas' };
+          } else if (tipo.indexOf('E2MOM')!==-1) {
+            autoTimer = { sec:120, rest:0, rounds:0, tabata:false, restEditable:false, color:tColorMap, btnLabel:'E2MOM',
+              label:'⏰ E2MOM · '+numEjDia+' ejercicios · 2 min c/u · '+(numEjDia*2)+' min total' };
+          } else if (tipo.indexOf('EMOM')!==-1) {
+            autoTimer = { sec:60, rest:0, rounds:0, tabata:false, restEditable:false, color:tColorMap, btnLabel:'EMOM',
+              label:'⏰ EMOM · '+numEjDia+' ejercicios · 1 min c/u · obj. '+descObj+' desc' };
+          } else if (tipo.indexOf('FOR TIME')!==-1||tipo.indexOf('CHIPPER')!==-1) {
+            autoTimer = { sec:tiempoTrab*60, rest:0, rounds:0, tabata:false, restEditable:false, color:tColorMap, btnLabel:'FOR TIME',
+              label:'🏁 FOR TIME · Cap '+tiempoTrab+' min · '+numEjDia+' ejercicios' };
+          } else if (tipo.indexOf('AMRAP')!==-1) {
+            autoTimer = { sec:tiempoTrab*60, rest:0, rounds:0, tabata:false, restEditable:false, color:tColorMap, btnLabel:'AMRAP',
+              label:'🔄 AMRAP · '+tiempoTrab+' min · '+numEjDia+' ejercicios' };
+          } else if (tipo.indexOf('DEATH')!==-1) {
+            autoTimer = { sec:60, rest:0, rounds:0, tabata:false, restEditable:false, color:tColorMap, btnLabel:'DEATH BY',
+              label:'💀 DEATH BY · 1 min por ronda · hasta el fallo' };
+          } else {
+            autoTimer = { sec:descBaseSec, rest:0, rounds:0, tabata:false, restEditable:true, color:tColorMap, btnLabel:'Descanso',
+              label:'⏱️ Descanso entre series · '+descBaseStr+' · '+(hitNivel===0?'Principiante':hitNivel===1?'Intermedio':'Avanzado') };
+          }
         }
 
-        // Use saved timer sec if available (user may have edited it)
+        // Use saved timer if available, else use autoTimer
         var t = dia.timer || autoTimer;
-        // But always use autoTimer for type/color/label if timer was not saved
-        var tSec    = t.sec    || autoTimer.sec;
-        var tLabel  = t.label  || autoTimer.label;
-        var tTabata = t.tabata !== undefined ? t.tabata : autoTimer.tabata;
+        var tSec    = t.sec    !== undefined ? t.sec    : autoTimer.sec;
+        var tLabel  = autoTimer.label; // always use fresh label
+        var tTabata = autoTimer.tabata;
         var tRest   = t.rest   !== undefined ? t.rest   : autoTimer.rest;
-        var tRounds = t.rounds !== undefined ? t.rounds : autoTimer.rounds;
+        var tRounds = autoTimer.rounds;
         var tColor  = autoTimer.color;
+        var tRestEditable = autoTimer.restEditable;
         var tLabelSafe = tLabel.replace(/"/g,"'");
+        var restDispId = 'rdisp-' + tId;
+
+        // Rest editable block (TABATA and Fuerza only)
+        var restEditHtml = '';
+        if (tRestEditable) {
+          if (tTabata) {
+            restEditHtml =
+              '<div style="margin-bottom:10px;padding:10px 12px;background:rgba(0,0,0,0.15);border-radius:10px;">' +
+                '<div style="font-size:10px;font-weight:700;color:' + tColor + ';margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">😮‍💨 Descanso entre rondas TABATA</div>' +
+                '<div style="display:flex;align-items:center;gap:6px;">' +
+                  '<button onclick="cambiarDescHit(\'' + tId + '\',-5)" style="padding:5px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">−5s</button>' +
+                  '<div id="' + restDispId + '" style="flex:1;text-align:center;font-size:18px;font-weight:800;color:' + tColor + ';">' + formatTimerSec(tRest) + '</div>' +
+                  '<button onclick="cambiarDescHit(\'' + tId + '\',+5)" style="padding:5px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">+5s</button>' +
+                '</div>' +
+              '</div>';
+          } else {
+            restEditHtml =
+              '<div style="margin-bottom:10px;padding:10px 12px;background:rgba(0,0,0,0.1);border-radius:10px;">' +
+                '<div style="font-size:10px;font-weight:700;color:' + tColor + ';margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">⏱️ Tiempo de descanso entre series</div>' +
+                '<div style="display:flex;gap:6px;align-items:center;">' +
+                  '<button onclick="cambiarTimerHit(\'' + tId + '\',-30)" style="padding:5px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">−30s</button>' +
+                  '<button onclick="cambiarTimerHit(\'' + tId + '\',-10)" style="padding:5px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">−10s</button>' +
+                  '<div id="tdisp-' + tId + '" style="flex:1;text-align:center;font-size:22px;font-weight:800;color:' + tColor + ';font-variant-numeric:tabular-nums;">' + formatTimerSec(tSec) + '</div>' +
+                  '<button onclick="cambiarTimerHit(\'' + tId + '\',+10)" style="padding:5px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">+10s</button>' +
+                  '<button onclick="cambiarTimerHit(\'' + tId + '\',+30)" style="padding:5px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:7px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">+30s</button>' +
+                '</div>' +
+              '</div>';
+          }
+        }
 
         var timerHitHtml =
           '<div style="margin:8px 12px 10px;padding:14px;background:' + tColor + '15;border:2px solid ' + tColor + '50;border-radius:12px;">' +
             '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">' +
-              '<div>' +
-                '<div style="font-size:13px;font-weight:800;color:' + tColor + ';">' + tLabel + '</div>' +
-                '<div style="font-size:10px;color:var(--text-muted);margin-top:2px;">Ajusta el tiempo y pulsa iniciar</div>' +
+              '<div style="flex:1;min-width:0;">' +
+                '<div style="font-size:12px;font-weight:800;color:' + tColor + ';line-height:1.3;">' + tLabel + '</div>' +
+                '<div style="font-size:10px;color:var(--text-muted);margin-top:3px;">Nivel: ' + (hitNivel===0?'Principiante':hitNivel===1?'Intermedio':'Avanzado') + ' · Sesión: ' + tiempoSes + ' min</div>' +
               '</div>' +
-              '<div id="tdisp-' + tId + '" style="font-size:30px;font-weight:800;color:' + tColor + ';font-variant-numeric:tabular-nums;letter-spacing:-1px;">' + formatTimerSec(tSec) + '</div>' +
+              (tRestEditable && !tTabata ? '' : '<div id="tdisp-' + tId + '" style="font-size:28px;font-weight:800;color:' + tColor + ';font-variant-numeric:tabular-nums;letter-spacing:-1px;margin-left:10px;flex-shrink:0;">' + formatTimerSec(tSec) + '</div>') +
             '</div>' +
-            '<div style="display:flex;gap:6px;margin-bottom:10px;">' +
-              '<button onclick="cambiarTimerHit(\'' + tId + '\',-60)" style="padding:7px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">−1min</button>' +
-              '<button onclick="cambiarTimerHit(\'' + tId + '\',-10)" style="padding:7px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">−10s</button>' +
-              '<div style="flex:1;text-align:center;font-size:10px;color:var(--text-hint);align-self:center;">editar</div>' +
-              '<button onclick="cambiarTimerHit(\''+tId+'\', 10)" style="padding:7px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">+10s</button>' +
-              '<button onclick="cambiarTimerHit(\''+tId+'\', 60)" style="padding:7px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">+1min</button>' +
-            '</div>' +
+            restEditHtml +
+            (tRestEditable && !tTabata ? '' :
+              '<div style="display:flex;gap:6px;margin-bottom:10px;">' +
+                '<button onclick="cambiarTimerHit(\'' + tId + '\',-60)" style="padding:7px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">−1min</button>' +
+                '<button onclick="cambiarTimerHit(\'' + tId + '\',-10)" style="padding:7px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">−10s</button>' +
+                '<div style="flex:1;text-align:center;font-size:10px;color:var(--text-hint);align-self:center;">editar</div>' +
+                '<button onclick="cambiarTimerHit(\''+tId+'\',+10)" style="padding:7px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">+10s</button>' +
+                '<button onclick="cambiarTimerHit(\''+tId+'\',+60)" style="padding:7px 10px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">+1min</button>' +
+              '</div>'
+            ) +
             '<div style="display:flex;gap:8px;">' +
               '<button id="wbtn-' + tId + '" ' +
                 'data-sec="' + tSec + '" ' +
