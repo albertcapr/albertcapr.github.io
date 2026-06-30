@@ -2222,17 +2222,20 @@ self.addEventListener('fetch', e => {
   }
   .series-row {
     display: grid;
-    grid-template-columns: 22px 48px 1fr 60px 70px 24px;
-    gap: 4px;
+    grid-template-columns: 26px 52px 1fr 56px 64px 30px;
+    gap: 5px;
     align-items: center;
     padding: 8px 6px;
     border-bottom: 1px solid var(--border);
   }
   @media (max-width: 400px) {
     .series-row {
-      grid-template-columns: 28px 48px 50px 1fr 1fr;
-      grid-template-rows: auto auto;
+      grid-template-columns: 24px 44px 1fr 50px 58px 28px;
+      gap: 4px;
+      padding: 8px 4px;
     }
+    .serie-peso-wrap { padding: 6px 4px; max-width: 64px; }
+    .serie-peso { width: 30px; font-size: 16px; }
   }
   .series-row:last-child { border-bottom: none; }
   /* SET TYPE TAGS (warm-up, drop set, failure, normal) */
@@ -10002,7 +10005,7 @@ function _renderPlantillaCore() {
         var isPR = sd.peso > 0 && esPR(e.nombre, parseFloat(sd.peso));
         var prHtml = isPR ? '<span class="pr-badge">PR 🏆</span>' : '';
         seriesRows +=
-          '<div class="series-row' + compClass + '" id="sr-' + diaActivo + '-' + idx + '-' + s + '" style="grid-template-columns:22px 48px 1fr 60px 70px 24px;">' +
+          '<div class="series-row' + compClass + '" id="sr-' + diaActivo + '-' + idx + '-' + s + '">' +
             '<div class="serie-num">' + (s + 1) + '</div>' +
             typeHtml +
             prevHtml +
@@ -14830,26 +14833,24 @@ function renderProgreso() {
   html += '<div style="margin:0 16px 10px;background:white;border:1.5px solid #E2E8F0;border-radius:12px;padding:12px 14px;">';
   html += '<div style="font-size:11px;font-weight:800;color:#1E293B;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;">📖 Qué significa esto</div>';
   html += '<div style="display:flex;flex-direction:column;gap:6px;">';
-  html += '<div style="font-size:11px;color:rgba(255,255,255,0.7);line-height:1.4;">Las barras muestran <strong style="color:white;">cuántas series semanales</strong> haces de cada grupo muscular vs el <strong style="color:white;">mínimo recomendado</strong> por la ciencia del entrenamiento.</div>';
   html += '<div style="font-size:12px;color:#334155;line-height:1.5;">Las barras muestran <strong style="color:#0F172A;">cuántas series semanales</strong> haces de cada grupo muscular vs el <strong style="color:#0F172A;">mínimo recomendado</strong> por la ciencia del entrenamiento.</div>';
   html += '<span style="font-size:11px;color:#00C896;">✅ Verde = suficiente (≥100% del óptimo)</span>';
   html += '<span style="font-size:11px;color:#F59E0B;">⚠️ Naranja = poco (60-99%)</span>';
   html += '<span style="font-size:11px;color:#EF4444;">❌ Rojo = insuficiente (<60%)</span>';
   html += '</div>';
-  html += '<div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;">Ejemplo: <em>Piernas 28/16</em> → haces 28 series/semana, el óptimo es 16. ✅ Más que suficiente.</div>';
   html += '<div style="font-size:11px;color:#475569;margin-top:4px;">Ejemplo: <em>Piernas 28/16</em> → haces 28 series/semana, el óptimo es 16. ✅ Más que suficiente.</div>';
 
-  html += '<div style="margin:0 16px 16px;background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.2);">';
-  html += '<div style="padding:14px 16px 10px;border-bottom:1px solid rgba(255,255,255,0.12);">';
+  html += '<div style="margin:0 16px 16px;background:var(--card);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);">';
+  html += '<div style="padding:14px 16px 10px;border-bottom:1px solid var(--border);">';
   html += '<div style="display:flex;align-items:center;justify-content:space-between;">';
-  html += '<div style="display:flex;align-items:center;gap:8px;"><div style="font-size:22px;">🧠</div><div><div style="font-size:14px;font-weight:900;color:white;">Coach Personal</div><div style="font-size:11px;color:rgba(255,255,255,0.75);">Basado en tu plantilla actual</div></div></div>';
-  html += '<div style="text-align:right;"><div style="font-size:18px;font-weight:900;color:white;">'+totalSeriesC+'</div><div style="font-size:9px;color:rgba(255,255,255,0.75);">series/semana</div></div>';
+  html += '<div style="display:flex;align-items:center;gap:8px;"><div style="font-size:22px;">🧠</div><div><div style="font-size:14px;font-weight:900;color:var(--text);">Coach Personal</div><div style="font-size:11px;color:var(--text-muted);">Basado en tu plantilla actual</div></div></div>';
+  html += '<div style="text-align:right;"><div style="font-size:18px;font-weight:900;color:var(--text);">'+totalSeriesC+'</div><div style="font-size:9px;color:var(--text-muted);">series/semana</div></div>';
   html += '</div></div>';
 
   if (gruposC.length === 0) {
     html += '<div style="padding:20px 16px;text-align:center;">';
     html += '<div style="font-size:36px;margin-bottom:8px;">📋</div>';
-    html += '<div style="font-size:13px;color:rgba(255,255,255,0.85);line-height:1.5;">Añade ejercicios a tu plantilla<br>para ver el análisis muscular.</div>';
+    html += '<div style="font-size:13px;color:var(--text-muted);line-height:1.5;">Añade ejercicios a tu plantilla<br>para ver el análisis muscular.</div>';
     html += '</div>';
   } else {
     var OPTIMOS = {piernas:16,espalda:14,pecho:12,hombros:12,gluteos:10,triceps:8,biceps:8,core:10,isquiotibiales:8,gemelos:6};
@@ -14876,15 +14877,15 @@ function renderProgreso() {
       var ico=pctOpt>=100?'✅':pctOpt>=60?'⚠️':'❌';
       var estado=pctOpt>=100?'Óptimo — mantén esta frecuencia':pctOpt>=60?'Mejorable — añade '+(opt-vol)+' series más/semana':'Insuficiente — necesitas '+(opt-vol)+' series más/semana';
       var desc = DESCRIPCIONES[g] || '';
-      html += '<div style="margin-bottom:12px;background:rgba(255,255,255,0.85);border-radius:10px;padding:10px 12px;">';
+      html += '<div style="margin-bottom:12px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px;">';
       html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">';
-      html += '<span style="font-size:13px;font-weight:700;color:white;">'+ico+' '+(GRUPO_NOMBRES[g]||g)+'</span>';
+      html += '<span style="font-size:13px;font-weight:700;color:var(--text);">'+ico+' '+(GRUPO_NOMBRES[g]||g)+'</span>';
       html += '<span style="font-size:11px;font-weight:800;color:'+color+';">'+vol+'/'+opt+' series</span>';
       html += '</div>';
-      html += '<div style="height:6px;background:rgba(255,255,255,0.85);border-radius:3px;margin-bottom:6px;">';
+      html += '<div style="height:6px;background:var(--border);border-radius:3px;margin-bottom:6px;">';
       html += '<div style="height:100%;width:'+pct+'%;background:'+color+';border-radius:3px;transition:width 0.6s;"></div></div>';
       html += '<div style="font-size:10px;color:'+color+';font-weight:700;margin-bottom:3px;">'+estado+'</div>';
-      if(desc) html += '<div style="font-size:11px;color:rgba(255,255,255,0.8);line-height:1.5;margin-top:3px;">'+desc+'</div>';
+      if(desc) html += '<div style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:3px;">'+desc+'</div>';
       html += '</div>';
     });
     html += '</div>';
@@ -14894,12 +14895,12 @@ function renderProgreso() {
                    totalSeriesC < 60 ? {l:'Básico',c:'#F59E0B',d:'40-60 series/semana — suficiente para principiante o mantenimiento.'} :
                    totalSeriesC < 80 ? {l:'Intermedio',c:'#00C896',d:'60-80 series/semana — rango óptimo para hipertrofia e intermedios.'} :
                                        {l:'Avanzado',c:'#818CF8',d:'80+ series/semana — alto volumen. Asegúrate de recuperar bien.'};
-    html += '<div style="margin:0 16px 12px;background:rgba(255,255,255,0.85);border-radius:10px;padding:12px 14px;">';
+    html += '<div style="margin:0 16px 12px;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;">';
     html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">';
-    html += '<span style="font-size:11px;font-weight:800;color:rgba(255,255,255,0.6);">VOLUMEN TOTAL SEMANAL</span>';
+    html += '<span style="font-size:11px;font-weight:800;color:var(--text-muted);">VOLUMEN TOTAL SEMANAL</span>';
     html += '<span style="font-size:14px;font-weight:900;color:'+nivelVol.c+';">'+totalSeriesC+' series — '+nivelVol.l+'</span>';
     html += '</div>';
-    html += '<div style="font-size:11px;color:rgba(255,255,255,0.5);line-height:1.4;">'+nivelVol.d+'</div>';
+    html += '<div style="font-size:11px;color:var(--text-muted);line-height:1.4;">'+nivelVol.d+'</div>';
     html += '</div>';
 
     // Desequilibrios y consejos
@@ -14930,35 +14931,35 @@ function renderProgreso() {
     html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">';
     html += '<div style="background:rgba(0,200,150,0.15);border:1px solid rgba(0,200,150,0.3);border-radius:12px;padding:12px;">';
     html += '<div style="font-size:10px;font-weight:800;color:#00C896;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;">💪 Más trabajado</div>';
-    html += '<div style="font-size:14px;font-weight:800;color:white;">'+(GRUPO_NOMBRES[masFuerteC]||masFuerteC)+'</div>';
-    html += '<div style="font-size:10px;color:rgba(255,255,255,0.85);margin-top:2px;">'+volumenGrupoC[masFuerteC]+' series/sem</div>';
+    html += '<div style="font-size:14px;font-weight:800;color:var(--text);">'+(GRUPO_NOMBRES[masFuerteC]||masFuerteC)+'</div>';
+    html += '<div style="font-size:10px;color:var(--text-muted);margin-top:2px;">'+volumenGrupoC[masFuerteC]+' series/sem</div>';
     html += '<div style="font-size:10px;color:#00C896;margin-top:4px;">Sigue manteniendo esta frecuencia</div></div>';
-    html += '<div style="background:rgba(239,68,68,0.15);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:12px;">';
+    html += '<div style="background:rgba(239,68,68,0.10);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:12px;">';
     html += '<div style="font-size:10px;font-weight:800;color:#EF4444;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;">⚠️ Más descuidado</div>';
-    html += '<div style="font-size:14px;font-weight:800;color:white;">'+(GRUPO_NOMBRES[masDebilC]||masDebilC)+'</div>';
-    html += '<div style="font-size:10px;color:rgba(255,255,255,0.85);margin-top:2px;">'+volumenGrupoC[masDebilC]+' series/sem</div>';
+    html += '<div style="font-size:14px;font-weight:800;color:var(--text);">'+(GRUPO_NOMBRES[masDebilC]||masDebilC)+'</div>';
+    html += '<div style="font-size:10px;color:var(--text-muted);margin-top:2px;">'+volumenGrupoC[masDebilC]+' series/sem</div>';
     html += '<div style="font-size:10px;color:#EF4444;margin-top:4px;">Añade 2-3 series extra esta semana</div></div>';
     html += '</div>';
 
     if(desC.length>0) {
-      html += '<div style="background:rgba(239,68,68,0.08);border:1.5px solid rgba(239,68,68,0.2);border-radius:12px;padding:12px;">';
+      html += '<div style="background:rgba(239,68,68,0.06);border:1.5px solid rgba(239,68,68,0.2);border-radius:12px;padding:12px;">';
       html += '<div style="font-size:11px;font-weight:800;color:#EF4444;margin-bottom:10px;">🚨 Desequilibrios detectados</div>';
       desC.forEach(function(d){
-        html += '<div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.85);">';
-        html += '<div style="font-size:12px;font-weight:700;color:white;margin-bottom:3px;">'+d.ico+' '+d.t+'</div>';
-        html += '<div style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.4;">'+d.d+'</div>';
+        html += '<div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border);">';
+        html += '<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;">'+d.ico+' '+d.t+'</div>';
+        html += '<div style="font-size:11px;color:var(--text-muted);line-height:1.4;">'+d.d+'</div>';
         html += '</div>';
       });
       html += '</div>';
     }
 
     if(consC.length>0) {
-      html += '<div style="background:rgba(0,200,150,0.08);border:1.5px solid rgba(0,200,150,0.2);border-radius:12px;padding:12px;">';
+      html += '<div style="background:rgba(0,200,150,0.06);border:1.5px solid rgba(0,200,150,0.2);border-radius:12px;padding:12px;">';
       html += '<div style="font-size:11px;font-weight:800;color:#00C896;margin-bottom:10px;">🎯 Análisis personalizado para ti</div>';
       consC.forEach(function(c){
-        html += '<div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.85);">';
-        html += '<div style="font-size:12px;font-weight:700;color:white;margin-bottom:3px;">'+c.ico+' '+c.t+'</div>';
-        html += '<div style="font-size:11px;color:rgba(255,255,255,0.7);line-height:1.4;">'+c.d+'</div>';
+        html += '<div style="margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border);">';
+        html += '<div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:3px;">'+c.ico+' '+c.t+'</div>';
+        html += '<div style="font-size:11px;color:var(--text-muted);line-height:1.4;">'+c.d+'</div>';
         html += '</div>';
       });
       html += '</div>';
@@ -18923,9 +18924,10 @@ function buildEscanerTab() {
   html += '<span style="font-size:24px;">📷</span> Sacar foto del código';
   html += '</button>';
   // Modal cámara para escaneo
-  html += '<div id="escanCamModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9999;flex-direction:column;align-items:center;justify-content:center;">';
-  html += '<div style="position:relative;width:100%;max-width:480px;">';
-  html += '<video id="escanCamVideo" autoplay playsinline muted style="width:100%;border-radius:12px;background:#000;"></video>';
+  html += '<div id="escanCamModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9999;flex-direction:column;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;overflow-y:auto;">';
+  html += '<div style="position:relative;width:100%;max-width:480px;display:flex;flex-direction:column;gap:14px;margin:auto;">';
+  html += '<div style="position:relative;width:100%;">';
+  html += '<video id="escanCamVideo" autoplay playsinline muted webkit-playsinline="true" style="width:100%;max-height:55vh;border-radius:12px;background:#000;object-fit:cover;display:block;"></video>';
   // Viewfinder overlay
   html += '<div style="position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;">';
   html += '<div style="width:75%;aspect-ratio:2/1;border:3px solid #00C896;border-radius:10px;box-shadow:0 0 0 2000px rgba(0,0,0,0.5);position:relative;">';
@@ -18934,13 +18936,13 @@ function buildEscanerTab() {
   html += '<div style="position:absolute;bottom:-2px;left:-2px;width:24px;height:24px;border-bottom:5px solid #00C896;border-left:5px solid #00C896;border-radius:0 0 0 4px;"></div>';
   html += '<div style="position:absolute;bottom:-2px;right:-2px;width:24px;height:24px;border-bottom:5px solid #00C896;border-right:5px solid #00C896;border-radius:0 0 4px 0;"></div>';
   html += '</div></div>';
-  html += '<div style="position:absolute;bottom:-70px;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:12px;">';
-  html += '<button onclick="capturarFotoEscaneo()" style="width:72px;height:72px;border-radius:50%;background:#00C896;border:4px solid white;cursor:pointer;font-size:28px;">📸</button>';
-  html += '<button onclick="cerrarCamaraEscaneo()" style="background:rgba(255,255,255,0.15);color:white;border:none;border-radius:20px;padding:8px 24px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">✕ Cancelar</button>';
+  html += '</div>';
+  html += '<div style="display:flex;flex-direction:column;align-items:center;gap:12px;flex-shrink:0;">';
+  html += '<button onclick="capturarFotoEscaneo()" style="width:72px;height:72px;border-radius:50%;background:#00C896;border:4px solid white;cursor:pointer;font-size:28px;flex-shrink:0;">📸</button>';
+  html += '<button onclick="cerrarCamaraEscaneo()" style="background:rgba(255,255,255,0.15);color:white;border:none;border-radius:20px;padding:8px 24px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;flex-shrink:0;">✕ Cancelar</button>';
   html += '</div>';
   html += '</div>';
   html += '<canvas id="escanCamCanvas" style="display:none;"></canvas>';
-  html += '</div>';
   html += '</div>';
 
   // Opciones secundarias
@@ -26019,28 +26021,26 @@ addToPlantilla = function(ejercId, diaForzado) {
       <div id="analisisfeedback" style="position:absolute;top:72px;left:50%;transform:translateX(-50%);background:rgba(0,200,150,0.85);color:white;padding:8px 16px;border-radius:10px;font-size:12px;font-weight:700;display:none;white-space:nowrap;max-width:90%;text-align:center;">—</div>
 
       <!-- Panel inferior métricas -->
-      <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.85);padding:14px 16px 28px;display:flex;gap:0;">
-        <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.15);">
-          <div id="analisisMinAngulo" style="font-size:22px;font-weight:800;color:#34D399;">—°</div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Ángulo mín</div>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.92);padding:14px 16px calc(14px + env(safe-area-inset-bottom, 0px));display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:0;">
+          <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.15);">
+            <div id="analisisMinAngulo" style="font-size:22px;font-weight:800;color:#34D399;">—°</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Ángulo mín</div>
+          </div>
+          <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.15);">
+            <div id="analisisMaxAngulo" style="font-size:22px;font-weight:800;color:#60A5FA;">—°</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Ángulo máx</div>
+          </div>
+          <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.15);">
+            <div id="analisisROM" style="font-size:22px;font-weight:800;color:#FBBF24;">—°</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Rango (ROM)</div>
+          </div>
+          <div style="flex:1;text-align:center;">
+            <div id="analisisTiempo" style="font-size:22px;font-weight:800;color:white;">0s</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Tiempo</div>
+          </div>
         </div>
-        <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.15);">
-          <div id="analisisMaxAngulo" style="font-size:22px;font-weight:800;color:#60A5FA;">—°</div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Ángulo máx</div>
-        </div>
-        <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.15);">
-          <div id="analisisROM" style="font-size:22px;font-weight:800;color:#FBBF24;">—°</div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Rango (ROM)</div>
-        </div>
-        <div style="flex:1;text-align:center;">
-          <div id="analisisTiempo" style="font-size:22px;font-weight:800;color:white;">0s</div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.5px;margin-top:2px;">Tiempo</div>
-        </div>
-      </div>
-
-      <!-- Botón terminar serie -->
-      <div style="position:absolute;bottom:90px;left:50%;transform:translateX(-50%);">
-        <button onclick="terminarAnalisis()" style="background:#00C896;color:white;border:none;border-radius:14px;padding:14px 32px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(0,200,150,0.5);">✅ Terminar serie</button>
+        <button onclick="terminarAnalisis()" style="background:#00C896;color:white;border:none;border-radius:14px;padding:14px 32px;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 4px 20px rgba(0,200,150,0.5);width:100%;flex-shrink:0;">✅ Terminar serie</button>
       </div>
     </div>
 
@@ -26105,11 +26105,13 @@ var TFJS_LOCAL    = './lib/tf.min.js';
 var TFJS_CDN      = 'https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js';
 var MOVENET_LOCAL = './movenet/model.json';
 // Thunder — modelo principal (más preciso, ~25MB vs 9MB)
-var MOVENET_CDN   = 'https://tfhub.dev/google/tfjs-model/movenet/singlepose/thunder/4/model.json?tfjs-format=file';
-var MOVENET_CDN2  = 'https://www.kaggle.com/models/google/movenet/tfJs/singlepose-thunder/4/download/model.json';
+// URL directa a Google Cloud Storage (evita la cadena de redirección tfhub.dev → Kaggle
+// que falla intermitentemente por CORS, sobre todo en Android/Chrome móvil)
+var MOVENET_CDN   = 'https://storage.googleapis.com/tfhub-tfjs-modules/google/tfjs-model/movenet/singlepose/thunder/4/model.json';
+var MOVENET_CDN2  = 'https://tfhub.dev/google/tfjs-model/movenet/singlepose/thunder/4/model.json?tfjs-format=file';
 // Lightning — fallback rápido si Thunder falla o dispositivo lento
-var MOVENET_LIGHT = 'https://tfhub.dev/google/tfjs-model/movenet/singlepose/lightning/4/model.json?tfjs-format=file';
-var MOVENET_KAGGLE = 'https://www.kaggle.com/models/google/movenet/tfJs/singlepose-lightning/4/download/model.json';
+var MOVENET_LIGHT = 'https://storage.googleapis.com/tfhub-tfjs-modules/google/tfjs-model/movenet/singlepose/lightning/4/model.json';
+var MOVENET_KAGGLE = 'https://tfhub.dev/google/tfjs-model/movenet/singlepose/lightning/4/model.json?tfjs-format=file';
 
 // ================================================================
 // KEYPOINTS DE MOVENET (17 puntos)
@@ -27329,28 +27331,28 @@ async function cargarModeloPose() {
       detector = await intentarCargar(MOVENET_LOCAL, false);
       document.getElementById('analisisEstado').textContent = '⚡ Modelo local cargado';
     } catch(localErr) {
-      // 2. Thunder desde TFHub (más preciso, ~25MB)
+      // 2. Thunder desde Google Cloud Storage directo (URL estable, evita CORS)
       document.getElementById('analisisEstado').textContent = '⬇️ Cargando MoveNet Thunder (~25MB)...';
       try {
-        detector = await intentarCargar(MOVENET_CDN, true);
+        detector = await intentarCargar(MOVENET_CDN, false);
         document.getElementById('analisisEstado').textContent = '🟢 Thunder cargado — máxima precisión';
       } catch(thunderErr) {
-        // 3. Thunder desde Kaggle
-        document.getElementById('analisisEstado').textContent = '⬇️ Reintentando Thunder (Kaggle)...';
+        // 3. Thunder desde TFHub (redirección, puede fallar por CORS)
+        document.getElementById('analisisEstado').textContent = '⬇️ Reintentando Thunder (TFHub)...';
         try {
-          detector = await intentarCargar(MOVENET_CDN2, false);
-          document.getElementById('analisisEstado').textContent = '🟢 Thunder (Kaggle) cargado';
+          detector = await intentarCargar(MOVENET_CDN2, true);
+          document.getElementById('analisisEstado').textContent = '🟢 Thunder (TFHub) cargado';
         } catch(kaggleThunderErr) {
           // 4. Fallback a Lightning si Thunder no está disponible
           _modeloNombre = 'Lightning';
           document.getElementById('analisisEstado').textContent = '⬇️ Thunder no disponible — cargando Lightning...';
           try {
-            detector = await intentarCargar(MOVENET_LIGHT, true);
+            detector = await intentarCargar(MOVENET_LIGHT, false);
             document.getElementById('analisisEstado').textContent = '🟡 Lightning cargado (menor precisión)';
           } catch(lightErr) {
             try {
-              detector = await intentarCargar(MOVENET_KAGGLE, false);
-              document.getElementById('analisisEstado').textContent = '🟡 Lightning (Kaggle) cargado';
+              detector = await intentarCargar(MOVENET_KAGGLE, true);
+              document.getElementById('analisisEstado').textContent = '🟡 Lightning (TFHub) cargado';
             } catch(kaggleErr) {
               throw new Error('Sin modelo disponible. Revisa tu conexión: ' + kaggleErr.message);
             }
@@ -27382,19 +27384,14 @@ async function cargarModeloPose() {
     var errTitle = document.getElementById('analisisErrorTitle');
     var errBody = document.getElementById('analisisErrorBody');
     if (errDiv && errTitle && errBody) {
-      errTitle.textContent = '❌ Error: CORS bloqueado (file://)';
+      errTitle.textContent = '❌ Error: no se pudo cargar el modelo IA';
       errBody.innerHTML =
-        'El navegador bloquea la descarga del modelo IA cuando la app se abre como archivo local (<code>file://</code>).<br><br>' +
-        '<strong>✅ Solución más fácil — abrir Brave con permisos especiales:</strong><br><br>' +
-        '① Cierra Brave completamente<br>' +
-        '② Pulsa <strong>Win + R</strong>, escribe esto exacto y pulsa Enter:<br>' +
-        '<div style="background:rgba(0,0,0,0.5);border-radius:6px;padding:8px 10px;margin:8px 0;font-family:monospace;font-size:11px;color:#4ade80;word-break:break-all;">' +
-        'brave.exe --allow-file-access-from-files' +
-        '</div>' +
-        '<button onclick="navigator.clipboard.writeText(\'brave.exe --allow-file-access-from-files\').then(function(){showToast(\'✅ Copiado — pégalo en Win+R\');})" ' +
-        'style="background:#FBBF24;color:#000;border:none;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;margin-bottom:10px;">📋 Copiar comando</button><br>' +
-        '③ Abre <code>Thryx.html</code> desde ese Brave<br>' +
-        '④ Vuelve aquí y pulsa <strong>Reintentar</strong>';
+        'No se ha podido descargar el modelo de detección de pose. Esto suele deberse a una conexión a internet inestable o a que el servidor del modelo está temporalmente caído.<br><br>' +
+        '<strong>✅ Qué probar:</strong><br><br>' +
+        '① Comprueba tu conexión a internet (WiFi o datos)<br>' +
+        '② Cierra y vuelve a abrir la pestaña/app<br>' +
+        '③ Si sigue fallando, espera unos minutos y reintenta — puede ser un fallo temporal del servidor del modelo<br>' +
+        '④ Pulsa <strong>Reintentar</strong> abajo';
       errDiv.style.display = 'flex';
     }
     return false;
