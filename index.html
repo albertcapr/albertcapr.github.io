@@ -42113,7 +42113,7 @@ function _cargarTesseract() {
       if (window.Tesseract) resolve(window.Tesseract);
       else reject(new Error('no se pudo cargar el lector'));
     };
-    sc.onerror = function () { reject(new Error('sin conexión para cargar el lector')); };
+    sc.onerror = function () { reject(new Error('No se pudo descargar el lector de etiquetas. Necesitas conexión la primera vez.')); };
     document.head.appendChild(sc);
   });
 }
@@ -42163,7 +42163,7 @@ function _parsearEtiqueta(txt) {
 // Lee la etiqueta CON EL OCR DEL MÓVIL (sin clave, sin servidor)
 function _etiquetaOCR(dataUrl) {
   return _cargarTesseract().then(function (T) {
-    return T.recognize(dataUrl, 'spa+eng', {
+    return T.recognize(dataUrl, 'spa', {
       logger: function (m) {
         if (m.status === 'recognizing text') {
           var el = document.getElementById('_ocrPct');
