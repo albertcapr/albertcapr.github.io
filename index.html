@@ -11,7 +11,7 @@
 
 <!-- PWA: necesario para instalar la app y para generar el APK -->
 <link rel="manifest" href="manifest.json">
-<script>window.THRYX_BUILD = 'v5 · 12-07-2026 · Etiqueta sin clave (OCR)';</script>
+<script>window.THRYX_BUILD = 'v6 · SIN API KEY en cámara';</script>
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -36,7 +36,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans
 // ================================================================
 if ('serviceWorker' in navigator && window.isSecureContext) {
   // CACHE_VERSION: súbela cada vez que publiques una versión nueva.
-  var THRYX_SW_VERSION = 'thryx-v5';
+  var THRYX_SW_VERSION = 'thryx-v6';
 
   var swCode = `
 const CACHE_NAME = '${THRYX_SW_VERSION}';
@@ -30429,6 +30429,9 @@ var ThryxPro = (function () {
           _renderNevera(p, r);
         })
         .catch(function () {
+          if (typeof _thryxTieneClaveIA === 'function' && !_thryxTieneClaveIA()) {
+            if (typeof showToast === 'function') showToast('🧊 Reconocer la nevera necesita IA. Añade los alimentos a mano.');
+          }
           _thryxErrorIA('🧊 Comida con lo que tengo');
         });
     };
@@ -37004,6 +37007,11 @@ function _fotoIAProcesar(file) {
       _renderFotoIAResultado();
     })
     .catch(function() {
+      if (typeof _thryxTieneClaveIA === 'function' && !_thryxTieneClaveIA()) {
+        // Sin clave no hay visión: abrimos el montador manual (mismas macros)
+        if (typeof showToast === 'function') showToast('🍽️ Monta tu plato: mismas macros, sin clave');
+        if (typeof _platoManualAbrir === 'function') { _platoManualAbrir(); return; }
+      }
       _thryxErrorIA('📸 Foto con IA');
     });
   };
@@ -39591,7 +39599,14 @@ function _scanFotoError(msg) {
 var _platoItems = [];   // [{nombre,emoji,gramos,kcal,prot,carb,gras}] macros del total detectado
 
 function _platoPedirFoto() {
-  if (typeof _thryxTieneClaveIA === 'function' && !_thryxTieneClaveIA()) { _platoSinClave(); return; }
+  // Sin API key no se puede reconocer una foto de plato (la visión corre en
+  // servidores de Anthropic). Abrimos directamente el montador manual, que da
+  // las mismas macros. No se pide ninguna clave.
+  if (typeof _thryxTieneClaveIA === 'function' && !_thryxTieneClaveIA()) {
+    if (typeof showToast === 'function') showToast('🍽️ Monta tu plato: mismas macros, sin clave');
+    _platoManualAbrir();
+    return;
+  }
   ThryxCamera.open(function (shot) {
     _platoModalCargando();
     _platoIA(shot.base64, shot.mediaType).then(function (items) {
@@ -39801,16 +39816,7 @@ function _platoConfirmar() {
   if (typeof renderNutricionAvanzada === 'function') renderNutricionAvanzada();
 }
 
-function _platoSinClave() {
-  var b = '<div style="text-align:center;padding:16px 8px;">';
-  b += '<div style="font-size:36px;margin-bottom:10px;">🍽️</div>';
-  b += '<div style="font-size:15px;font-weight:900;color:var(--text);margin-bottom:6px;">Monta el plato a mano</div>';
-  b += '<div style="font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:16px;">Reconocer el plato en una <b>foto</b> necesita la IA (y una API key). Pero puedes montar el plato buscando cada alimento: obtendrás <b>las mismas macros</b>, sin clave y sin conexión.</div>';
-  b += '<button onclick="cerrarWellnessModal();_platoManualAbrir();" style="width:100%;padding:13px;background:var(--green);color:#fff;border:none;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;">🍽️ Montar mi plato ahora</button>';
-  b += '<button onclick="cerrarWellnessModal();configurarClaveIA();" style="width:100%;margin-top:8px;padding:11px;background:var(--card);border:1.5px solid var(--border);color:var(--text);border-radius:12px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;">🔑 Configurar API key (para la foto)</button>';
-  b += '</div>';
-  if (typeof _openWellnessModal === 'function') _openWellnessModal(b, '🍽️ Escáner de plato');
-}
+
 
 function _platoModalCargando() {
   var b = '<div style="text-align:center;padding:20px 8px;"><div style="font-size:34px;margin-bottom:10px;">🍽️</div>' +
@@ -40003,16 +40009,7 @@ function _scanMsgError(err) {
 }
 
 // Aviso claro cuando falta la clave, con botón para configurarla
-function _scanSinClave() {
-  var b = '<div style="text-align:center;padding:16px 8px;">';
-  b += '<div style="font-size:36px;margin-bottom:10px;">🔑</div>';
-  b += '<div style="font-size:15px;font-weight:900;color:var(--text);margin-bottom:6px;">Falta tu API key</div>';
-  b += '<div style="font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:16px;">Leer etiquetas y analizar platos usa la IA de Claude. Necesitas pegar tu <b>API key de Anthropic</b> una sola vez. Se guarda solo en este móvil.</div>';
-  b += '<button onclick="cerrarWellnessModal();configurarClaveIA();" style="width:100%;padding:13px;background:var(--green);color:#fff;border:none;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;">🔑 Configurar mi API key</button>';
-  b += '<div style="font-size:10px;color:var(--text-muted);margin-top:10px;">El escáner de códigos de barras funciona sin key.</div>';
-  b += '</div>';
-  if (typeof _openWellnessModal === 'function') _openWellnessModal(b, '🔑 API key');
-}
+
 
 function _etiquetaIA(base64, mediaType) {
   var prompt =
