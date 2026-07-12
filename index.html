@@ -5564,7 +5564,7 @@ self.addEventListener('fetch', e => {
 
   <!-- MODAL MEDIDAS CORPORALES -->
   <div class="hit-confirm-overlay" id="medidasOverlay" onclick="cerrarMedidas(event)" style="z-index:9997;align-items:flex-end;padding:0;position:fixed;top:0;left:0;right:0;bottom:0;">
-    <div onclick="event.stopPropagation()" style="background:var(--card);border-radius:20px 20px 0 0;width:100%;max-width:480px;margin:0 auto;padding:20px 20px 80px;max-height:85vh;overflow-y:auto;-webkit-overflow-scrolling:touch;box-shadow:0 -8px 40px rgba(0,0,0,0.15);box-sizing:border-box;">
+    <div onclick="event.stopPropagation()" style="background:var(--card);border-radius:20px 20px 0 0;width:100%;max-width:480px;margin:0 auto;padding:20px 20px calc(80px + env(safe-area-inset-bottom,0px));max-height:85vh;max-height:85dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-shadow:0 -8px 40px rgba(0,0,0,0.15);box-sizing:border-box;">
 
       <!-- Handle -->
       <div style="width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px;"></div>
@@ -5665,7 +5665,7 @@ self.addEventListener('fetch', e => {
 
   <!-- MODAL VALORAR SESIÓN HIT -->
   <div class="hit-confirm-overlay" id="valorarSesionOverlay" onclick="cerrarValorarSesion(event)" style="z-index:9998;align-items:center;padding:16px;">
-    <div onclick="event.stopPropagation()" style="background:var(--card);border-radius:20px;width:100%;max-width:480px;padding:20px 20px 24px;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+    <div onclick="event.stopPropagation()" style="background:var(--card);border-radius:20px;width:100%;max-width:480px;padding:20px 20px calc(24px + env(safe-area-inset-bottom,0px));max-height:85vh;max-height:85dvh;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
       <div style="width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 16px;"></div>
       <div id="valorarSesionContent"></div>
     </div>
@@ -5673,7 +5673,7 @@ self.addEventListener('fetch', e => {
 
   <!-- MODAL PLAN DE MEJORA POST-SESIÓN -->
   <div class="hit-confirm-overlay" id="planMejoraOverlay" onclick="cerrarPlanMejora(event)" style="z-index:9996;align-items:center;padding:16px;">
-    <div onclick="event.stopPropagation()" style="background:var(--card);border-radius:20px;width:100%;max-width:480px;max-height:88vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+    <div onclick="event.stopPropagation()" style="background:var(--card);border-radius:20px;width:100%;max-width:480px;max-height:88vh;max-height:88dvh;overflow-y:auto;overscroll-behavior:contain;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
       <div style="background:linear-gradient(135deg,var(--green) 0%,var(--green-dark) 100%);padding:20px;border-radius:20px 20px 0 0;">
         <div style="font-size:22px;font-weight:900;color:white;font-family:var(--font-display);letter-spacing:-0.3px;">🎯 Plan para la próxima sesión</div>
         <div style="font-size:12px;color:rgba(255,255,255,0.8);margin-top:3px;" id="planMejoraSubtitle"></div>
@@ -10325,7 +10325,7 @@ function abrirSelectorAgrupar(planId, dia, ejercIdx) {
   if (siguientes.length === 0) { showToast('⚠️ No hay más ejercicios después de este para agrupar'); return; }
 
   var html = '<div style="background:rgba(0,0,0,0.6);position:fixed;inset:0;z-index:9700;display:flex;align-items:flex-end;justify-content:center;" onclick="if(event.target===this)this.remove()">';
-  html += '<div style="background:var(--card);width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom,0px));max-height:80vh;overflow-y:auto;">';
+  html += '<div style="background:var(--card);width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom,0px));max-height:80vh;max-height:80dvh;overflow-y:auto;overscroll-behavior:contain;">';
   html += '<div style="font-size:15px;font-weight:900;color:var(--text);margin-bottom:4px;">🔗 Agrupar "' + ejercsDia[ejercIdx].nombre + '"</div>';
   html += '<div style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">Selecciona con qué ejercicio(s) siguientes quieres encadenarlo sin descanso entre medias.</div>';
   html += '<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:16px;" id="agruparCheckList">';
@@ -15979,7 +15979,7 @@ function _buildProgresoFotos(sexo, medicionesBascula, metricsWithData) {
 // ── COMPARATIVA FOTOS + COACH ── (siempre visible)
 // Fotos progreso
 var fotosGuardadas = [];
-try { var fp = localStorage.getItem(userKey(currentUserName,'fotos_progreso')); if(fp) fotosGuardadas = JSON.parse(fp); } catch(e){}
+fotosGuardadas = ThryxPhotos.all();
 html += '<div style="margin:0 16px 16px;background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);">';
 html += '<div style="background:linear-gradient(135deg,#6366F118,#8B5CF618);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid #6366F130;">';
 html += '<div style="font-size:11px;font-weight:800;color:#6366F1;text-transform:uppercase;letter-spacing:.5px;">📸 Comparativa de fotos</div>';
@@ -16003,12 +16003,16 @@ if (fotosGuardadas.length === 0) {
   html += '</div>';
   if (fotosGuardadas.length >= 2) {
     html += '<div style="padding:0 14px 12px;">';
-    html += '<button onclick="compararDosUltimasFotos()" style="width:100%;padding:9px;background:#6366F115;border:1.5px solid #6366F140;border-radius:10px;font-size:12px;font-weight:700;color:#6366F1;cursor:pointer;font-family:inherit;">🔍 Comparar primera vs última</button>';
+    html += '<button onclick="abrirSelectorComparativa()" style="width:100%;padding:9px;background:#6366F115;border:1.5px solid #6366F140;border-radius:10px;font-size:12px;font-weight:700;color:#6366F1;cursor:pointer;font-family:inherit;">🔍 Comparar fotos y analizar</button>';
     html += '</div>';
   }
 }
 html += '</div>';
 
+  html += '<div id="_espacioFotos" style="margin:0 16px 16px;"></div>';
+  setTimeout(function(){ if (typeof _pintarEspacioFotos === 'function') _pintarEspacioFotos(); }, 60);
+
+  html += _buildBaseCard();
 
   return html;
 }
@@ -29282,7 +29286,7 @@ function abrirConfiguracionCamara() {
   modal.id = 'modalAjustesCamara';
   modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;';
   modal.innerHTML =
-    '<div style="background:#1a1a2e;border:1.5px solid rgba(255,255,255,0.1);border-radius:18px;padding:24px;max-width:360px;width:100%;max-height:90vh;overflow-y:auto;">' +
+    '<div style="background:#1a1a2e;border:1.5px solid rgba(255,255,255,0.1);border-radius:18px;padding:24px;max-width:360px;width:100%;max-height:90vh;max-height:90dvh;overflow-y:auto;overscroll-behavior:contain;">' +
       '<div style="font-size:18px;font-weight:800;color:white;margin-bottom:16px;text-align:center;">' + titulo + '</div>' +
       '<div style="background:rgba(0,0,0,0.04);border-radius:12px;padding:16px;margin-bottom:16px;">' +
         pasosHTML +
@@ -30407,7 +30411,7 @@ var ThryxPro = (function () {
 
 <!-- Modal universal para recetas y alimentos -->
 <div id="wellnessModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9800;align-items:center;justify-content:center;padding:16px;box-sizing:border-box;" onclick="if(event.target===this)cerrarWellnessModal()">
-  <div style="background:var(--card);border-radius:20px;width:100%;max-width:640px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.3);">
+  <div style="background:var(--card);border-radius:20px;width:100%;max-width:640px;max-height:85vh;max-height:85dvh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.3);">
     <div style="padding:14px 18px;border-bottom:1.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
       <div class="wellness-modal-title" style="font-size:15px;font-weight:800;color:var(--text);flex:1;margin-right:10px;line-height:1.3;"></div>
       <button onclick="cerrarWellnessModal()" style="border:none;background:var(--bg);border-radius:50%;width:32px;height:32px;font-size:16px;cursor:pointer;color:var(--text-muted);flex-shrink:0;display:flex;align-items:center;justify-content:center;">✕</button>
@@ -31187,6 +31191,9 @@ function renderProgramasCfTab() {
   });
   html += '</div>';
 
+  // ── Tarjeta de Movilidad y estiramientos ──
+  html += _buildMovilidadCard();
+
   var lista = THRYX_CROSSFIT_PROGRAMS.filter(function(p){
     var passNivel = _cfProgramFiltro === 'todos' || String(p.nivel) === _cfProgramFiltro;
     var passEquipo = _cfEquipoFiltro === 'todos' || p.equipo === _cfEquipoFiltro;
@@ -31788,7 +31795,7 @@ function abrirComparativaFotos() {
     overlay.id = '_fotosModalOverlay';
     overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;display:flex;align-items:flex-end;justify-content:center;';
     overlay.innerHTML =
-      '<div style="background:var(--card);border-radius:20px 20px 0 0;width:100%;max-width:480px;padding:20px 20px 36px;max-height:90vh;overflow-y:auto;-webkit-overflow-scrolling:touch;box-sizing:border-box;">' +
+      '<div style="background:var(--card);border-radius:20px 20px 0 0;width:100%;max-width:480px;padding:20px 20px calc(36px + env(safe-area-inset-bottom,0px));max-height:90vh;max-height:90dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-sizing:border-box;">' +
         '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">' +
           '<div style="font-size:16px;font-weight:900;color:var(--text);">📸 Foto de progreso</div>' +
           '<button onclick="cerrarFotosModal()" style="width:32px;height:32px;border-radius:50%;background:var(--bg);border:none;font-size:18px;cursor:pointer;">✕</button>' +
@@ -31798,7 +31805,7 @@ function abrirComparativaFotos() {
           '<div style="display:flex;flex-direction:column;gap:8px;">' +
             '<div style="display:flex;align-items:flex-start;gap:10px;">' +
               '<div style="font-size:18px;flex-shrink:0;">👕</div>' +
-              '<div style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.4;"><strong style="color:white;">Misma ropa siempre</strong><br>O en ropa interior/bañador para ver los cambios reales</div>' +
+              '<div style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.4;"><strong style="color:white;">Ropa que deje ver el cuerpo</strong><br>No hace falta la misma siempre — basta con ropa ceñida, ropa interior o bañador. Con ropa ancha no se aprecia nada</div>' +
             '</div>' +
             '<div style="display:flex;align-items:flex-start;gap:10px;">' +
               '<div style="font-size:18px;flex-shrink:0;">📍</div>' +
@@ -31810,7 +31817,7 @@ function abrirComparativaFotos() {
             '</div>' +
             '<div style="display:flex;align-items:flex-start;gap:10px;">' +
               '<div style="font-size:18px;flex-shrink:0;">📱</div>' +
-              '<div style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.4;"><strong style="color:white;">Cámara a la altura del ombligo</strong><br>Ni arriba ni abajo — evita distorsionar la figura</div>' +
+              '<div style="font-size:12px;color:rgba(255,255,255,0.8);line-height:1.4;"><strong style="color:white;">Cualquier ángulo vale</strong><br>De frente, de lado, de espaldas o en el espejo — la IA detecta la postura sola</div>' +
             '</div>' +
             '<div style="display:flex;align-items:flex-start;gap:10px;">' +
               '<div style="font-size:18px;flex-shrink:0;">📅</div>' +
@@ -31912,23 +31919,26 @@ function guardarFotoProgreso() {
     var peso = pesoInput ? parseFloat(pesoInput.value) || null : null;
     var fecha = new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'});
 
-    var fotos = [];
-    try { var fp=localStorage.getItem(userKey(currentUserName,'fotos_progreso')); if(fp) fotos=JSON.parse(fp); } catch(e){}
-    fotos.push({ dataUrl:dataUrl, fecha:fecha, peso:peso, ts:Date.now() });
-    try { localStorage.setItem(userKey(currentUserName,'fotos_progreso'), JSON.stringify(fotos)); } catch(e){
-      showToast('⚠️ Sin espacio suficiente. Borra fotos antiguas.');
-      return;
-    }
-    cerrarFotosModal();
-    showToast('✅ Foto guardada — '+fecha);
-    renderProgreso();
+    ThryxPhotos.add({ dataUrl:dataUrl, fecha:fecha, peso:peso, ts:Date.now() }).then(function(){
+      var total = ThryxPhotos.all().length;
+      cerrarFotosModal();
+      showToast('✅ Foto guardada — '+fecha);
+      renderProgreso();
+      // Primera foto: crear automaticamente el punto de partida
+      if (total === 1 && !_baseGet()) {
+        showToast('🧭 Analizando tu punto de partida…');
+        setTimeout(function(){ analizarBase(0, true); }, 400);
+      }
+    }).catch(function(){
+      showToast('⚠️ No se pudo guardar la foto');
+    });
   };
   img.src = imgEl.src;
 }
 
 function verFotoProgreso(idx) {
   var fotos = [];
-  try { var fp=localStorage.getItem(userKey(currentUserName,'fotos_progreso')); if(fp) fotos=JSON.parse(fp); } catch(e){}
+  fotos = ThryxPhotos.all();
   var f = fotos[idx];
   if (!f) return;
 
@@ -31947,7 +31957,7 @@ function verFotoProgreso(idx) {
 
 function analizarFotoIA(idx) {
   var fotos = [];
-  try { var fp=localStorage.getItem(userKey(currentUserName,'fotos_progreso')); if(fp) fotos=JSON.parse(fp); } catch(e){}
+  fotos = ThryxPhotos.all();
   var f = fotos[idx];
   if (!f) return;
 
@@ -32025,48 +32035,14 @@ function analizarFotoIA(idx) {
 }
 
 function borrarFotoProgreso(idx) {
-  var fotos = [];
-  try { var fp=localStorage.getItem(userKey(currentUserName,'fotos_progreso')); if(fp) fotos=JSON.parse(fp); } catch(e){}
-  fotos.splice(idx, 1);
-  try { localStorage.setItem(userKey(currentUserName,'fotos_progreso'), JSON.stringify(fotos)); } catch(e){}
-  cerrarWellnessModal();
-  showToast('🗑 Foto eliminada');
-  renderProgreso();
+  ThryxPhotos.removeAt(idx).then(function(){
+    cerrarWellnessModal();
+    showToast('🗑 Foto eliminada');
+    renderProgreso();
+  });
 }
 
-function compararDosUltimasFotos() {
-  var fotos = [];
-  try { var fp=localStorage.getItem(userKey(currentUserName,'fotos_progreso')); if(fp) fotos=JSON.parse(fp); } catch(e){}
-  if (fotos.length < 2) return;
-  var primera = fotos[0];
-  var ultima = fotos[fotos.length-1];
-  var diffPeso = (primera.peso && ultima.peso) ? (ultima.peso - primera.peso).toFixed(1) : null;
-  var diffColor = diffPeso < 0 ? '#16A34A' : '#DC2626';
 
-  var body =
-    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">' +
-      '<div style="text-align:center;">' +
-        '<img src="'+primera.dataUrl+'" style="width:100%;border-radius:10px;border:2px solid var(--border);">' +
-        '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;font-weight:700;">'+primera.fecha+'</div>' +
-        (primera.peso?'<div style="font-size:12px;color:var(--text);font-weight:800;">'+primera.peso+' kg</div>':'') +
-      '</div>' +
-      '<div style="text-align:center;">' +
-        '<img src="'+ultima.dataUrl+'" style="width:100%;border-radius:10px;border:2px solid var(--green);">' +
-        '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;font-weight:700;">'+ultima.fecha+'</div>' +
-        (ultima.peso?'<div style="font-size:12px;color:var(--green);font-weight:800;">'+ultima.peso+' kg</div>':'') +
-      '</div>' +
-    '</div>';
-
-  if (diffPeso !== null) {
-    body += '<div style="background:var(--bg);border-radius:12px;padding:12px;text-align:center;">' +
-      '<div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:4px;">Cambio de peso</div>' +
-      '<div style="font-size:28px;font-weight:900;color:'+diffColor+';">'+(diffPeso>0?'+':'')+diffPeso+' kg</div>' +
-      '<div style="font-size:11px;color:var(--text-muted);">en '+fotos.length+' registros ('+primera.fecha+' → '+ultima.fecha+')</div>' +
-    '</div>';
-  }
-
-  _openWellnessModal(body, '📸 Comparativa');
-}
 </script>
 
 <script>
@@ -34111,7 +34087,7 @@ function _pcEnsureOverlay() {
   var ov = document.createElement('div');
   ov.id = 'plateCalcOverlay';
   ov.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998;align-items:flex-end;justify-content:center;';
-  ov.innerHTML = '<div style="background:var(--bg);border-radius:24px 24px 0 0;width:100%;max-width:520px;max-height:88vh;overflow-y:auto;padding:20px 16px 28px;" onclick="event.stopPropagation()">' +
+  ov.innerHTML = '<div style="background:var(--bg);border-radius:24px 24px 0 0;width:100%;max-width:520px;max-height:88vh;max-height:88dvh;overflow-y:auto;overscroll-behavior:contain;padding:20px 16px calc(28px + env(safe-area-inset-bottom,0px));" onclick="event.stopPropagation()">' +
     '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">' +
       '<div style="font-size:18px;font-weight:900;color:var(--text);">🧮 Calculadora de discos</div>' +
       '<button onclick="cerrarCalcDiscos()" style="width:32px;height:32px;border-radius:50%;background:var(--card);border:1.5px solid var(--border);color:var(--text);font-size:15px;cursor:pointer;font-family:inherit;">✕</button>' +
@@ -38457,19 +38433,19 @@ function verEntrenoPrograma(id){
   }
   var ov=document.getElementById('thryxProgPrev');
   if(!ov){ ov=document.createElement('div'); ov.id='thryxProgPrev'; document.body.appendChild(ov); }
-  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center;';
+  ov.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;height:100vh;height:100dvh;z-index:99999;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center;';
   ov.onclick=function(ev){ if(ev.target===ov) cerrarProgPrev(); };
-  var h='<div style="background:var(--card);width:100%;max-width:560px;max-height:88vh;border-radius:20px 20px 0 0;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.3);">';
+  var h='<div style="background:var(--card);width:100%;max-width:560px;max-height:88vh;max-height:88dvh;border-radius:20px 20px 0 0;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -8px 40px rgba(0,0,0,.3);">';
   h+='<div style="display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1.5px solid var(--border);flex-shrink:0;">';
   h+='<div style="display:flex;align-items:center;gap:10px;min-width:0;"><div style="width:40px;height:40px;border-radius:12px;background:'+color+';display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">'+(prog.emoji||'📋')+'</div>';
   h+='<div style="min-width:0;"><div style="font-size:16px;font-weight:900;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+esc(prog.nombre)+'</div><div style="font-size:11px;color:var(--text-muted);">Vista previa del entrenamiento</div></div></div>';
   h+='<button onclick="cerrarProgPrev()" style="width:32px;height:32px;border-radius:50%;border:none;background:var(--bg);color:var(--text);font-size:18px;cursor:pointer;font-family:inherit;flex-shrink:0;">×</button>';
   h+='</div>';
-  h+='<div style="padding:4px 16px 8px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;">'+body+'</div>';
+  h+='<div style="padding:4px 16px calc(16px + env(safe-area-inset-bottom));overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1 1 auto;min-height:0;overscroll-behavior:contain;">'+body+'</div>';
   var esMat=(typeof PROG_MATEMATICOS!=='undefined' && PROG_MATEMATICOS[prog.id]);
   var useFn = prog.ejercs ? null : (esMat?'abrirRMProgramaMatematico':'cargarThrxProgram');
   if(useFn){
-    h+='<div style="padding:12px 16px;border-top:1.5px solid var(--border);background:var(--card);flex-shrink:0;">';
+    h+='<div style="padding:12px 16px calc(12px + env(safe-area-inset-bottom));border-top:1.5px solid var(--border);background:var(--card);flex-shrink:0;">';
     h+='<button onclick="cerrarProgPrev();'+useFn+'(\''+prog.id+'\')" style="width:100%;padding:12px;background:'+color+';color:white;border:none;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;">✅ Usar este programa</button></div>';
   }
   h+='</div>';
@@ -39874,6 +39850,995 @@ function _etiquetaGuardar() {
   if (typeof _guardarMisAlimentos === 'function') _guardarMisAlimentos();
   _etqActual = null;
   _scanMostrarResultado(alimento, alimento.codigo || '', 'nuevo');
+}
+
+
+/* ================================================================
+   THRYX — COMPARATIVA DE FOTOS: elegir A vs B + analisis entrenador
+   ================================================================ */
+var _cmpA = null, _cmpB = null;
+
+function _cmpFotos() {
+  var f = [];
+  f = ThryxPhotos.all();
+  return f;
+}
+
+// Ultima medicion de bascula con datos (para contexto corporal real)
+function _cmpBascula() {
+  var m = [];
+  try { m = medicionesBascula || []; } catch (e) { m = []; }
+  if (!m || !m.length) return null;
+  for (var i = m.length - 1; i >= 0; i--) {
+    if (m[i] && (m[i].cGrasaCorp || m[i].cMusculoEsq || m[i].cPeso)) return m[i];
+  }
+  return null;
+}
+
+// Abre el selector: elige DOS fotos cualesquiera
+function abrirSelectorComparativa() {
+  var fotos = _cmpFotos();
+  if (fotos.length < 2) { showToast('⚠️ Necesitas al menos 2 fotos'); return; }
+  if (_cmpA === null || _cmpA >= fotos.length) _cmpA = 0;
+  if (_cmpB === null || _cmpB >= fotos.length) _cmpB = fotos.length - 1;
+  if (_cmpA === _cmpB) _cmpA = (_cmpB > 0) ? _cmpB - 1 : 1;
+  _cmpRender();
+}
+
+function _cmpRender() {
+  var fotos = _cmpFotos();
+  var a = fotos[_cmpA], b = fotos[_cmpB];
+  if (!a || !b) return;
+
+  var tira = function (sel, lado) {
+    var h = '<div style="font-size:10px;font-weight:800;color:var(--text-muted);margin:0 0 5px;">' + (lado === 'A' ? '📅 ANTES' : '📅 DESPUÉS') + '</div>';
+    h += '<div style="display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;">';
+    fotos.forEach(function (f, i) {
+      var act = (i === sel);
+      var col = act ? (lado === 'A' ? '#6366F1' : '#16A34A') : 'var(--border)';
+      h += '<div onclick="_cmpSet(\'' + lado + '\',' + i + ')" style="flex-shrink:0;text-align:center;cursor:pointer;">';
+      h += '<img src="' + f.dataUrl + '" style="width:52px;height:68px;object-fit:cover;border-radius:8px;border:2.5px solid ' + col + ';opacity:' + (act ? '1' : '0.55') + ';">';
+      h += '<div style="font-size:8px;color:var(--text-muted);margin-top:2px;">' + f.fecha.slice(0, 5) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>';
+    return h;
+  };
+
+  var body = '<div style="line-height:1.5;">';
+  body += '<div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">Elige las <b>dos fotos</b> que quieres comparar.</div>';
+  body += '<div style="margin-bottom:10px;">' + tira(_cmpA, 'A') + '</div>';
+  body += '<div style="margin-bottom:12px;">' + tira(_cmpB, 'B') + '</div>';
+
+  // Comparativa lado a lado
+  body += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">';
+  [[a, '#6366F1'], [b, '#16A34A']].forEach(function (x) {
+    body += '<div style="text-align:center;">';
+    body += '<img src="' + x[0].dataUrl + '" style="width:100%;border-radius:10px;border:2px solid ' + x[1] + ';">';
+    body += '<div style="font-size:11px;color:var(--text-muted);margin-top:4px;font-weight:700;">' + x[0].fecha + '</div>';
+    if (x[0].peso) body += '<div style="font-size:13px;color:' + x[1] + ';font-weight:900;">' + x[0].peso + ' kg</div>';
+    body += '</div>';
+  });
+  body += '</div>';
+
+  // Cambio de peso, interpretado SEGUN TU OBJETIVO
+  if (a.peso && b.peso) {
+    var d = Math.round((b.peso - a.peso) * 10) / 10;
+    var obj = (datos.objetivo || 'mantenimiento');
+    var dias = Math.max(1, Math.round((b.ts - a.ts) / 86400000));
+    var sem = Math.max(1, dias / 7);
+    var ritmo = Math.round((d / sem) * 100) / 100;
+    var bueno;
+    if (obj === 'grasa') bueno = d < 0;
+    else if (obj === 'hipertrofia' || obj === 'fuerza') bueno = d > 0;
+    else bueno = Math.abs(d) < 1;   // mantenimiento / recomposicion
+    var col = (d === 0) ? 'var(--text-muted)' : (bueno ? '#16A34A' : '#D97706');
+    var msg;
+    if (obj === 'grasa') msg = bueno ? 'Vas en la dirección correcta para perder grasa.' : 'Has subido de peso y tu objetivo es perder grasa: revisa las kcal.';
+    else if (obj === 'hipertrofia' || obj === 'fuerza') msg = bueno ? 'Estás ganando peso, coherente con tu objetivo de músculo.' : 'No estás ganando peso y buscas músculo: te falta superávit.';
+    else msg = bueno ? 'Peso estable, que es lo que buscas.' : 'Tu peso se ha movido bastante para un objetivo de mantenimiento.';
+
+    body += '<div style="background:var(--bg);border-radius:12px;padding:12px;text-align:center;margin-bottom:12px;">';
+    body += '<div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:2px;">Cambio de peso</div>';
+    body += '<div style="font-size:26px;font-weight:900;color:' + col + ';">' + (d > 0 ? '+' : '') + d + ' kg</div>';
+    body += '<div style="font-size:10px;color:var(--text-muted);margin-bottom:6px;">en ' + dias + ' días · ' + (ritmo > 0 ? '+' : '') + ritmo + ' kg/semana</div>';
+    body += '<div style="font-size:11px;color:' + col + ';font-weight:700;">' + msg + '</div>';
+    body += '</div>';
+  }
+
+  body += '<button onclick="_cmpAnalizar()" style="width:100%;padding:14px;background:linear-gradient(135deg,#6366F1,#8B5CF6);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;">🤖 Analizar mi evolución como entrenador</button>';
+  body += '<div id="_cmpIA"></div>';
+  body += '</div>';
+
+  _openWellnessModal(body, '📸 Comparativa');
+}
+
+function _cmpSet(lado, i) {
+  if (lado === 'A') _cmpA = i; else _cmpB = i;
+  _cmpRender();
+}
+
+// Analisis de ENTRENADOR: mira las dos fotos + todos tus datos
+function _cmpAnalizar() {
+  var fotos = _cmpFotos();
+  var a = fotos[_cmpA], b = fotos[_cmpB];
+  if (!a || !b) return;
+
+  var res = document.getElementById('_cmpIA');
+  if (res) res.innerHTML = '<div style="text-align:center;padding:16px;"><div style="font-size:12px;color:var(--text-muted);">Analizando tu evolución…</div></div>';
+
+  var bas = _cmpBascula() || {};
+  var dias = Math.max(1, Math.round((b.ts - a.ts) / 86400000));
+  var val = function (v, u) { return (v || v === 0) ? (v + (u || '')) : 'no disponible'; };
+
+  var ctx =
+    'PERFIL: ' + (datos.sexo || 'hombre') + ', ' + val(datos.edad) + ' años, ' + val(datos.altura, ' cm') + ', ' +
+    'objetivo ' + (datos.objetivo || 'mantenimiento') + ', nivel ' + (datos.nivel || 'intermedio') + '.\n' +
+    'FOTO ANTES (' + a.fecha + '): peso ' + val(a.peso, ' kg') + '.\n' +
+    'FOTO DESPUES (' + b.fecha + '): peso ' + val(b.peso, ' kg') + '.\n' +
+    'Tiempo entre ambas: ' + dias + ' dias.\n' +
+    'BASCULA (ultima medicion): grasa corporal ' + val(bas.cGrasaCorp, '%') +
+    ', musculo esqueletico ' + val(bas.cMusculoEsq, ' kg') +
+    ', grasa visceral nivel ' + val(bas.cGrasaVisc) +
+    ', agua ' + val(bas.cAgua, '%') +
+    ', edad corporal ' + val(bas.cEdadCorporal) +
+    ', IMC ' + val(datos.imc) + '.';
+
+  var _b = (typeof _baseGet === 'function') ? _baseGet() : null;
+  if (_b) {
+    ctx += '\nDIAGNOSTICO INICIAL que le diste el ' + (_b.fecha || '') + ': ' + (_b.resumen || '') +
+           ' Zonas a potenciar que marcaste entonces: ' + ((_b.debiles || []).join(', ') || 'ninguna') + '.';
+  }
+
+  var prompt =
+    'Eres el entrenador personal de esta persona y le hablas de tu a tu, en espanol. ' +
+    'Te doy DOS fotos de su progreso: la PRIMERA imagen es el ANTES (' + a.fecha + ') y la SEGUNDA es el DESPUES (' + b.fecha + '). ' +
+    'Aqui tienes sus datos:\n' + ctx + '\n\n' +
+    'Las fotos pueden estar hechas desde cualquier angulo y altura (de frente, de lado, de espaldas, en el espejo). ' +
+    'Detecta tu mismo la postura de cada una. Si las dos fotos NO estan tomadas desde el mismo angulo o distancia, ' +
+    'AVISA de ello al principio y se prudente al comparar, porque parte de la diferencia puede ser de la perspectiva y no del cuerpo. ' +
+    'Valora unicamente las zonas que se vean en ambas fotos. ' +
+    'Puede que lleve ROPA DISTINTA en cada foto: eso es normal y no debes tenerlo en cuenta como un cambio corporal. ' +
+    'Si en una de las dos la ropa es mas ancha u oculta una zona, dilo y no compares esa zona, ' +
+    'porque una camiseta holgada puede parecer perdida o ganancia de volumen sin que el cuerpo haya cambiado.\n\n' +
+    'Analiza comparando las dos fotos y responde con estas secciones exactas, usando ** para los titulos:\n' +
+    '**Que veo en tu cuerpo** — Descripcion MUY especifica y honesta de lo que observas: hombros, pecho, brazos, espalda, ' +
+    'zona abdominal, cintura, piernas. Di donde acumulas grasa, que grupos musculares se ven mas desarrollados y cuales van por detras. ' +
+    'Se concreto, nada de frases genericas.\n' +
+    '**Que ha cambiado** — Diferencias reales entre la foto de antes y la de despues: postura, definicion, volumen, cintura. ' +
+    'Si en ' + dias + ' dias apenas hay cambio visible, dilo con claridad; no inventes progreso que no se ve.\n' +
+    '**Que dice tu peso** — Interpreta su peso y los datos de bascula EN RELACION a su objetivo (' + (datos.objetivo || 'mantenimiento') + '). ' +
+    'Explica si el cambio de peso es musculo, grasa o agua, y si el ritmo es adecuado, lento o demasiado rapido.\n' +
+    '**Tus puntos debiles** — Los 2 o 3 grupos musculares o zonas que mas necesita trabajar, segun lo que se ve en la foto. ' +
+    'Si te he dado un DIAGNOSTICO INICIAL, di claramente si ha mejorado o no en aquellas zonas que marcaste como debiles.\n' +
+    '**Que hacer ahora** — Plan concreto: que ejercicios priorizar (con series y repeticiones), cuantos dias, ' +
+    'y el ajuste de calorias y proteina que necesita en gramos.\n\n' +
+    'Se directo y honesto, sin adular pero sin machacar. Si algo no se aprecia bien en la foto, dilo. ' +
+    'Nunca comentes su aspecto fisico en terminos de atractivo, solo en terminos de entrenamiento y salud. Usa emojis con moderacion.';
+
+  var img = function (f) {
+    return { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: f.dataUrl.split(',')[1] } };
+  };
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: _thryxAIHeaders(),
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1800,
+      messages: [{ role: 'user', content: [img(a), img(b), { type: 'text', text: prompt }] }]
+    })
+  }).then(function (r) { return r.json(); }).then(function (data) {
+    var txt = (data && data.content && data.content[0] && data.content[0].text) || '';
+    if (!txt) { if (res) res.innerHTML = '<div style="font-size:12px;color:#DC2626;text-align:center;padding:12px;">No se pudo analizar. Revisa tu API key en Ajustes.</div>'; return; }
+    var h = '<div style="background:linear-gradient(135deg,#6366F110,#8B5CF610);border:1.5px solid #6366F140;border-radius:14px;padding:14px;margin-top:10px;">';
+    h += '<div style="font-size:12px;font-weight:800;color:#6366F1;margin-bottom:8px;">🤖 Tu entrenador</div>';
+    txt.split('\n').forEach(function (l) {
+      l = l.trim();
+      if (!l) return;
+      if (l.indexOf('**') === 0 && l.lastIndexOf('**') > 1) {
+        h += '<div style="font-size:13px;font-weight:900;color:var(--text);margin:10px 0 4px;">' + l.replace(/\*\*/g, '') + '</div>';
+      } else {
+        h += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:5px;line-height:1.6;">' + l.replace(/\*\*(.+?)\*\*/g, '<b style="color:var(--text);">$1</b>') + '</div>';
+      }
+    });
+    h += '</div>';
+    if (res) res.innerHTML = h;
+  }).catch(function () {
+    if (res) res.innerHTML = '<div style="font-size:12px;color:#DC2626;text-align:center;padding:12px;">Error de conexión al analizar.</div>';
+  });
+}
+
+
+/* ================================================================
+   THRYX — ANALISIS BASE (punto de partida con la 1a foto)
+   Guarda un diagnostico corporal que sirve de referencia despues.
+   ================================================================ */
+function _baseGet() {
+  try { var r = localStorage.getItem(userKey(currentUserName, 'analisis_base')); if (r) return JSON.parse(r); } catch (e) {}
+  return null;
+}
+function _baseSave(o) {
+  try { localStorage.setItem(userKey(currentUserName, 'analisis_base'), JSON.stringify(o)); } catch (e) {}
+}
+function borrarAnalisisBase() {
+  try { localStorage.removeItem(userKey(currentUserName, 'analisis_base')); } catch (e) {}
+  showToast('🗑 Análisis base borrado');
+  renderProgreso();
+}
+
+// Analiza UNA foto (la primera) y guarda el punto de partida
+function analizarBase(idx, silencioso) {
+  var fotos = _cmpFotos();
+  var f = fotos[idx];
+  if (!f) return;
+
+  var res = document.getElementById('_baseIA');
+  if (res) res.innerHTML = '<div style="text-align:center;padding:14px;font-size:12px;color:var(--text-muted);">Analizando tu punto de partida…</div>';
+  if (!silencioso && !res) showToast('🤖 Analizando tu punto de partida…');
+
+  var bas = _cmpBascula() || {};
+  var val = function (v, u) { return (v || v === 0) ? (v + (u || '')) : 'no disponible'; };
+  var ctx =
+    'PERFIL: ' + (datos.sexo || 'hombre') + ', ' + val(datos.edad) + ' anos, ' + val(datos.altura, ' cm') + ', ' +
+    'peso ' + val(f.peso || datos.peso, ' kg') + ', IMC ' + val(datos.imc) + '. ' +
+    'Objetivo: ' + (datos.objetivo || 'mantenimiento') + '. Nivel: ' + (datos.nivel || 'intermedio') + '. ' +
+    'Equipamiento: ' + ((datos.equipamiento || []).join(', ') || 'peso corporal') + '.\n' +
+    'BASCULA: grasa corporal ' + val(bas.cGrasaCorp, '%') + ', musculo esqueletico ' + val(bas.cMusculoEsq, ' kg') +
+    ', grasa visceral nivel ' + val(bas.cGrasaVisc) + ', agua ' + val(bas.cAgua, '%') +
+    ', edad corporal ' + val(bas.cEdadCorporal) + '.';
+
+  var prompt =
+    'Eres el entrenador personal de esta persona. Esta es su PRIMERA foto de progreso: su punto de partida. ' +
+    'Datos:\n' + ctx + '\n\n' +
+    'Observa la foto y devuelve SOLO un objeto JSON valido, sin markdown, sin backticks, sin texto adicional.\n' +
+    'Formato exacto:\n' +
+    '{"resumen":"","angulo":"","somatotipo":"","fisico":[{"zona":"","estado":"","nota":""}],"fuertes":[""],"debiles":[""],"prioridad":[{"zona":"","ejercicios":"","series":""}],"peso":"","nutricion":""}\n' +
+    'Reglas:\n' +
+    '- IMPORTANTE: la foto puede estar hecha desde CUALQUIER angulo y a cualquier altura: de frente, de lado, ' +
+    'de espaldas, en un espejo (con el movil en la mano), desde arriba o desde abajo. Detecta tu mismo la postura ' +
+    'y analiza SOLO las zonas que se vean realmente.\n' +
+    '- "angulo": describe la toma en pocas palabras (por ejemplo "frontal en espejo", "de espaldas", "lateral derecho", "picado").\n' +
+    '- Si la camara esta muy alta o muy baja y deforma la perspectiva, tenlo en cuenta al juzgar las proporciones y dilo en el resumen.\n' +
+    '- Si una zona NO se ve en esta foto (por ejemplo la espalda en una foto frontal), o esta TAPADA POR LA ROPA ' +
+    '(una camiseta ancha oculta el abdomen, un pantalon largo oculta las piernas), pon su "estado" exactamente como ' +
+    '"No visible" y en "nota" explica por que (angulo o ropa) y que foto haria falta. NUNCA inventes la valoracion de una zona que no ves.\n' +
+    '- No pasa nada si lleva ropa distinta en cada foto: valora el cuerpo, no la ropa.\n' +
+    '- "resumen": 2 o 3 frases describiendo su fisico actual de forma honesta y concreta.\n' +
+    '- "somatotipo": ectomorfo, mesomorfo o endomorfo (el que mas se aproxime), con 3-4 palabras de matiz.\n' +
+    '- "fisico": una entrada por cada zona: Hombros, Pecho, Brazos, Espalda, Abdomen, Piernas. ' +
+    '"estado" debe ser exactamente una de estas palabras: Fuerte, Correcto o Flojo. ' +
+    '"nota" es una observacion breve y especifica de lo que ves en ESA zona (5-12 palabras).\n' +
+    '- "fuertes": 2 puntos fuertes reales.\n' +
+    '- "debiles": las 2 o 3 zonas que mas necesita potenciar, DE ENTRE LAS QUE SE VEAN en la foto.\n' +
+    '- "prioridad": para cada zona debil, los ejercicios concretos y el esquema de series y repeticiones.\n' +
+    '- "peso": como esta su peso respecto a su objetivo y que deberia hacer (subir, bajar o mantener, y cuanto).\n' +
+    '- "nutricion": calorias y proteina en gramos que recomiendas al dia.\n' +
+    '- Habla en espanol, de tu a tu, directo y honesto. Nunca comentes su atractivo fisico, solo entrenamiento y salud.';
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: _thryxAIHeaders(),
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1600,
+      messages: [{
+        role: 'user',
+        content: [
+          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: f.dataUrl.split(',')[1] } },
+          { type: 'text', text: prompt }
+        ]
+      }]
+    })
+  }).then(function (r) { return r.json(); }).then(function (data) {
+    var txt = (data && data.content && data.content[0] && data.content[0].text) || '';
+    txt = txt.replace(/```json/g, '').replace(/```/g, '').trim();
+    var i = txt.indexOf('{'), j = txt.lastIndexOf('}');
+    if (i === -1 || j === -1) throw new Error('parse');
+    var o = JSON.parse(txt.slice(i, j + 1));
+    o.fecha = f.fecha;
+    o.ts = Date.now();
+    _baseSave(o);
+    showToast('✅ Punto de partida guardado');
+    renderProgreso();
+  }).catch(function () {
+    if (res) res.innerHTML = '<div style="font-size:12px;color:#DC2626;text-align:center;padding:12px;">No se pudo analizar. Revisa tu API key en Ajustes.</div>';
+    else showToast('⚠️ No se pudo analizar. Revisa tu API key.');
+  });
+}
+
+// Tarjeta "Tu punto de partida" para la seccion de fotos
+function _buildBaseCard() {
+  var fotos = _cmpFotos();
+  var b = _baseGet();
+  var h = '';
+
+  if (!fotos.length) return '';
+
+  if (!b) {
+    h += '<div style="margin:0 16px 16px;background:var(--card);border-radius:16px;padding:16px;box-shadow:var(--shadow);text-align:center;">';
+    h += '<div style="font-size:30px;margin-bottom:6px;">🧭</div>';
+    h += '<div style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:3px;">Tu punto de partida</div>';
+    h += '<div style="font-size:11px;color:var(--text-muted);margin-bottom:12px;line-height:1.5;">Con tu primera foto puedo decirte cómo estás ahora y qué zonas necesitas potenciar. Queda guardado como referencia.</div>';
+    h += '<button onclick="analizarBase(0)" style="width:100%;padding:12px;background:linear-gradient(135deg,#6366F1,#8B5CF6);color:#fff;border:none;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;">🧭 Analizar mi punto de partida</button>';
+    h += '<div id="_baseIA"></div>';
+    h += '</div>';
+    return h;
+  }
+
+  var colEstado = function (e) {
+    e = (e || '').toLowerCase();
+    if (e.indexOf('no visible') !== -1 || e.indexOf('no se ve') !== -1) return '#94A3B8';
+    if (e.indexOf('fuerte') !== -1) return '#16A34A';
+    if (e.indexOf('flojo') !== -1) return '#DC2626';
+    return '#D97706';
+  };
+
+  h += '<div style="margin:0 16px 16px;background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);">';
+  h += '<div style="background:linear-gradient(135deg,#6366F118,#8B5CF618);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1.5px solid #6366F130;">';
+  h += '<div style="font-size:11px;font-weight:800;color:#6366F1;text-transform:uppercase;letter-spacing:.5px;">🧭 Tu punto de partida</div>';
+  h += '<div style="font-size:10px;color:var(--text-muted);font-weight:700;">' + (b.fecha || '') + '</div>';
+  h += '</div>';
+  h += '<div style="padding:14px;">';
+
+  if (b.somatotipo) h += '<div style="display:inline-block;background:#6366F115;color:#6366F1;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;margin-bottom:8px;">' + b.somatotipo + '</div>';
+  if (b.angulo) h += '<div style="display:inline-block;background:var(--bg);color:var(--text-muted);font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;margin:0 0 8px 5px;">📐 ' + b.angulo + '</div>';
+  if (b.resumen) h += '<div style="font-size:12px;color:var(--text);line-height:1.6;margin-bottom:12px;">' + b.resumen + '</div>';
+
+  if (b.fisico && b.fisico.length) {
+    h += '<div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:6px;">📊 Cómo veo cada zona</div>';
+    b.fisico.forEach(function (z) {
+      var c = colEstado(z.estado);
+      h += '<div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border);">';
+      h += '<span style="flex:1;font-size:12px;font-weight:700;color:var(--text);">' + (z.zona || '') + '</span>';
+      h += '<span style="font-size:10px;font-weight:800;color:' + c + ';background:' + c + '15;padding:3px 8px;border-radius:12px;">' + (z.estado || '') + '</span>';
+      h += '</div>';
+      if (z.nota) h += '<div style="font-size:10px;color:var(--text-muted);padding:0 0 6px;line-height:1.5;">' + z.nota + '</div>';
+    });
+    h += '<div style="height:10px;"></div>';
+  }
+
+  // Aviso si alguna zona no se veia en la foto
+  var _noVis = (b.fisico || []).filter(function (z) {
+    return (z.estado || '').toLowerCase().indexOf('no visible') !== -1;
+  }).map(function (z) { return z.zona; });
+  if (_noVis.length) {
+    h += '<div style="background:#94A3B815;border:1.5px solid #94A3B840;border-radius:12px;padding:10px 12px;margin-bottom:8px;">';
+    h += '<div style="font-size:11px;font-weight:800;color:#64748B;margin-bottom:3px;">📐 No se veía en esta foto</div>';
+    h += '<div style="font-size:11px;color:var(--text-muted);line-height:1.5;"><b>' + _noVis.join(', ') + '</b>. Haz otra foto desde otro ángulo (de espaldas o de lado) y vuelve a analizar para completar el diagnóstico.</div>';
+    h += '</div>';
+  }
+
+  if (b.debiles && b.debiles.length) {
+    h += '<div style="background:#DC262610;border:1.5px solid #DC262630;border-radius:12px;padding:10px 12px;margin-bottom:8px;">';
+    h += '<div style="font-size:11px;font-weight:800;color:#DC2626;margin-bottom:4px;">🎯 A potenciar</div>';
+    h += '<div style="font-size:12px;color:var(--text);font-weight:700;">' + b.debiles.join(' · ') + '</div>';
+    h += '</div>';
+  }
+  if (b.fuertes && b.fuertes.length) {
+    h += '<div style="background:#16A34A10;border:1.5px solid #16A34A30;border-radius:12px;padding:10px 12px;margin-bottom:10px;">';
+    h += '<div style="font-size:11px;font-weight:800;color:#16A34A;margin-bottom:4px;">💪 Tus puntos fuertes</div>';
+    h += '<div style="font-size:12px;color:var(--text);font-weight:700;">' + b.fuertes.join(' · ') + '</div>';
+    h += '</div>';
+  }
+
+  if (b.prioridad && b.prioridad.length) {
+    h += '<div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:6px;">🏋️ Plan para tus zonas débiles</div>';
+    b.prioridad.forEach(function (p) {
+      h += '<div style="background:var(--bg);border-radius:10px;padding:9px 11px;margin-bottom:6px;">';
+      h += '<div style="font-size:11px;font-weight:800;color:var(--text);">' + (p.zona || '') + '</div>';
+      if (p.ejercicios) h += '<div style="font-size:11px;color:var(--text-muted);line-height:1.5;">' + p.ejercicios + '</div>';
+      if (p.series) h += '<div style="font-size:10px;color:#6366F1;font-weight:800;margin-top:2px;">' + p.series + '</div>';
+      h += '</div>';
+    });
+  }
+
+  if (b.peso) {
+    h += '<div style="background:var(--bg);border-radius:10px;padding:10px 12px;margin-top:6px;">';
+    h += '<div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:2px;">⚖️ Tu peso</div>';
+    h += '<div style="font-size:11px;color:var(--text-muted);line-height:1.6;">' + b.peso + '</div></div>';
+  }
+  if (b.nutricion) {
+    h += '<div style="background:var(--bg);border-radius:10px;padding:10px 12px;margin-top:6px;">';
+    h += '<div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:2px;">🍽️ Nutrición</div>';
+    h += '<div style="font-size:11px;color:var(--text-muted);line-height:1.6;">' + b.nutricion + '</div></div>';
+  }
+
+  h += '<button onclick="analizarBase(0)" style="width:100%;margin-top:10px;padding:10px;background:var(--card);border:1.5px solid var(--border);color:var(--text-muted);border-radius:10px;font-size:11px;font-weight:800;cursor:pointer;font-family:inherit;">🔄 Volver a analizar</button>';
+  h += '<div id="_baseIA"></div>';
+  h += '</div></div>';
+  return h;
+}
+
+
+/* ================================================================
+   THRYX — ALMACEN DE FOTOS EN INDEXEDDB (sin limite practico)
+   localStorage = ~5-10 MB en total. IndexedDB = cientos de MB / GB.
+   Mantiene una cache en memoria para que el resto del codigo siga
+   leyendo las fotos de forma sincrona, sin cambiar nada mas.
+   ================================================================ */
+window.ThryxPhotos = (function () {
+  var DB_NAME = 'thryx', STORE = 'fotos', VER = 1;
+  var db = null;
+  var cache = [];          // [{id, dataUrl, fecha, peso, ts}]
+  var listo = false;
+
+  function _key() {
+    try { return (typeof currentUserName !== 'undefined' && currentUserName) ? currentUserName : 'default'; }
+    catch (e) { return 'default'; }
+  }
+
+  function abrir() {
+    return new Promise(function (resolve, reject) {
+      if (db) { resolve(db); return; }
+      if (!window.indexedDB) { reject(new Error('sin indexeddb')); return; }
+      var req = indexedDB.open(DB_NAME, VER);
+      req.onupgradeneeded = function (e) {
+        var d = e.target.result;
+        if (!d.objectStoreNames.contains(STORE)) {
+          var os = d.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
+          os.createIndex('user', 'user', { unique: false });
+        }
+      };
+      req.onsuccess = function (e) { db = e.target.result; resolve(db); };
+      req.onerror = function () { reject(req.error || new Error('idb error')); };
+    });
+  }
+
+  function tx(modo) {
+    return abrir().then(function (d) { return d.transaction(STORE, modo).objectStore(STORE); });
+  }
+
+  // Pide al navegador que NO borre estos datos si el movil va justo de espacio
+  function persistir() {
+    try {
+      if (navigator.storage && navigator.storage.persist) {
+        navigator.storage.persisted().then(function (ya) {
+          if (!ya) navigator.storage.persist();
+        });
+      }
+    } catch (e) {}
+  }
+
+  // Migra las fotos que estuvieran en localStorage y LIBERA ese espacio
+  function migrar() {
+    var lsKey;
+    try { lsKey = userKey(currentUserName, 'fotos_progreso'); } catch (e) { return Promise.resolve(0); }
+    var viejas = [];
+    try {
+      var raw = localStorage.getItem(lsKey);
+      if (raw) viejas = JSON.parse(raw) || [];
+    } catch (e) { return Promise.resolve(0); }
+    if (!viejas.length) return Promise.resolve(0);
+
+    return tx('readwrite').then(function (os) {
+      viejas.forEach(function (f) {
+        os.add({ user: _key(), dataUrl: f.dataUrl, fecha: f.fecha, peso: f.peso || null, ts: f.ts || Date.now() });
+      });
+      return new Promise(function (res) {
+        os.transaction.oncomplete = function () {
+          try { localStorage.removeItem(lsKey); } catch (e) {}   // libera los MB
+          res(viejas.length);
+        };
+        os.transaction.onerror = function () { res(0); };
+      });
+    }).catch(function () { return 0; });
+  }
+
+  function cargar() {
+    return tx('readonly').then(function (os) {
+      return new Promise(function (resolve) {
+        var out = [];
+        var req = os.index('user').openCursor(IDBKeyRange.only(_key()));
+        req.onsuccess = function (e) {
+          var c = e.target.result;
+          if (c) { out.push(c.value); c.continue(); }
+          else {
+            out.sort(function (a, b) { return (a.ts || 0) - (b.ts || 0); });
+            cache = out; listo = true; resolve(cache);
+          }
+        };
+        req.onerror = function () { listo = true; resolve(cache); };
+      });
+    }).catch(function () { listo = true; return cache; });
+  }
+
+  var iniciado = false;
+  function init() {
+    if (iniciado) return Promise.resolve(cache);   // nunca migrar dos veces
+    iniciado = true;
+    persistir();
+    return migrar().then(function (n) {
+      return cargar().then(function () {
+        if (n > 0 && typeof showToast === 'function') {
+          showToast('📦 ' + n + ' fotos movidas a almacenamiento ampliado');
+        }
+        if (typeof renderProgreso === 'function') { try { renderProgreso(); } catch (e) {} }
+        return cache;
+      });
+    }).catch(function () { iniciado = false; return cache; });
+  }
+
+  function all() { return cache.slice(); }      // lectura SINCRONA (cache)
+
+  function add(foto) {
+    var reg = { user: _key(), dataUrl: foto.dataUrl, fecha: foto.fecha, peso: foto.peso || null, ts: foto.ts || Date.now() };
+    return tx('readwrite').then(function (os) {
+      return new Promise(function (resolve, reject) {
+        var r = os.add(reg);
+        r.onsuccess = function () {
+          reg.id = r.result;
+          cache.push(reg);
+          cache.sort(function (a, b) { return (a.ts || 0) - (b.ts || 0); });
+          resolve(reg);
+        };
+        r.onerror = function () { reject(r.error); };
+      });
+    });
+  }
+
+  function removeAt(idx) {
+    var f = cache[idx];
+    if (!f) return Promise.resolve(false);
+    return tx('readwrite').then(function (os) {
+      return new Promise(function (resolve) {
+        var r = os.delete(f.id);
+        r.onsuccess = function () { cache.splice(idx, 1); resolve(true); };
+        r.onerror = function () { resolve(false); };
+      });
+    });
+  }
+
+  // Espacio usado y disponible de verdad
+  function espacio() {
+    if (!navigator.storage || !navigator.storage.estimate) return Promise.resolve(null);
+    return navigator.storage.estimate().then(function (e) {
+      return { usado: e.usage || 0, total: e.quota || 0 };
+    }).catch(function () { return null; });
+  }
+
+  return { init: init, all: all, add: add, removeAt: removeAt, espacio: espacio, listo: function () { return listo; } };
+})();
+
+// Arranca el almacen al cargar la app
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function () { ThryxPhotos.init(); });
+} else {
+  ThryxPhotos.init();
+}
+
+// Tarjeta de espacio usado (se pinta sola en la seccion de fotos)
+function _pintarEspacioFotos() {
+  ThryxPhotos.espacio().then(function (e) {
+    var el = document.getElementById('_espacioFotos');
+    if (!el || !e || !e.total) return;
+    var mb = function (b) { return (b / 1048576).toFixed(1); };
+    var gb = function (b) { return (b / 1073741824).toFixed(1); };
+    var pct = Math.min(100, (e.usado / e.total) * 100);
+    el.innerHTML =
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">' +
+        '<span style="font-size:10px;color:var(--text-muted);font-weight:700;">💾 Espacio usado</span>' +
+        '<span style="font-size:10px;color:var(--text-muted);font-weight:700;">' + mb(e.usado) + ' MB de ' + gb(e.total) + ' GB</span>' +
+      '</div>' +
+      '<div style="height:5px;background:var(--bg);border-radius:3px;overflow:hidden;">' +
+        '<div style="height:100%;width:' + Math.max(1, pct) + '%;background:var(--green);"></div>' +
+      '</div>';
+  });
+}
+
+
+/* ================================================================
+   THRYX — MOVILIDAD Y ESTIRAMIENTOS (dentro de Programas CrossFit)
+   45 circuitos: 15 principiante, 15 intermedio, 15 avanzado.
+   Cada ejercicio: GIF (thryxThumbBox) + video de YouTube + segundos.
+   ================================================================ */
+var _movNivel = 0;   // 0 princ, 1 inter, 2 avanz
+var _movAbierto = null;
+
+var THRYX_MOV_IMG = {"Arm Circles": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arm_Circles/0.jpg", "Elbow Circles": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Elbow_Circles/0.jpg", "Ankle Circles": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ankle_Circles/0.jpg", "Standing Hip Circles": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Hip_Circles/0.jpg", "Wrist Circles": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wrist_Circles/0.jpg", "Standing Lateral Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Lateral_Stretch/0.jpg", "Cat Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cat_Stretch/0.jpg", "Child's Pose": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Childs_Pose/0.jpg", "Hug Knees To Chest": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hug_Knees_To_Chest/0.jpg", "Lying Crossover": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Crossover/0.jpg", "Lower Back Curl": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lower_Back_Curl/0.jpg", "Standing Pelvic Tilt": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Pelvic_Tilt/0.jpg", "Ankle On The Knee": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Ankle_On_The_Knee/0.jpg", "Kneeling Hip Flexor": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_Hip_Flexor/0.jpg", "Seated Glute": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Glute/0.jpg", "Pelvic Tilt Into Bridge": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pelvic_Tilt_Into_Bridge/0.jpg", "Groiners": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Groiners/0.jpg", "Chin To Chest Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chin_To_Chest_Stretch/0.jpg", "Side Neck Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Neck_Stretch/0.jpg", "Chair Upper Body Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chair_Upper_Body_Stretch/0.jpg", "Elbows Back": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Elbows_Back/0.jpg", "Behind Head Chest Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Behind_Head_Chest_Stretch/0.jpg", "Hamstring Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hamstring_Stretch/0.jpg", "Quad Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Quad_Stretch/0.jpg", "Seated Calf Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Calf_Stretch/0.jpg", "Adductor": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Adductor/0.jpg", "Front Leg Raises": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Leg_Raises/0.jpg", "Sit Squats": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sit_Squats/0.jpg", "Split Squats": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squats/0.jpg", "Seated Biceps": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Biceps/0.jpg", "Standing Gastrocnemius Calf Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Gastrocnemius_Calf_Stretch/0.jpg", "Standing Soleus And Achilles Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Soleus_And_Achilles_Stretch/0.jpg", "Posterior Tibialis Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Posterior_Tibialis_Stretch/0.jpg", "Foot-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Foot-SMR/0.jpg", "Kneeling Forearm Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Kneeling_Forearm_Stretch/0.jpg", "One Knee To Chest": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One_Knee_To_Chest/0.jpg", "Lying Hamstring": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Hamstring/0.jpg", "Chest And Front Of Shoulder Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chest_And_Front_Of_Shoulder_Stretch/0.jpg", "Upper Back Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Upper_Back_Stretch/0.jpg", "Superman": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Superman/0.jpg", "Torso Rotation": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Torso_Rotation/0.jpg", "Stomach Vacuum": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stomach_Vacuum/0.jpg", "Seated Floor Hamstring Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Floor_Hamstring_Stretch/0.jpg", "Standing Toe Touches": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Toe_Touches/0.jpg", "Lying Glute": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Glute/0.jpg", "Piriformis-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Piriformis-SMR/0.jpg", "Adductor/Groin": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Adductor_Groin/0.jpg", "Round The World Shoulder Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Round_The_World_Shoulder_Stretch/0.jpg", "Overhead Lat": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Overhead_Lat/0.jpg", "Overhead Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Overhead_Stretch/0.jpg", "Spinal Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Spinal_Stretch/0.jpg", "Middle Back Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Middle_Back_Stretch/0.jpg", "Rhomboids-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Rhomboids-SMR/0.jpg", "World's Greatest Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Worlds_Greatest_Stretch/0.jpg", "90/90 Hamstring": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/90_90_Hamstring/0.jpg", "Inchworm": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inchworm/0.jpg", "Upper Back-Leg Grab": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Upper_Back-Leg_Grab/0.jpg", "Standing Biceps Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Biceps_Stretch/0.jpg", "Brachialis-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Brachialis-SMR/0.jpg", "Side Lying Groin Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lying_Groin_Stretch/0.jpg", "Lying Bent Leg Groin": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Bent_Leg_Groin/0.jpg", "Side Leg Raises": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Leg_Raises/0.jpg", "One Arm Against Wall": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One_Arm_Against_Wall/0.jpg", "One Handed Hang": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One_Handed_Hang/0.jpg", "Side-Lying Floor Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side-Lying_Floor_Stretch/0.jpg", "Latissimus Dorsi-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Latissimus_Dorsi-SMR/0.jpg", "Quadriceps-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Quadriceps-SMR/0.jpg", "Knee Circles": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Knee_Circles/0.jpg", "All Fours Quad Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/All_Fours_Quad_Stretch/0.jpg", "Standing Elevated Quad Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Elevated_Quad_Stretch/0.jpg", "Scissor Kick": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Scissor_Kick/0.jpg", "Frog Hops": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Frog_Hops/0.jpg", "Hug A Ball": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hug_A_Ball/0.jpg", "Intermediate Hip Flexor and Quad Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Intermediate_Hip_Flexor_and_Quad_Stretch/0.jpg", "Runner's Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Runners_Stretch/0.jpg", "Standing Hip Flexors": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Hip_Flexors/0.jpg", "Seated Hamstring": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Hamstring/0.jpg", "The Straddle": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/The_Straddle/0.jpg", "Intermediate Groin Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Intermediate_Groin_Stretch/0.jpg", "One Half Locust": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One_Half_Locust/0.jpg", "Looking At Ceiling": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Looking_At_Ceiling/0.jpg", "Seated Overhead Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Seated_Overhead_Stretch/0.jpg", "Crossover Reverse Lunge": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Crossover_Reverse_Lunge/0.jpg", "Iron Crosses (stretch)": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Iron_Crosses_stretch/0.jpg", "Dynamic Chest Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dynamic_Chest_Stretch/0.jpg", "Toe Touchers": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Toe_Touchers/0.jpg", "Calf Stretch Elbows Against Wall": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Stretch_Elbows_Against_Wall/0.jpg", "Peroneals Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Peroneals_Stretch/0.jpg", "Hamstring-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hamstring-SMR/0.jpg", "Calves-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calves-SMR/0.jpg", "Iliotibial Tract-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Iliotibial_Tract-SMR/0.jpg", "Lower Back-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lower_Back-SMR/0.jpg", "Neck-SMR": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Neck-SMR/0.jpg", "Knee Across The Body": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Knee_Across_The_Body/0.jpg", "On Your Side Quad Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/On_Your_Side_Quad_Stretch/0.jpg", "Lying Prone Quadriceps": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Prone_Quadriceps/0.jpg", "Leg-Up Hamstring Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg-Up_Hamstring_Stretch/0.jpg", "Standing Hamstring and Calf Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Hamstring_and_Calf_Stretch/0.jpg", "IT Band and Glute Stretch": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/IT_Band_and_Glute_Stretch/0.jpg"};
+
+var THRYX_MOVILIDAD = [
+  { id:'mov_p1', momento:'antes', nivel:0, nombre:"Despertar articular", desc:"Rutina suave para empezar el día o antes de entrenar.", min:4, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Arm Circles",s:40}, {n:"Elbow Circles",s:40}, {n:"Ankle Circles",s:40}, {n:"Standing Hip Circles",s:45}, {n:"Wrist Circles",s:40}, {n:"Standing Lateral Stretch",s:45} ] },
+  { id:'mov_p2', momento:'cualquiera', nivel:0, nombre:"Espalda sin dolor", desc:"Alivia la tensión lumbar de estar sentado.", min:6, zona:"Espalda",
+    ejercicios:[ {n:"Cat Stretch",s:60}, {n:"Child's Pose",s:60}, {n:"Hug Knees To Chest",s:60}, {n:"Lying Crossover",s:60}, {n:"Lower Back Curl",s:45}, {n:"Standing Pelvic Tilt",s:45} ] },
+  { id:'mov_p3', momento:'cualquiera', nivel:0, nombre:"Cadera básica", desc:"Abre la cadera si pasas muchas horas sentado.", min:5, zona:"Cadera",
+    ejercicios:[ {n:"Ankle On The Knee",s:60}, {n:"Kneeling Hip Flexor",s:60}, {n:"Seated Glute",s:60}, {n:"Standing Hip Circles",s:45}, {n:"Pelvic Tilt Into Bridge",s:45}, {n:"Groiners",s:50} ] },
+  { id:'mov_p4', momento:'cualquiera', nivel:0, nombre:"Cuello y hombros", desc:"Para la tensión del móvil y el ordenador.", min:5, zona:"Cuello y hombros",
+    ejercicios:[ {n:"Chin To Chest Stretch",s:45}, {n:"Side Neck Stretch",s:60}, {n:"Arm Circles",s:40}, {n:"Chair Upper Body Stretch",s:60}, {n:"Elbows Back",s:50}, {n:"Behind Head Chest Stretch",s:60} ] },
+  { id:'mov_p5', momento:'despues', nivel:0, nombre:"Piernas suaves", desc:"Estiramiento básico de tren inferior.", min:5, zona:"Piernas",
+    ejercicios:[ {n:"Hamstring Stretch",s:60}, {n:"Quad Stretch",s:60}, {n:"Seated Calf Stretch",s:60}, {n:"Adductor",s:60}, {n:"Standing Lateral Stretch",s:45} ] },
+  { id:'mov_p6', momento:'antes', nivel:0, nombre:"Antes de entrenar", desc:"Calentamiento dinámico general.", min:5, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Arm Circles",s:40}, {n:"Front Leg Raises",s:50}, {n:"Standing Hip Circles",s:45}, {n:"Sit Squats",s:50}, {n:"Split Squats",s:50}, {n:"Elbow Circles",s:40} ] },
+  { id:'mov_p7', momento:'despues', nivel:0, nombre:"Después de entrenar", desc:"Vuelta a la calma para bajar pulsaciones.", min:6, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Child's Pose",s:60}, {n:"Hamstring Stretch",s:60}, {n:"Quad Stretch",s:60}, {n:"Behind Head Chest Stretch",s:60}, {n:"Seated Biceps",s:50}, {n:"Lying Crossover",s:60} ] },
+  { id:'mov_p8', momento:'cualquiera', nivel:0, nombre:"Movilidad de tobillo", desc:"Clave para sentadilla profunda y correr sin lesiones.", min:4, zona:"Tobillo",
+    ejercicios:[ {n:"Ankle Circles",s:45}, {n:"Standing Gastrocnemius Calf Stretch",s:60}, {n:"Standing Soleus And Achilles Stretch",s:60}, {n:"Posterior Tibialis Stretch",s:50}, {n:"Foot-SMR",s:50} ] },
+  { id:'mov_p9', momento:'cualquiera', nivel:0, nombre:"Muñecas y antebrazos", desc:"Imprescindible antes de fondos, planchas o front squat.", min:3, zona:"Muñecas",
+    ejercicios:[ {n:"Wrist Circles",s:45}, {n:"Kneeling Forearm Stretch",s:60}, {n:"Elbow Circles",s:40}, {n:"Seated Biceps",s:50} ] },
+  { id:'mov_p10', momento:'cualquiera', nivel:0, nombre:"Estiramiento en la cama", desc:"Todo tumbado — perfecto al despertar o antes de dormir.", min:5, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Hug Knees To Chest",s:60}, {n:"Lying Crossover",s:60}, {n:"One Knee To Chest",s:60}, {n:"Pelvic Tilt Into Bridge",s:45}, {n:"Lying Hamstring",s:60} ] },
+  { id:'mov_p11', momento:'cualquiera', nivel:0, nombre:"Pecho y postura", desc:"Contrarresta la espalda encorvada.", min:5, zona:"Pecho",
+    ejercicios:[ {n:"Behind Head Chest Stretch",s:60}, {n:"Chest And Front Of Shoulder Stretch",s:60}, {n:"Elbows Back",s:50}, {n:"Upper Back Stretch",s:50}, {n:"Cat Stretch",s:60} ] },
+  { id:'mov_p12', momento:'cualquiera', nivel:0, nombre:"Core suave", desc:"Activa el abdomen sin machacarlo.", min:4, zona:"Core",
+    ejercicios:[ {n:"Standing Pelvic Tilt",s:45}, {n:"Pelvic Tilt Into Bridge",s:50}, {n:"Superman",s:45}, {n:"Torso Rotation",s:50}, {n:"Stomach Vacuum",s:45} ] },
+  { id:'mov_p13', momento:'despues', nivel:0, nombre:"Isquiotibiales", desc:"Si no llegas a tocarte los pies, empieza aquí.", min:4, zona:"Isquiotibiales",
+    ejercicios:[ {n:"Hamstring Stretch",s:60}, {n:"Lying Hamstring",s:60}, {n:"Seated Floor Hamstring Stretch",s:60}, {n:"Standing Toe Touches",s:50} ] },
+  { id:'mov_p14', momento:'cualquiera', nivel:0, nombre:"Descanso activo", desc:"Para el día libre: mueve el cuerpo sin cansarlo.", min:5, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Cat Stretch",s:60}, {n:"Standing Hip Circles",s:45}, {n:"Arm Circles",s:45}, {n:"Standing Lateral Stretch",s:50}, {n:"Adductor",s:60}, {n:"Child's Pose",s:60} ] },
+  { id:'mov_p15', momento:'cualquiera', nivel:0, nombre:"Glúteo y piramidal", desc:"Alivia la molestia del nervio ciático.", min:4, zona:"Glúteo",
+    ejercicios:[ {n:"Ankle On The Knee",s:60}, {n:"Seated Glute",s:60}, {n:"Lying Glute",s:60}, {n:"Piriformis-SMR",s:60} ] },
+  { id:'mov_i1', momento:'antes', nivel:1, nombre:"Movilidad para sentadilla", desc:"Gana profundidad sin levantar los talones.", min:7, zona:"Cadera y tobillo",
+    ejercicios:[ {n:"Ankle Circles",s:45}, {n:"Standing Gastrocnemius Calf Stretch",s:60}, {n:"Sit Squats",s:60}, {n:"Kneeling Hip Flexor",s:60}, {n:"Groiners",s:60}, {n:"Adductor/Groin",s:60}, {n:"Split Squats",s:60} ] },
+  { id:'mov_i2', momento:'antes', nivel:1, nombre:"Hombro para press", desc:"Bloquea sobre la cabeza sin arquear la espalda.", min:6, zona:"Hombro",
+    ejercicios:[ {n:"Arm Circles",s:45}, {n:"Round The World Shoulder Stretch",s:60}, {n:"Chest And Front Of Shoulder Stretch",s:60}, {n:"Overhead Lat",s:60}, {n:"Overhead Stretch",s:50}, {n:"Upper Back Stretch",s:60} ] },
+  { id:'mov_i3', momento:'cualquiera', nivel:1, nombre:"Columna torácica", desc:"La zona que más se bloquea al estar sentado.", min:5, zona:"Torácica",
+    ejercicios:[ {n:"Spinal Stretch",s:60}, {n:"Middle Back Stretch",s:60}, {n:"Torso Rotation",s:60}, {n:"Cat Stretch",s:60}, {n:"Rhomboids-SMR",s:60} ] },
+  { id:'mov_i4', momento:'cualquiera', nivel:1, nombre:"Flujo de cadera", desc:"Circuito continuo, sin descanso entre posturas.", min:6, zona:"Cadera",
+    ejercicios:[ {n:"World's Greatest Stretch",s:60}, {n:"Seated Glute",s:60}, {n:"Groiners",s:60}, {n:"Split Squats",s:60}, {n:"Sit Squats",s:60}, {n:"90/90 Hamstring",s:60} ] },
+  { id:'mov_i5', momento:'antes', nivel:1, nombre:"Calentamiento CrossFit", desc:"Lo que deberías hacer antes de cualquier WOD.", min:6, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Inchworm",s:50}, {n:"World's Greatest Stretch",s:60}, {n:"Front Leg Raises",s:50}, {n:"Sit Squats",s:50}, {n:"Arm Circles",s:40}, {n:"Standing Hip Circles",s:45}, {n:"Elbow Circles",s:40} ] },
+  { id:'mov_i6', momento:'despues', nivel:1, nombre:"Cadena posterior", desc:"Isquios, glúteo y lumbar en un solo circuito.", min:5, zona:"Cadena posterior",
+    ejercicios:[ {n:"Standing Toe Touches",s:50}, {n:"Hamstring Stretch",s:60}, {n:"Seated Glute",s:60}, {n:"Pelvic Tilt Into Bridge",s:50}, {n:"Superman",s:45}, {n:"Upper Back-Leg Grab",s:60} ] },
+  { id:'mov_i7', momento:'cualquiera', nivel:1, nombre:"Muñeca y antebrazo avanzado", desc:"Para front rack, handstand y fondos en anillas.", min:5, zona:"Muñecas",
+    ejercicios:[ {n:"Wrist Circles",s:45}, {n:"Kneeling Forearm Stretch",s:60}, {n:"Elbow Circles",s:45}, {n:"Standing Biceps Stretch",s:60}, {n:"Brachialis-SMR",s:60} ] },
+  { id:'mov_i8', momento:'cualquiera', nivel:1, nombre:"Movilidad global", desc:"Secuencia completa de cuerpo entero.", min:6, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Inchworm",s:60}, {n:"World's Greatest Stretch",s:60}, {n:"Cat Stretch",s:60}, {n:"Child's Pose",s:60}, {n:"Superman",s:50}, {n:"Torso Rotation",s:60} ] },
+  { id:'mov_i9', momento:'cualquiera', nivel:1, nombre:"Aductores y apertura", desc:"Camino hacia el spagat lateral.", min:5, zona:"Aductores",
+    ejercicios:[ {n:"Adductor",s:60}, {n:"Adductor/Groin",s:60}, {n:"Side Lying Groin Stretch",s:60}, {n:"Lying Bent Leg Groin",s:60}, {n:"Side Leg Raises",s:60} ] },
+  { id:'mov_i10', momento:'cualquiera', nivel:1, nombre:"Dorsales y espalda alta", desc:"Si no puedes levantar los brazos rectos, esto es para ti.", min:5, zona:"Dorsal",
+    ejercicios:[ {n:"Overhead Lat",s:60}, {n:"One Arm Against Wall",s:60}, {n:"One Handed Hang",s:45}, {n:"Side-Lying Floor Stretch",s:60}, {n:"Latissimus Dorsi-SMR",s:60} ] },
+  { id:'mov_i11', momento:'despues', nivel:1, nombre:"Recuperación post-WOD", desc:"Baja pulsaciones y reduce agujetas.", min:6, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Child's Pose",s:60}, {n:"Seated Glute",s:60}, {n:"Lying Crossover",s:60}, {n:"Lying Hamstring",s:60}, {n:"Hug Knees To Chest",s:60}, {n:"Quadriceps-SMR",s:60} ] },
+  { id:'mov_i12', momento:'cualquiera', nivel:1, nombre:"Movilidad de rodilla", desc:"Prevención si te crujen o molestan.", min:5, zona:"Rodilla",
+    ejercicios:[ {n:"Knee Circles",s:50}, {n:"All Fours Quad Stretch",s:60}, {n:"Standing Elevated Quad Stretch",s:60}, {n:"Seated Calf Stretch",s:60}, {n:"Pelvic Tilt Into Bridge",s:50} ] },
+  { id:'mov_i13', momento:'cualquiera', nivel:1, nombre:"Core y estabilidad", desc:"Estabilidad real, no abdominales de revista.", min:4, zona:"Core",
+    ejercicios:[ {n:"Superman",s:50}, {n:"Scissor Kick",s:50}, {n:"Torso Rotation",s:50}, {n:"Stomach Vacuum",s:50}, {n:"Lower Back Curl",s:50} ] },
+  { id:'mov_i14', momento:'antes', nivel:1, nombre:"Flujo dinámico completo", desc:"Movimiento continuo, sin parar.", min:6, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Inchworm",s:50}, {n:"World's Greatest Stretch",s:60}, {n:"Groiners",s:60}, {n:"Sit Squats",s:60}, {n:"Split Squats",s:60}, {n:"Frog Hops",s:50} ] },
+  { id:'mov_i15', momento:'despues', nivel:1, nombre:"Antes de dormir", desc:"Relaja el sistema nervioso y mejora el sueño.", min:5, zona:"Relajación",
+    ejercicios:[ {n:"Child's Pose",s:60}, {n:"Lying Crossover",s:60}, {n:"Hug A Ball",s:60}, {n:"Seated Floor Hamstring Stretch",s:60}, {n:"Hug Knees To Chest",s:60} ] },
+  { id:'mov_a1', momento:'despues', nivel:2, nombre:"Camino al spagat frontal", desc:"Progresión seria. Constancia diaria.", min:7, zona:"Isquios y flexores",
+    ejercicios:[ {n:"Kneeling Hip Flexor",s:75}, {n:"Intermediate Hip Flexor and Quad Stretch",s:75}, {n:"Runner's Stretch",s:75}, {n:"Hamstring Stretch",s:60}, {n:"Standing Hip Flexors",s:75}, {n:"Seated Hamstring",s:60} ] },
+  { id:'mov_a2', momento:'despues', nivel:2, nombre:"Camino al spagat lateral", desc:"Apertura máxima de aductores.", min:7, zona:"Aductores",
+    ejercicios:[ {n:"The Straddle",s:90}, {n:"Adductor/Groin",s:75}, {n:"Side Lying Groin Stretch",s:75}, {n:"Intermediate Groin Stretch",s:75}, {n:"Lying Bent Leg Groin",s:60}, {n:"Side Leg Raises",s:60} ] },
+  { id:'mov_a3', momento:'cualquiera', nivel:2, nombre:"Extensión de columna", desc:"Movilidad de columna en extensión completa.", min:6, zona:"Columna",
+    ejercicios:[ {n:"Superman",s:60}, {n:"One Half Locust",s:60}, {n:"Looking At Ceiling",s:60}, {n:"Lower Back Curl",s:50}, {n:"Spinal Stretch",s:60}, {n:"Cat Stretch",s:60} ] },
+  { id:'mov_a4', momento:'antes', nivel:2, nombre:"Preparación para handstand", desc:"Hombro y muñeca para el pino.", min:7, zona:"Hombro y muñeca",
+    ejercicios:[ {n:"Wrist Circles",s:45}, {n:"Kneeling Forearm Stretch",s:60}, {n:"Round The World Shoulder Stretch",s:60}, {n:"Overhead Stretch",s:60}, {n:"Overhead Lat",s:60}, {n:"Scissor Kick",s:50}, {n:"Seated Overhead Stretch",s:60} ] },
+  { id:'mov_a5', momento:'antes', nivel:2, nombre:"Overhead squat perfecto", desc:"El test definitivo de movilidad en CrossFit.", min:7, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Round The World Shoulder Stretch",s:60}, {n:"Spinal Stretch",s:60}, {n:"Sit Squats",s:75}, {n:"Ankle Circles",s:45}, {n:"Overhead Lat",s:60}, {n:"Standing Gastrocnemius Calf Stretch",s:60}, {n:"Groiners",s:60} ] },
+  { id:'mov_a6', momento:'cualquiera', nivel:2, nombre:"Locomoción y flujo", desc:"Movimiento continuo por el suelo.", min:5, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Inchworm",s:60}, {n:"Frog Hops",s:60}, {n:"Groiners",s:60}, {n:"World's Greatest Stretch",s:60}, {n:"Crossover Reverse Lunge",s:60} ] },
+  { id:'mov_a7', momento:'cualquiera', nivel:2, nombre:"Cadera 360°", desc:"Todos los planos de movimiento de la cadera.", min:7, zona:"Cadera",
+    ejercicios:[ {n:"90/90 Hamstring",s:75}, {n:"Seated Glute",s:75}, {n:"Groiners",s:75}, {n:"Split Squats",s:60}, {n:"Sit Squats",s:75}, {n:"Iron Crosses (stretch)",s:60} ] },
+  { id:'mov_a8', momento:'cualquiera', nivel:2, nombre:"Hombro rango extremo", desc:"Rango completo en todas las direcciones.", min:6, zona:"Hombro",
+    ejercicios:[ {n:"Round The World Shoulder Stretch",s:60}, {n:"One Handed Hang",s:60}, {n:"One Arm Against Wall",s:60}, {n:"Overhead Lat",s:60}, {n:"Chest And Front Of Shoulder Stretch",s:60}, {n:"Dynamic Chest Stretch",s:60} ] },
+  { id:'mov_a9', momento:'despues', nivel:2, nombre:"Pike y compresión", desc:"Base para L-sit, pica y palanca frontal.", min:6, zona:"Compresión",
+    ejercicios:[ {n:"Standing Toe Touches",s:75}, {n:"Seated Floor Hamstring Stretch",s:75}, {n:"Upper Back-Leg Grab",s:60}, {n:"Toe Touchers",s:60}, {n:"The Straddle",s:75} ] },
+  { id:'mov_a10', momento:'cualquiera', nivel:2, nombre:"Control activo (CARs)", desc:"Rango de movimiento con control, no solo estirar.", min:6, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Standing Hip Circles",s:75}, {n:"Arm Circles",s:60}, {n:"Elbow Circles",s:60}, {n:"Wrist Circles",s:45}, {n:"Knee Circles",s:60}, {n:"Ankle Circles",s:45} ] },
+  { id:'mov_a11', momento:'cualquiera', nivel:2, nombre:"Tobillo y pie profundo", desc:"Máxima dorsiflexión para sentadilla y halterofilia.", min:7, zona:"Tobillo",
+    ejercicios:[ {n:"Ankle Circles",s:45}, {n:"Calf Stretch Elbows Against Wall",s:75}, {n:"Standing Soleus And Achilles Stretch",s:75}, {n:"Sit Squats",s:75}, {n:"Peroneals Stretch",s:60}, {n:"Foot-SMR",s:60} ] },
+  { id:'mov_a12', momento:'cualquiera', nivel:2, nombre:"Sesión completa exigente", desc:"Secuencia larga de cuerpo entero.", min:7, zona:"Cuerpo completo",
+    ejercicios:[ {n:"World's Greatest Stretch",s:60}, {n:"The Straddle",s:75}, {n:"Seated Glute",s:75}, {n:"Overhead Lat",s:60}, {n:"Superman",s:50}, {n:"Child's Pose",s:60}, {n:"Spinal Stretch",s:60} ] },
+  { id:'mov_a13', momento:'antes', nivel:2, nombre:"Front rack y clean", desc:"Para que la barra no te ahogue en el front squat.", min:5, zona:"Hombro y muñeca",
+    ejercicios:[ {n:"Kneeling Forearm Stretch",s:75}, {n:"Wrist Circles",s:45}, {n:"Overhead Lat",s:60}, {n:"Spinal Stretch",s:60}, {n:"Elbows Back",s:60} ] },
+  { id:'mov_a14', momento:'despues', nivel:2, nombre:"Recuperación profunda", desc:"Sesión larga para el día de descanso.", min:7, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Seated Glute",s:75}, {n:"Groiners",s:75}, {n:"Lying Crossover",s:75}, {n:"Lying Hamstring",s:60}, {n:"Hug A Ball",s:60}, {n:"Child's Pose",s:75} ] },
+  { id:'mov_a15', momento:'cualquiera', nivel:2, nombre:"Test de movilidad total", desc:"Comprueba tus rangos en cada articulación.", min:7, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Sit Squats",s:75}, {n:"Round The World Shoulder Stretch",s:60}, {n:"Standing Toe Touches",s:60}, {n:"90/90 Hamstring",s:75}, {n:"Spinal Stretch",s:60}, {n:"Adductor",s:60} ] }
+];
+
+var THRYX_MOVILIDAD_REC = [
+  { id:'mov_r1', nivel:0, momento:'descanso', nombre:"Domingo tranquilo", desc:"Sesión suave para el día libre, sin esfuerzo.", min:5, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Child's Pose",s:60}, {n:"Cat Stretch",s:60}, {n:"Hug Knees To Chest",s:60}, {n:"Lying Crossover",s:60}, {n:"Standing Lateral Stretch",s:50} ] },
+  { id:'mov_r2', nivel:0, momento:'descanso', nombre:"Foam roller: piernas", desc:"Rueda el rodillo y deshaz los nudos del tren inferior.", min:4, zona:"Piernas",
+    ejercicios:[ {n:"Quadriceps-SMR",s:60}, {n:"Hamstring-SMR",s:60}, {n:"Calves-SMR",s:60}, {n:"Iliotibial Tract-SMR",s:60} ] },
+  { id:'mov_r3', nivel:0, momento:'descanso', nombre:"Foam roller: espalda", desc:"Libera la espalda tras la semana de entrenos.", min:4, zona:"Espalda",
+    ejercicios:[ {n:"Lower Back-SMR",s:60}, {n:"Rhomboids-SMR",s:60}, {n:"Latissimus Dorsi-SMR",s:60}, {n:"Neck-SMR",s:50} ] },
+  { id:'mov_r4', nivel:0, momento:'descanso', nombre:"Agujetas de pierna", desc:"Si no puedes ni bajar escaleras después de piernas.", min:5, zona:"Piernas",
+    ejercicios:[ {n:"Quadriceps-SMR",s:60}, {n:"Quad Stretch",s:60}, {n:"Hamstring Stretch",s:60}, {n:"Seated Calf Stretch",s:60}, {n:"Lying Hamstring",s:60} ] },
+  { id:'mov_r5', nivel:0, momento:'descanso', nombre:"Agujetas de espalda y brazos", desc:"Recupera el tren superior tras tirones y dominadas.", min:5, zona:"Tren superior",
+    ejercicios:[ {n:"Latissimus Dorsi-SMR",s:60}, {n:"Overhead Lat",s:60}, {n:"Brachialis-SMR",s:50}, {n:"Seated Biceps",s:50}, {n:"Upper Back Stretch",s:60} ] },
+  { id:'mov_r6', nivel:0, momento:'descanso', nombre:"Relajar el cuello", desc:"Para el día que amaneces con el cuello cargado.", min:4, zona:"Cuello",
+    ejercicios:[ {n:"Neck-SMR",s:60}, {n:"Chin To Chest Stretch",s:50}, {n:"Side Neck Stretch",s:60}, {n:"Chair Upper Body Stretch",s:60} ] },
+  { id:'mov_r7', nivel:0, momento:'descanso', nombre:"Piernas en alto", desc:"Descanso pasivo, ideal tras estar de pie todo el día.", min:4, zona:"Piernas",
+    ejercicios:[ {n:"Lying Hamstring",s:75}, {n:"Hug Knees To Chest",s:60}, {n:"Lying Crossover",s:60}, {n:"One Knee To Chest",s:60} ] },
+  { id:'mov_r8', nivel:0, momento:'descanso', nombre:"Paseo y estiramiento", desc:"Complemento perfecto a una caminata suave.", min:5, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Standing Hip Circles",s:50}, {n:"Hamstring Stretch",s:60}, {n:"Quad Stretch",s:60}, {n:"Standing Gastrocnemius Calf Stretch",s:60}, {n:"Arm Circles",s:45} ] },
+  { id:'mov_r9', nivel:0, momento:'descanso', nombre:"Lumbar cargada", desc:"Si te duele la zona baja de la espalda tras peso muerto.", min:5, zona:"Lumbar",
+    ejercicios:[ {n:"Lower Back-SMR",s:60}, {n:"Child's Pose",s:75}, {n:"Hug Knees To Chest",s:60}, {n:"Standing Pelvic Tilt",s:50}, {n:"Lying Crossover",s:60} ] },
+  { id:'mov_r10', nivel:0, momento:'descanso', nombre:"Pies y tobillos", desc:"Tras muchos saltos, carrera o doble comba.", min:5, zona:"Pies",
+    ejercicios:[ {n:"Foot-SMR",s:60}, {n:"Ankle Circles",s:45}, {n:"Posterior Tibialis Stretch",s:60}, {n:"Peroneals Stretch",s:60}, {n:"Seated Calf Stretch",s:60} ] },
+  { id:'mov_r11', nivel:0, momento:'descanso', nombre:"Mañana de descanso", desc:"Despierta el cuerpo sin activarlo demasiado.", min:4, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Cat Stretch",s:60}, {n:"Standing Hip Circles",s:45}, {n:"Arm Circles",s:45}, {n:"Standing Lateral Stretch",s:50}, {n:"Child's Pose",s:60} ] },
+  { id:'mov_r12', nivel:0, momento:'descanso', nombre:"Noche de descanso", desc:"Baja revoluciones antes de dormir.", min:6, zona:"Relajación",
+    ejercicios:[ {n:"Child's Pose",s:75}, {n:"Lying Crossover",s:60}, {n:"Hug A Ball",s:60}, {n:"Seated Floor Hamstring Stretch",s:60}, {n:"Hug Knees To Chest",s:75} ] },
+  { id:'mov_r13', nivel:0, momento:'descanso', nombre:"Cadera de oficina", desc:"Si has pasado el día sentado y no has entrenado.", min:5, zona:"Cadera",
+    ejercicios:[ {n:"Kneeling Hip Flexor",s:60}, {n:"Seated Glute",s:60}, {n:"Ankle On The Knee",s:60}, {n:"Standing Hip Flexors",s:60}, {n:"Adductor",s:60} ] },
+  { id:'mov_r14', nivel:0, momento:'descanso', nombre:"Hombro cargado", desc:"Tras un día de press o muchos movimientos por encima de la cabeza.", min:5, zona:"Hombro",
+    ejercicios:[ {n:"Chest And Front Of Shoulder Stretch",s:60}, {n:"Overhead Lat",s:60}, {n:"Round The World Shoulder Stretch",s:50}, {n:"Elbows Back",s:50}, {n:"Rhomboids-SMR",s:60} ] },
+  { id:'mov_r15', nivel:1, momento:'descanso', nombre:"Foam roller completo", desc:"Recorre todo el cuerpo con el rodillo.", min:7, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Quadriceps-SMR",s:60}, {n:"Hamstring-SMR",s:60}, {n:"Iliotibial Tract-SMR",s:60}, {n:"Calves-SMR",s:60}, {n:"Latissimus Dorsi-SMR",s:60}, {n:"Lower Back-SMR",s:60}, {n:"Rhomboids-SMR",s:60} ] },
+  { id:'mov_r16', nivel:1, momento:'descanso', nombre:"Recuperación de piernas", desc:"Sesión larga tras el día de sentadillas.", min:6, zona:"Piernas",
+    ejercicios:[ {n:"Quadriceps-SMR",s:60}, {n:"Hamstring-SMR",s:60}, {n:"Quad Stretch",s:60}, {n:"Seated Hamstring",s:60}, {n:"Adductor/Groin",s:60}, {n:"Standing Soleus And Achilles Stretch",s:60} ] },
+  { id:'mov_r17', nivel:1, momento:'descanso', nombre:"Recuperación de espalda", desc:"Descomprime la columna tras peso muerto o remos.", min:6, zona:"Espalda",
+    ejercicios:[ {n:"Lower Back-SMR",s:60}, {n:"Latissimus Dorsi-SMR",s:60}, {n:"Child's Pose",s:75}, {n:"Spinal Stretch",s:60}, {n:"One Handed Hang",s:45}, {n:"Middle Back Stretch",s:60} ] },
+  { id:'mov_r18', nivel:1, momento:'descanso', nombre:"Cadera profunda", desc:"Sesión de cadera larga para el día libre.", min:6, zona:"Cadera",
+    ejercicios:[ {n:"Seated Glute",s:75}, {n:"Groiners",s:60}, {n:"90/90 Hamstring",s:75}, {n:"Piriformis-SMR",s:60}, {n:"Lying Bent Leg Groin",s:60}, {n:"Iron Crosses (stretch)",s:50} ] },
+  { id:'mov_r19', nivel:1, momento:'descanso', nombre:"Movilidad de mantenimiento", desc:"Repasa todas las articulaciones sin cansarte.", min:6, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Standing Hip Circles",s:60}, {n:"Arm Circles",s:50}, {n:"Elbow Circles",s:50}, {n:"Wrist Circles",s:45}, {n:"Knee Circles",s:50}, {n:"Ankle Circles",s:45}, {n:"Torso Rotation",s:60} ] },
+  { id:'mov_r20', nivel:1, momento:'descanso', nombre:"Antiestrés", desc:"Suelta la tensión acumulada del día.", min:6, zona:"Relajación",
+    ejercicios:[ {n:"Neck-SMR",s:60}, {n:"Side Neck Stretch",s:60}, {n:"Rhomboids-SMR",s:60}, {n:"Child's Pose",s:75}, {n:"Lying Crossover",s:60}, {n:"Hug Knees To Chest",s:60} ] },
+  { id:'mov_r21', nivel:1, momento:'descanso', nombre:"Descarga de glúteo", desc:"Para el glúteo cargado o el ciático molesto.", min:6, zona:"Glúteo",
+    ejercicios:[ {n:"Piriformis-SMR",s:75}, {n:"Seated Glute",s:75}, {n:"Lying Glute",s:60}, {n:"Ankle On The Knee",s:60}, {n:"Knee Across The Body",s:60} ] },
+  { id:'mov_r22', nivel:1, momento:'descanso', nombre:"Descarga de cuádriceps", desc:"Cuádriceps duros como piedras tras las piernas.", min:5, zona:"Cuádriceps",
+    ejercicios:[ {n:"Quadriceps-SMR",s:75}, {n:"All Fours Quad Stretch",s:60}, {n:"On Your Side Quad Stretch",s:60}, {n:"Standing Elevated Quad Stretch",s:60}, {n:"Lying Prone Quadriceps",s:60} ] },
+  { id:'mov_r23', nivel:1, momento:'descanso', nombre:"Descarga de isquios", desc:"Isquiotibiales tensos tras carrera o peso muerto.", min:5, zona:"Isquiotibiales",
+    ejercicios:[ {n:"Hamstring-SMR",s:75}, {n:"Seated Hamstring",s:60}, {n:"Lying Hamstring",s:60}, {n:"Leg-Up Hamstring Stretch",s:60}, {n:"Standing Hamstring and Calf Stretch",s:60} ] },
+  { id:'mov_r24', nivel:1, momento:'descanso', nombre:"Cinta iliotibial", desc:"Si te molesta la parte lateral del muslo o la rodilla.", min:5, zona:"Cadera lateral",
+    ejercicios:[ {n:"Iliotibial Tract-SMR",s:75}, {n:"IT Band and Glute Stretch",s:60}, {n:"Lying Crossover",s:60}, {n:"Knee Across The Body",s:60}, {n:"Side Leg Raises",s:50} ] },
+  { id:'mov_r25', nivel:1, momento:'descanso', nombre:"Movilidad + core suave", desc:"Recuperación activa con algo de control.", min:6, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Cat Stretch",s:60}, {n:"Superman",s:50}, {n:"Standing Pelvic Tilt",s:50}, {n:"Torso Rotation",s:60}, {n:"Stomach Vacuum",s:50}, {n:"Child's Pose",s:60} ] },
+  { id:'mov_r26', nivel:1, momento:'descanso', nombre:"Descarga de pecho", desc:"Tras el día de press de banca.", min:5, zona:"Pecho",
+    ejercicios:[ {n:"Chest And Front Of Shoulder Stretch",s:60}, {n:"Behind Head Chest Stretch",s:60}, {n:"Dynamic Chest Stretch",s:50}, {n:"Elbows Back",s:50}, {n:"Rhomboids-SMR",s:60} ] },
+  { id:'mov_r27', nivel:1, momento:'descanso', nombre:"Descarga de antebrazo", desc:"Tras muchas dominadas, kettlebells o agarres.", min:4, zona:"Antebrazo",
+    ejercicios:[ {n:"Kneeling Forearm Stretch",s:60}, {n:"Wrist Circles",s:45}, {n:"Brachialis-SMR",s:60}, {n:"Standing Biceps Stretch",s:60} ] },
+  { id:'mov_r28', nivel:1, momento:'descanso', nombre:"Recuperación tras carrera", desc:"Específico para después de correr.", min:6, zona:"Piernas",
+    ejercicios:[ {n:"Calves-SMR",s:60}, {n:"Standing Gastrocnemius Calf Stretch",s:60}, {n:"Standing Soleus And Achilles Stretch",s:60}, {n:"Hamstring-SMR",s:60}, {n:"Quadriceps-SMR",s:60}, {n:"Foot-SMR",s:50} ] },
+  { id:'mov_r29', nivel:2, momento:'descanso', nombre:"Sesión completa de descanso", desc:"La sesión larga del domingo, cuerpo entero.", min:9, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Quadriceps-SMR",s:60}, {n:"Hamstring-SMR",s:60}, {n:"Latissimus Dorsi-SMR",s:60}, {n:"Seated Glute",s:75}, {n:"Groiners",s:60}, {n:"Spinal Stretch",s:60}, {n:"Child's Pose",s:75}, {n:"The Straddle",s:75} ] },
+  { id:'mov_r30', nivel:2, momento:'descanso', nombre:"Movilidad profunda de cadera", desc:"Sesión larga para abrir la cadera de verdad.", min:8, zona:"Cadera",
+    ejercicios:[ {n:"90/90 Hamstring",s:75}, {n:"Seated Glute",s:75}, {n:"Piriformis-SMR",s:75}, {n:"Groiners",s:75}, {n:"Intermediate Groin Stretch",s:75}, {n:"The Straddle",s:90} ] },
+  { id:'mov_r31', nivel:2, momento:'descanso', nombre:"Columna y descompresión", desc:"Descomprime la columna tras una semana dura.", min:7, zona:"Columna",
+    ejercicios:[ {n:"One Handed Hang",s:60}, {n:"Spinal Stretch",s:75}, {n:"Lower Back-SMR",s:60}, {n:"Superman",s:50}, {n:"Child's Pose",s:75}, {n:"Cat Stretch",s:60}, {n:"Middle Back Stretch",s:60} ] },
+  { id:'mov_r32', nivel:2, momento:'descanso', nombre:"Mantener el spagat", desc:"Conserva el rango en el día libre.", min:8, zona:"Flexibilidad",
+    ejercicios:[ {n:"Runner's Stretch",s:75}, {n:"Intermediate Hip Flexor and Quad Stretch",s:75}, {n:"Seated Hamstring",s:75}, {n:"The Straddle",s:90}, {n:"Adductor/Groin",s:75}, {n:"Standing Hip Flexors",s:60} ] },
+  { id:'mov_r33', nivel:2, momento:'descanso', nombre:"Hombro y torácica", desc:"Rango completo del tren superior.", min:6, zona:"Tren superior",
+    ejercicios:[ {n:"Round The World Shoulder Stretch",s:60}, {n:"Overhead Lat",s:75}, {n:"One Arm Against Wall",s:60}, {n:"Spinal Stretch",s:60}, {n:"Rhomboids-SMR",s:60}, {n:"Side-Lying Floor Stretch",s:60} ] },
+  { id:'mov_r34', nivel:2, momento:'descanso', nombre:"Recuperación total post-competición", desc:"Tras un WOD muy duro o una competición.", min:9, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Quadriceps-SMR",s:60}, {n:"Hamstring-SMR",s:60}, {n:"Calves-SMR",s:60}, {n:"Iliotibial Tract-SMR",s:60}, {n:"Lower Back-SMR",s:60}, {n:"Latissimus Dorsi-SMR",s:60}, {n:"Seated Glute",s:75}, {n:"Child's Pose",s:75} ] },
+  { id:'mov_r35', nivel:2, momento:'descanso', nombre:"Flexibilidad de tren inferior", desc:"Sesión larga para ganar rango en piernas.", min:7, zona:"Piernas",
+    ejercicios:[ {n:"Seated Floor Hamstring Stretch",s:75}, {n:"The Straddle",s:90}, {n:"Adductor",s:75}, {n:"Quad Stretch",s:60}, {n:"Standing Toe Touches",s:60}, {n:"Upper Back-Leg Grab",s:60} ] },
+  { id:'mov_r36', nivel:2, momento:'descanso', nombre:"Compresión y pica", desc:"Trabajo de compresión para calistenia.", min:6, zona:"Compresión",
+    ejercicios:[ {n:"Standing Toe Touches",s:75}, {n:"Seated Floor Hamstring Stretch",s:75}, {n:"Toe Touchers",s:60}, {n:"Upper Back-Leg Grab",s:60}, {n:"The Straddle",s:75} ] },
+  { id:'mov_r37', nivel:2, momento:'descanso', nombre:"Cadena posterior completa", desc:"Toda la parte de atrás del cuerpo, de arriba abajo.", min:7, zona:"Cadena posterior",
+    ejercicios:[ {n:"Neck-SMR",s:50}, {n:"Rhomboids-SMR",s:60}, {n:"Lower Back-SMR",s:60}, {n:"Hamstring-SMR",s:60}, {n:"Calves-SMR",s:60}, {n:"Seated Hamstring",s:75}, {n:"Superman",s:50} ] },
+  { id:'mov_r38', nivel:2, momento:'descanso', nombre:"Cadena anterior completa", desc:"Cuádriceps, flexores, abdomen y pecho.", min:6, zona:"Cadena anterior",
+    ejercicios:[ {n:"Quadriceps-SMR",s:60}, {n:"Kneeling Hip Flexor",s:75}, {n:"Lying Prone Quadriceps",s:60}, {n:"Looking At Ceiling",s:60}, {n:"Chest And Front Of Shoulder Stretch",s:60}, {n:"Lower Back Curl",s:50} ] },
+  { id:'mov_r39', nivel:2, momento:'descanso', nombre:"Reset de movilidad", desc:"Repaso articular completo con control.", min:8, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Standing Hip Circles",s:75}, {n:"Arm Circles",s:60}, {n:"Elbow Circles",s:60}, {n:"Wrist Circles",s:50}, {n:"Knee Circles",s:60}, {n:"Ankle Circles",s:50}, {n:"Torso Rotation",s:60}, {n:"Spinal Stretch",s:60} ] },
+  { id:'mov_r40', nivel:2, momento:'descanso', nombre:"Descanso reparador", desc:"La sesión más larga: recuperación profunda.", min:10, zona:"Cuerpo completo",
+    ejercicios:[ {n:"Quadriceps-SMR",s:60}, {n:"Hamstring-SMR",s:60}, {n:"Iliotibial Tract-SMR",s:60}, {n:"Piriformis-SMR",s:60}, {n:"Lower Back-SMR",s:60}, {n:"Latissimus Dorsi-SMR",s:60}, {n:"Neck-SMR",s:50}, {n:"Child's Pose",s:90}, {n:"Lying Crossover",s:75} ] }
+];
+
+// Todos los circuitos juntos
+function _movTodos() {
+  return THRYX_MOVILIDAD.concat(THRYX_MOVILIDAD_REC);
+}
+
+function _movImg(nombre) {
+  var url = (typeof THRYX_MOV_IMG !== 'undefined') ? THRYX_MOV_IMG[nombre] : null;
+  if (url) {
+    return '<div style="width:52px;height:52px;border-radius:10px;overflow:hidden;background:#fff;flex-shrink:0;border:1.5px solid var(--border);">' +
+           '<img src="' + url + '" loading="lazy" alt="" style="width:100%;height:100%;object-fit:cover;" ' +
+           'onerror="this.parentNode.style.display=\'none\';">' +
+           '</div>';
+  }
+  return (typeof thryxThumbBox === 'function') ? thryxThumbBox(nombre) : '';
+}
+
+function _movYt(nombre) {
+  return 'https://www.youtube.com/results?search_query=' + encodeURIComponent(nombre + ' stretch mobility tutorial');
+}
+function _movTotalSeg(c) {
+  var t = 0;
+  c.ejercicios.forEach(function (e) { t += (e.s || 45); });
+  return t;
+}
+
+// Tarjeta "Movilidad" que se inserta en Programas CrossFit
+var _movMomento = 'todos';
+var _MOM = {
+  antes:     { l:'Antes de entrenar', ico:'🔥', col:'#F97316', txt:'Calentamiento dinámico — hazlo ANTES' },
+  despues:   { l:'Al terminar',       ico:'🧊', col:'#3B82F6', txt:'Vuelta a la calma — hazlo DESPUÉS' },
+  descanso:  { l:'Día de descanso',   ico:'🛋️', col:'#14B8A6', txt:'Recuperación — día libre o entre sesiones' },
+  cualquiera:{ l:'Cualquier momento', ico:'🕐', col:'#8B5CF6', txt:'Cuando quieras — no interfiere con el entreno' }
+};
+
+function _buildMovilidadCard() {
+  var COL = ['#3B82F6', '#F59E0B', '#8B5CF6'];
+  var NOM = ['Principiante', 'Intermedio', 'Avanzado'];
+  var todos = _movTodos();
+  var lista = todos.filter(function (c) {
+    var okN = (c.nivel === _movNivel);
+    var okM = (_movMomento === 'todos') || (c.momento === _movMomento);
+    return okN && okM;
+  });
+
+  var h = '<div style="background:var(--card);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:14px;box-shadow:var(--shadow);">';
+  h += '<div style="background:linear-gradient(135deg,#14B8A6,#06B6D4);padding:14px 16px;">';
+  h += '<div style="display:flex;align-items:center;gap:8px;">';
+  h += '<span style="font-size:24px;">🧘</span>';
+  h += '<div style="flex:1;"><div style="font-size:16px;font-weight:900;color:#fff;">Movilidad y estiramientos</div>';
+  h += '<div style="font-size:11px;color:rgba(255,255,255,0.85);">' + todos.length + ' circuitos · antes, después y días de descanso</div></div>';
+  h += '</div></div>';
+
+  h += '<div style="padding:12px 14px;">';
+  // Selector de nivel
+  h += '<div style="display:flex;gap:6px;margin-bottom:8px;">';
+  [0, 1, 2].forEach(function (n) {
+    var act = (_movNivel === n);
+    h += '<button onclick="_movNivel=' + n + ';renderProgramasCfTab();" style="flex:1;padding:8px 4px;border-radius:10px;border:1.5px solid ' + (act ? COL[n] : 'var(--border)') + ';background:' + (act ? COL[n] : 'var(--card)') + ';color:' + (act ? '#fff' : 'var(--text)') + ';font-size:11px;font-weight:800;cursor:pointer;font-family:inherit;">' + NOM[n] + '</button>';
+  });
+  h += '</div>';
+
+  // Selector de MOMENTO
+  h += '<div style="display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;padding-bottom:10px;-webkit-overflow-scrolling:touch;">';
+  var moms = [['todos','Todos','🔎','var(--text-muted)'],['antes','Antes','🔥','#F97316'],['despues','Después','🧊','#3B82F6'],['descanso','Descanso','🛋️','#14B8A6'],['cualquiera','Libre','🕐','#8B5CF6']];
+  moms.forEach(function (m) {
+    var act = (_movMomento === m[0]);
+    h += '<button onclick="_movMomento=\'' + m[0] + '\';renderProgramasCfTab();" style="flex-shrink:0;padding:6px 11px;border-radius:16px;border:1.5px solid ' + (act ? m[3] : 'var(--border)') + ';background:' + (act ? m[3] : 'var(--card)') + ';color:' + (act ? '#fff' : 'var(--text)') + ';font-size:10px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap;">' + m[2] + ' ' + m[1] + '</button>';
+  });
+  h += '</div>';
+
+  if (!lista.length) {
+    h += '<div style="text-align:center;padding:20px;font-size:11px;color:var(--text-muted);">No hay circuitos con este filtro.</div>';
+  }
+
+  lista.forEach(function (c) {
+    var abierto = (_movAbierto === c.id);
+    var seg = _movTotalSeg(c);
+    h += '<div style="border:1.5px solid ' + (abierto ? COL[c.nivel] : 'var(--border)') + ';border-radius:12px;margin-bottom:8px;overflow:hidden;">';
+    h += '<div onclick="_movToggle(\'' + c.id + '\')" style="padding:11px 12px;cursor:pointer;display:flex;align-items:center;gap:10px;">';
+    h += '<div style="flex:1;min-width:0;">';
+    var mm = _MOM[c.momento] || _MOM.cualquiera;
+    h += '<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">';
+    h += '<span style="font-size:13px;font-weight:800;color:var(--text);">' + c.nombre + '</span>';
+    h += '<span style="font-size:9px;font-weight:800;color:' + mm.col + ';background:' + mm.col + '18;padding:2px 7px;border-radius:10px;white-space:nowrap;">' + mm.ico + ' ' + mm.l + '</span>';
+    h += '</div>';
+    h += '<div style="font-size:10px;color:var(--text-muted);margin-top:2px;">' + c.desc + '</div>';
+    h += '<div style="font-size:10px;color:' + COL[c.nivel] + ';font-weight:800;margin-top:3px;">⏱️ ' + c.min + ' min · ' + c.ejercicios.length + ' ejercicios · ' + c.zona + '</div>';
+    h += '</div>';
+    h += '<div style="font-size:14px;color:var(--text-muted);">' + (abierto ? '▲' : '▼') + '</div>';
+    h += '</div>';
+
+    if (abierto) {
+      h += '<div style="padding:0 12px 12px;">';
+      h += '<div style="background:' + mm.col + '12;border-left:3px solid ' + mm.col + ';border-radius:6px;padding:7px 10px;margin-bottom:8px;font-size:10px;color:var(--text);font-weight:700;">' + mm.ico + ' ' + mm.txt + '</div>';
+      c.ejercicios.forEach(function (e, i) {
+        h += '<div style="display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:10px;padding:8px 10px;margin-bottom:6px;">';
+        h += _movImg(e.n);
+        h += '<div style="width:22px;height:22px;border-radius:50%;background:' + COL[c.nivel] + ';color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;">' + (i + 1) + '</div>';
+        h += '<div style="flex:1;min-width:0;"><div style="font-size:12px;font-weight:700;color:var(--text);">' + e.n + '</div>';
+        h += '<div style="font-size:10px;color:var(--text-muted);">' + e.s + ' segundos</div></div>';
+        h += '<a href="' + _movYt(e.n) + '" target="_blank" rel="noopener" onclick="event.stopPropagation();" style="display:flex;align-items:center;gap:4px;background:#FF0000;color:#fff;border-radius:8px;padding:6px 10px;text-decoration:none;font-size:10px;font-weight:800;flex-shrink:0;">▶ Vídeo</a>';
+        h += '</div>';
+      });
+      h += '<button onclick="_movEmpezar(\'' + c.id + '\')" style="width:100%;margin-top:4px;padding:11px;background:' + COL[c.nivel] + ';color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:900;cursor:pointer;font-family:inherit;">▶️ Empezar circuito (' + Math.round(seg / 60) + ' min)</button>';
+      h += '</div>';
+    }
+    h += '</div>';
+  });
+
+  h += '</div></div>';
+  return h;
+}
+
+function _movToggle(id) {
+  _movAbierto = (_movAbierto === id) ? null : id;
+  renderProgramasCfTab();
+}
+
+/* ── Reproductor del circuito: cronómetro por ejercicio ── */
+var _movSes = null;
+
+function _movEmpezar(id) {
+  var c = _movTodos().filter(function (x) { return x.id === id; })[0];
+  if (!c) return;
+  _movSes = { circuito: c, i: 0, restante: c.ejercicios[0].s, timer: null, pausa: false };
+  _movRenderPlayer();
+  _movTick();
+}
+
+function _movTick() {
+  if (!_movSes) return;
+  if (_movSes.timer) clearInterval(_movSes.timer);
+  _movSes.timer = setInterval(function () {
+    if (!_movSes || _movSes.pausa) return;
+    _movSes.restante--;
+    if (_movSes.restante <= 0) {
+      try { if (navigator.vibrate) navigator.vibrate(180); } catch (e) {}
+      _movSiguiente();
+      return;
+    }
+    _movActualizarReloj();
+  }, 1000);
+}
+
+function _movActualizarReloj() {
+  if (!_movSes) return;
+  var el = document.getElementById('_movReloj');
+  if (el) {
+    var s = _movSes.restante;
+    el.textContent = Math.floor(s / 60) + ':' + (s % 60 < 10 ? '0' : '') + (s % 60);
+  }
+  var barra = document.getElementById('_movBarra');
+  if (barra) {
+    var e = _movSes.circuito.ejercicios[_movSes.i];
+    var pct = ((e.s - _movSes.restante) / e.s) * 100;
+    barra.style.width = pct + '%';
+  }
+}
+
+function _movSiguiente() {
+  if (!_movSes) return;
+  var c = _movSes.circuito;
+  if (_movSes.i >= c.ejercicios.length - 1) { _movFin(); return; }
+  _movSes.i++;
+  _movSes.restante = c.ejercicios[_movSes.i].s;
+  _movRenderPlayer();
+}
+
+function _movAnterior() {
+  if (!_movSes || _movSes.i === 0) return;
+  _movSes.i--;
+  _movSes.restante = _movSes.circuito.ejercicios[_movSes.i].s;
+  _movRenderPlayer();
+}
+
+function _movPausa() {
+  if (!_movSes) return;
+  _movSes.pausa = !_movSes.pausa;
+  var b = document.getElementById('_movPausaBtn');
+  if (b) b.textContent = _movSes.pausa ? '▶️ Reanudar' : '⏸️ Pausar';
+}
+
+function _movCerrar() {
+  if (_movSes && _movSes.timer) clearInterval(_movSes.timer);
+  _movSes = null;
+  if (typeof cerrarWellnessModal === 'function') cerrarWellnessModal();
+}
+
+function _movFin() {
+  if (_movSes && _movSes.timer) clearInterval(_movSes.timer);
+  try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {}
+  var c = _movSes ? _movSes.circuito : null;
+  var b = '<div style="text-align:center;padding:20px 8px;">';
+  b += '<div style="font-size:44px;margin-bottom:8px;">🎉</div>';
+  b += '<div style="font-size:16px;font-weight:900;color:var(--text);margin-bottom:4px;">¡Circuito completado!</div>';
+  if (c) b += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">' + c.nombre + ' · ' + c.ejercicios.length + ' ejercicios</div>';
+  b += '<button onclick="_movCerrar()" style="width:100%;padding:12px;background:var(--green);color:#fff;border:none;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;">Cerrar</button>';
+  b += '</div>';
+  _movSes = null;
+  if (typeof _openWellnessModal === 'function') _openWellnessModal(b, '🧘 Movilidad');
+}
+
+function _movRenderPlayer() {
+  if (!_movSes) return;
+  var c = _movSes.circuito, e = c.ejercicios[_movSes.i];
+  var COL = ['#3B82F6', '#F59E0B', '#8B5CF6'][c.nivel];
+  var s = _movSes.restante;
+  var reloj = Math.floor(s / 60) + ':' + (s % 60 < 10 ? '0' : '') + (s % 60);
+
+  var b = '<div style="text-align:center;">';
+  b += '<div style="font-size:11px;color:var(--text-muted);font-weight:700;margin-bottom:8px;">Ejercicio ' + (_movSes.i + 1) + ' de ' + c.ejercicios.length + ' · ' + c.nombre + '</div>';
+  b += '<div style="display:flex;justify-content:center;margin-bottom:10px;"><div style="width:150px;height:150px;border-radius:14px;overflow:hidden;background:#fff;border:1.5px solid var(--border);"><img src="' + (THRYX_MOV_IMG[e.n] || '') + '" alt="" style="width:100%;height:100%;object-fit:cover;"></div></div>';
+  b += '<div style="font-size:18px;font-weight:900;color:var(--text);margin-bottom:6px;">' + e.n + '</div>';
+  b += '<div id="_movReloj" style="font-size:44px;font-weight:900;color:' + COL + ';letter-spacing:-1px;">' + reloj + '</div>';
+  b += '<div style="height:6px;background:var(--bg);border-radius:3px;overflow:hidden;margin:10px 0 14px;"><div id="_movBarra" style="height:100%;width:0%;background:' + COL + ';transition:width 1s linear;"></div></div>';
+  b += '<a href="' + _movYt(e.n) + '" target="_blank" rel="noopener" style="display:block;padding:9px;background:#FF0000;color:#fff;border-radius:10px;text-decoration:none;font-size:12px;font-weight:800;margin-bottom:10px;">▶ Ver técnica en YouTube</a>';
+  b += '<div style="display:flex;gap:6px;">';
+  b += '<button onclick="_movAnterior()" style="flex:1;padding:11px;background:var(--card);border:1.5px solid var(--border);color:var(--text);border-radius:10px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;">⏮️</button>';
+  b += '<button id="_movPausaBtn" onclick="_movPausa()" style="flex:2;padding:11px;background:var(--card);border:1.5px solid var(--border);color:var(--text);border-radius:10px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;">⏸️ Pausar</button>';
+  b += '<button onclick="_movSiguiente()" style="flex:1;padding:11px;background:' + COL + ';color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:800;cursor:pointer;font-family:inherit;">⏭️</button>';
+  b += '</div>';
+  b += '<button onclick="_movCerrar()" style="width:100%;margin-top:8px;padding:9px;background:transparent;border:none;color:var(--text-muted);font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;">Terminar</button>';
+  b += '</div>';
+
+  if (typeof _openWellnessModal === 'function') _openWellnessModal(b, '🧘 ' + c.nombre);
+  _movActualizarReloj();
 }
 
 </script>
