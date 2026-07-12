@@ -11,7 +11,7 @@
 
 <!-- PWA: necesario para instalar la app y para generar el APK -->
 <link rel="manifest" href="manifest.json">
-<script>window.THRYX_BUILD = 'v3 · 12-07-2026 · WOD+Máquinas';</script>
+<script>window.THRYX_BUILD = 'v5 · 12-07-2026 · Etiqueta sin clave (OCR)';</script>
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -36,7 +36,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans
 // ================================================================
 if ('serviceWorker' in navigator && window.isSecureContext) {
   // CACHE_VERSION: súbela cada vez que publiques una versión nueva.
-  var THRYX_SW_VERSION = 'thryx-v3';
+  var THRYX_SW_VERSION = 'thryx-v5';
 
   var swCode = `
 const CACHE_NAME = '${THRYX_SW_VERSION}';
@@ -8221,10 +8221,6 @@ var EJERCICIOS = [
   { id:126, grupo:'Tríceps', nombre:'Press francés EZ con agarre reverso', equip:'barra_ez', tipo:'Empuje', musculo:'Tríceps (cabeza medial)', secundario:'Bíceps estabilizador', agarre:'Supino estrecho', dificultad:'Avanzado', yt:'https://www.youtube.com/results?search_query=Press+francés+EZ+con+agarre+reverso+Tríceps+técnica', emoji:'🔄', tip:'Agarre supino reduce carga en muñeca, activa cabeza medial.' },
 
   // ===== BARRA EZ - PECHO =====
-  { id:127, grupo:'Pecho', nombre:'Press banca agarre estrecho EZ', equip:'barra_ez', tipo:'Empuje', musculo:'Pectoral interior, Tríceps', secundario:'Deltoides anterior', agarre:'Prono estrecho EZ', dificultad:'Principiante', yt:'https://www.youtube.com/results?search_query=Press+banca+agarre+estrecho+EZ+Pectoral+interior+técnica', emoji:'🏋️', tip:'Manos en ángulo EZ, menor estrés en muñecas que barra recta.' },
-  { id:128, grupo:'Pecho', nombre:'Press banca agarre medio EZ', equip:'barra_ez', tipo:'Empuje', musculo:'Pectoral mayor', secundario:'Tríceps, Deltoides anterior', agarre:'Prono medio EZ', dificultad:'Principiante', yt:'https://www.youtube.com/results?search_query=Press+banca+agarre+medio+EZ+Pectoral+mayor+técnica', emoji:'🏋️', tip:'Agarre cómodo en la curvatura exterior de la EZ.' },
-  { id:129, grupo:'Pecho', nombre:'Press inclinado con barra EZ', equip:'barra_ez', tipo:'Empuje', musculo:'Pectoral superior clavicular', secundario:'Tríceps, Deltoides anterior', agarre:'Prono medio EZ', dificultad:'Intermedio', yt:'https://www.youtube.com/results?search_query=Press+inclinado+con+barra+EZ+Pectoral+superior+clavicular+técnica', emoji:'📐', tip:'Banco 30-45°, EZ reduce torsión de muñecas en prono.' },
-  { id:130, grupo:'Pecho', nombre:'Press declinado con barra EZ', equip:'barra_ez', tipo:'Empuje', musculo:'Pectoral inferior esternal', secundario:'Tríceps, Deltoides anterior', agarre:'Prono medio EZ', dificultad:'Intermedio', yt:'https://www.youtube.com/results?search_query=Press+declinado+con+barra+EZ+Pectoral+inferior+esternal+técnica', emoji:'📉', tip:'Banco -15/-30°, EZ mantiene muñecas en ángulo natural.' },
   { id:131, grupo:'Pecho', nombre:'Pullover con barra EZ', equip:'barra_ez', tipo:'Tirón', musculo:'Pectoral mayor, Dorsal ancho', secundario:'Serrato anterior, Tríceps', agarre:'Prono estrecho', dificultad:'Intermedio', yt:'https://www.youtube.com/results?search_query=Pullover+con+barra+EZ+Pectoral+mayor+técnica', emoji:'🌊', tip:'Codos ligeramente flexionados, expansión torácica máxima.' },
   { id:132, grupo:'Pecho', nombre:'Press Svend con barra EZ', equip:'barra_ez', tipo:'Empuje', musculo:'Pectoral medial', secundario:'Deltoides anterior', agarre:'Copa (ambas manos)', dificultad:'Principiante', yt:'https://www.youtube.com/results?search_query=Press+Svend+con+barra+EZ+Pectoral+medial+técnica', emoji:'🙏', tip:'Comprimir la barra entre palmas durante todo el recorrido.' },
 
@@ -8248,8 +8244,6 @@ var EJERCICIOS = [
   { id:147, grupo:'Antebrazo', nombre:'Wrist roller con barra EZ (casero)', equip:'barra_ez', tipo:'Core', musculo:'Flexores y extensores del antebrazo', secundario:'Braquiorradial, Músculos intrínsecos', agarre:'Prono/supino', dificultad:'Intermedio', yt:'https://www.youtube.com/results?search_query=Wrist+roller+con+barra+EZ+casero+Flexores+y+extensores+del+antebrazo+técnica', emoji:'🎡', tip:'Enrollar cuerda en EZ subiendo y bajando lentamente.' },
 
   // ===== BARRA EZ - PIERNAS =====
-  { id:148, grupo:'Piernas', nombre:'Sentadilla frontal con barra EZ', equip:'barra_ez', tipo:'Piernas', musculo:'Cuádriceps, Glúteo mayor', secundario:'Core, Isquiotibiales, Erectores', agarre:'Prono ancho (cross o rack)', dificultad:'Intermedio', yt:'https://www.youtube.com/results?search_query=Sentadilla+frontal+con+barra+EZ+Cuádriceps+técnica', emoji:'🏋️', tip:'EZ en deltoides o cruzada en pecho, torso erecto, rodillas afuera.' },
-  { id:149, grupo:'Piernas', nombre:'Sentadilla hack con barra EZ', equip:'barra_ez', tipo:'Piernas', musculo:'Cuádriceps (énfasis vasto medial)', secundario:'Glúteo mayor, Isquiotibiales', agarre:'Prono detrás del cuerpo', dificultad:'Intermedio', yt:'https://www.youtube.com/results?search_query=Sentadilla+hack+con+barra+EZ+Cuádriceps+técnica', emoji:'🦵', tip:'EZ detrás de los muslos, torso erguido, máxima activación VM.' },
   { id:150, grupo:'Piernas', nombre:'Good Morning con barra EZ', equip:'barra_ez', tipo:'Piernas', musculo:'Isquiotibiales, Erectores espinales', secundario:'Glúteo mayor, Core', agarre:'Prono ancho', dificultad:'Principiante', yt:'https://www.youtube.com/results?search_query=Good+Morning+con+barra+EZ+Isquiotibiales+técnica', emoji:'🌅', tip:'EZ en trapecios, bisagra de cadera pura, espalda neutra.' },
   { id:151, grupo:'Piernas', nombre:'Romanian Deadlift con barra EZ', equip:'barra_ez', tipo:'Piernas', musculo:'Isquiotibiales, Glúteo mayor', secundario:'Erectores, Core, Trapecio', agarre:'Prono ancho EZ', dificultad:'Principiante', yt:'https://www.youtube.com/results?search_query=Romanian+Deadlift+con+barra+EZ+Isquiotibiales+técnica', emoji:'🏋️', tip:'Caderas atrás, rodillas semiflexionadas, EZ baja por tibia.' },
   { id:152, grupo:'Piernas', nombre:'Stiff Leg Deadlift con barra EZ', equip:'barra_ez', tipo:'Piernas', musculo:'Isquiotibiales, Glúteo mayor', secundario:'Erectores espinales, Core', agarre:'Prono ancho', dificultad:'Intermedio', yt:'https://www.youtube.com/results?search_query=Stiff+Leg+Deadlift+con+barra+EZ+Isquiotibiales+técnica', emoji:'🦵', tip:'Rodillas casi rectas, máximo estiramiento isquiotibial.' },
@@ -8258,7 +8252,6 @@ var EJERCICIOS = [
   { id:155, grupo:'Piernas', nombre:'Step-up con barra EZ', equip:'barra_ez', tipo:'Piernas', musculo:'Cuádriceps, Glúteo mayor', secundario:'Isquiotibiales, Core', agarre:'Prono ancho (espalda alta)', dificultad:'Intermedio', yt:'https://www.youtube.com/results?search_query=Step-up+con+barra+EZ+Cuádriceps+técnica', emoji:'📦', tip:'EZ en trapecios, subir con talón del pie activo, no impulsarse.' },
   { id:156, grupo:'Piernas', nombre:'Hip Thrust con barra EZ', equip:'barra_ez', tipo:'Piernas', musculo:'Glúteo mayor', secundario:'Isquiotibiales, Core', agarre:'Prono (sobre pelvis)', dificultad:'Principiante', yt:'https://www.youtube.com/results?search_query=Hip+Thrust+con+barra+EZ+Glúteo+mayor+técnica', emoji:'🍑', tip:'EZ sobre cadera con almohadilla, hombros en banco, extensión completa.' },
   { id:157, grupo:'Piernas', nombre:'Curl femoral de pie con barra EZ (tobillo)', equip:'barra_ez', tipo:'Piernas', musculo:'Isquiotibiales', secundario:'Glúteo mayor, Gemelos', agarre:'EZ entre tobillos', dificultad:'Principiante', yt:'https://www.youtube.com/results?search_query=Curl+femoral+de+pie+con+barra+EZ+tobillo+Isquiotibiales+técnica', emoji:'🦿', tip:'De pie, EZ sujeta entre tobillos, curl lento y controlado.' },
-  { id:158, grupo:'Piernas', nombre:'Sentadilla búlgara con EZ', equip:'barra_ez', tipo:'Piernas', musculo:'Cuádriceps, Glúteo mayor', secundario:'Isquiotibiales, Core, Gemelos', agarre:'Prono (espalda alta o front)', dificultad:'Avanzado', yt:'https://www.youtube.com/results?search_query=Sentadilla+búlgara+con+EZ+Cuádriceps+técnica', emoji:'🇧🇬', tip:'Pie trasero en banco, mayor ROM unilateral con EZ.' },
   { id:159, grupo:'Piernas', nombre:'Elevación de gemelos con barra EZ', equip:'barra_ez', tipo:'Piernas', musculo:'Gastrocnemio, Sóleo', secundario:'Tibial posterior, Flexor largo dedos', agarre:'Prono (sobre hombros)', dificultad:'Principiante', yt:'https://www.youtube.com/results?search_query=Elevación+de+gemelos+con+barra+EZ+Gastrocnemio+técnica', emoji:'🦵', tip:'EZ en trapecios, rango completo, pausa 1s arriba y abajo.' },
 
 
@@ -8665,7 +8658,6 @@ var EJERCICIOS = [
   { id:445, grupo:'Espalda', nombre:'Remo con barra EZ', equip:'barra_ez', tipo:'Tirón', musculo:'Romboides, Trapecio medio, Dorsal', secundario:'Bíceps, Deltoides posterior', agarre:'Prono en barra EZ, torso a 45°', dificultad:'Intermedio', emoji:'🚣', yt:'https://www.youtube.com/results?search_query=remo+barra+ez+espalda+técnica', tip:'La barra EZ reduce la tensión en las muñecas vs barra recta.' },
   { id:446, grupo:'Espalda', nombre:'Shrug con barra EZ', equip:'barra_ez', tipo:'Tirón', musculo:'Trapecio superior, Elevador escápula', secundario:'Romboides', agarre:'Prono estrecho en barra EZ', dificultad:'Principiante', emoji:'🤷', yt:'https://www.youtube.com/results?search_query=shrug+barra+ez+trapecio', tip:'Permite mayor comodidad de agarre que la barra recta. Mismo movimiento vertical.' },
   { id:447, grupo:'Piernas', nombre:'Peso muerto rumano con barra EZ', equip:'barra_ez', tipo:'Tirón', musculo:'Isquiotibiales, Glúteo mayor', secundario:'Erectores, Core', agarre:'Prono en barra EZ, agarre más cómodo', dificultad:'Principiante', emoji:'🇷🇴', yt:'https://www.youtube.com/results?search_query=peso+muerto+rumano+barra+EZ+isquiotibiales', tip:'La barra EZ reduce tensión en muñecas. Misma mecánica que con barra recta.' },
-  { id:448, grupo:'Piernas', nombre:'Sentadilla frontal con barra EZ', equip:'barra_ez', tipo:'Empuje', musculo:'Cuádriceps, Glúteo mayor', secundario:'Core, Erectores', agarre:'Barra EZ en clavículas, agarre más cómodo', dificultad:'Intermedio', emoji:'🏋️', yt:'https://www.youtube.com/results?search_query=sentadilla+frontal+barra+ez+técnica', tip:'La EZ permite mejor posición de muñecas que la barra recta en frontal.' },
   { id:449, grupo:'Piernas', nombre:'Zancada con barra EZ', equip:'barra_ez', tipo:'Empuje', musculo:'Cuádriceps, Glúteo mayor', secundario:'Isquiotibiales, Core', agarre:'Barra EZ en trapecios, pasos hacia adelante', dificultad:'Intermedio', emoji:'🚶', yt:'https://www.youtube.com/results?search_query=zancada+barra+ez+lunge+piernas', tip:'La EZ da más libertad a los hombros que la barra recta en este movimiento.' },
 
   // ===================================
@@ -39321,7 +39313,7 @@ function buildEscanerTab() {
   h += '<div style="background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:18px 16px;text-align:center;margin-bottom:14px;">';
   h += '<div style="font-size:34px;margin-bottom:6px;">🍽️</div>';
   h += '<div style="font-size:15px;font-weight:900;color:var(--text);margin-bottom:4px;">Escáner de plato</div>';
-  h += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">Monta tu plato y obtén las <b>macros exactas</b>. Puedes hacerlo a mano (sin conexión) o con una foto (necesita API key).</div>';
+  h += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:14px;line-height:1.5;">Monta tu plato y obtén las <b>macros exactas</b>. A mano funciona siempre; la foto del plato necesita API key.</div>';
   h += '<button onclick="_platoManualAbrir()" style="width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:14px;font-size:14px;font-weight:900;cursor:pointer;font-family:inherit;">🍽️ Montar mi plato (sin clave)</button>';
   h += '<button onclick="_platoPedirFoto()" style="width:100%;margin-top:8px;padding:13px;background:linear-gradient(135deg,#7C3AED,#A855F7);color:#fff;border:none;border-radius:14px;font-size:13px;font-weight:900;cursor:pointer;font-family:inherit;">📷 Fotografiar el plato (IA)</button>';
   h += '</div>';
@@ -39948,21 +39940,47 @@ window.ThryxCamera = (function () {
 var _etqActual = null;
 
 function _etiquetaAbrirCamara() {
-  // Sin API key el navegador bloquea la petición por CORS: avisar ANTES
-  if (typeof _thryxTieneClaveIA === 'function' && !_thryxTieneClaveIA()) {
-    _scanSinClave();
-    return;
-  }
+  var conClave = (typeof _thryxTieneClaveIA === 'function') ? _thryxTieneClaveIA() : false;
+
   ThryxCamera.open(function (shot) {
-    _scanModalFotoCargando();
-    _etiquetaIA(shot.base64, shot.mediaType).then(function (a) {
-      if (!a) { _scanFotoError('No he podido leer la tabla nutricional. Acércate más, que se vea enfocada y sin reflejos.'); return; }
+    var ok = function (a, via) {
       a.foto = shot.dataUrl;
+      a.via = via;
       _etqActual = a;
       _etiquetaRevisar();
-    }).catch(function (err) {
-      _scanFotoError(_scanMsgError(err));
-    });
+    };
+
+    if (conClave) {
+      // Con API key: la IA lee la etiqueta entera (más precisa)
+      _scanModalFotoCargando();
+      _etiquetaIA(shot.base64, shot.mediaType).then(function (a) {
+        if (a) { ok(a, 'ia'); return; }
+        // Si la IA falla, probamos con el OCR del móvil
+        _ocrModalCargando();
+        return _etiquetaOCR(shot.dataUrl).then(function (b) {
+          if (b) ok(b, 'ocr');
+          else _scanFotoError('No he podido leer la tabla. Acércate más, enfoca y evita reflejos.');
+        });
+      }).catch(function () {
+        // Error de la IA (clave, red...): tiramos de OCR local igualmente
+        _ocrModalCargando();
+        _etiquetaOCR(shot.dataUrl).then(function (b) {
+          if (b) ok(b, 'ocr');
+          else _scanFotoError('No he podido leer la tabla. Acércate más, enfoca y evita reflejos.');
+        }).catch(function (e2) {
+          _scanFotoError(_scanMsgError(e2));
+        });
+      });
+    } else {
+      // SIN API key: OCR en el propio móvil. Funciona igual.
+      _ocrModalCargando();
+      _etiquetaOCR(shot.dataUrl).then(function (b) {
+        if (b) ok(b, 'ocr');
+        else _scanFotoError('No he podido leer la tabla. Acércate más, enfoca y evita reflejos.');
+      }).catch(function (e) {
+        _scanFotoError(_scanMsgError(e));
+      });
+    }
   }, '🏷️ Foto de la etiqueta', 'Encuadra la tabla nutricional y dispara');
 }
 
@@ -41333,14 +41351,23 @@ function _maqGuardar() {
 
 /* ─────── 3) GENERAR RUTINA Y AGENDARLA EN EL CALENDARIO ─────── */
 function generarRutinaYAgendar() {
-  if (!datos.dias || !datos.dias.length) { showToast('⚠️ Elige tus días de entrenamiento'); return; }
+  // Ahora pide primero QUÉ DÍAS quieres de pesas
+  pedirDiasGym();
+}
+
+function _generarGymEnDias(dias) {
+  if (!dias || !dias.length) { showToast('⚠️ Marca al menos un día'); return; }
   if (!datos.objetivo) { showToast('⚠️ Elige tu objetivo'); return; }
   if (!datos.nivel) { showToast('⚠️ Elige tu nivel'); return; }
   if (!datos.equipamiento || !datos.equipamiento.length) { showToast('⚠️ Marca tu equipamiento'); return; }
 
-  // Reutiliza el generador ya existente (respeta objetivo, nivel, días y equipo)
+  // El generador existente usa datos.dias: lo apuntamos a los días elegidos
+  // y lo restauramos después, para no tocar el perfil del usuario.
+  var _diasOriginales = (datos.dias || []).slice();
+  datos.dias = dias.slice();
+
   var ok = generarRutinaAutomatica();
-  if (!ok) return;
+  if (!ok) { datos.dias = _diasOriginales; return; }
 
   var oi = OBJ_INFO[datos.objetivo] || { n: datos.objetivo };
   var fecha = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit' });
@@ -41349,14 +41376,14 @@ function generarRutinaYAgendar() {
   _planEditandoId = null;
   var res = guardarPlantillaActualComoPlan(nombre);
   var plan = res && res.plan;
-  if (!plan) { showToast('⚠️ No se pudo guardar la rutina'); return; }
+  if (!plan) { datos.dias = _diasOriginales; showToast('⚠️ No se pudo guardar la rutina'); return; }
 
-  // Agendar en el calendario en TUS días
+  // Agendar SOLO en los días elegidos (respeta los WOD de los demás días)
   var agendados = [];
   try {
     var offset = (typeof _calOffset !== 'undefined') ? _calOffset : 0;
     var sem = _getSemana(offset);
-    datos.dias.forEach(function (d) {
+    dias.forEach(function (d) {
       sem[d] = 'gym';
       sem['asig_' + d] = { tipo: 'gym', id: plan.id };
       agendados.push(d);
@@ -41366,26 +41393,35 @@ function generarRutinaYAgendar() {
     try { renderCalendarioShared(offset); } catch (e) {}
   } catch (e) {}
 
+  // Unir los días usados al perfil (si añades un día nuevo, queda registrado)
+  var union = _diasOriginales.slice();
+  dias.forEach(function (d) { if (union.indexOf(d) === -1) union.push(d); });
+  var ORD = ['L','M','X','J','V','S','D'];
+  union.sort(function (a, b) { return ORD.indexOf(a) - ORD.indexOf(b); });
+  datos.dias = union;
+  if (typeof guardarDatosUsuario === 'function') guardarDatosUsuario();
+
   if (navigator.vibrate) { try { navigator.vibrate(60); } catch (e) {} }
-  _mostrarResumenRutina(plan, agendados);
+  _mostrarResumenRutina(plan, agendados, dias);
 }
 
 var NOMBRES_DIA_FULL = { L:'Lunes', M:'Martes', X:'Miércoles', J:'Jueves', V:'Viernes', S:'Sábado', D:'Domingo' };
 
-function _mostrarResumenRutina(plan, agendados) {
+function _mostrarResumenRutina(plan, agendados, diasUsados) {
   var oi = OBJ_INFO[datos.objetivo] || { n: datos.objetivo, e: '🎯' };
   var tpl = plan.plantilla || {};
   var maq = _misMaquinas().length;
+  var _dias = diasUsados || datos.dias || [];
 
   var h = '<div style="line-height:1.5;">';
   h += '<div style="background:var(--green-light);border-radius:12px;padding:12px;margin-bottom:12px;">';
   h += '<div style="font-size:13px;font-weight:900;color:var(--text);margin-bottom:4px;">' + oi.e + ' ' + plan.nombre + '</div>';
   h += '<div style="font-size:11px;color:var(--text-muted);line-height:1.6;">';
-  h += '📅 ' + (datos.dias || []).length + ' días · ⏱️ ' + (datos.tiempoSesion || 60) + ' min · 🎚️ ' + (datos.nivel || '') + '<br>';
+  h += '📅 ' + _dias.length + ' días · ⏱️ ' + (datos.tiempoSesion || 60) + ' min · 🎚️ ' + (datos.nivel || '') + '<br>';
   h += '🏋️ Equipo: ' + (datos.equipamiento || []).length + ' tipos' + (maq ? ' · 🏭 ' + maq + ' máquinas tuyas' : '');
   h += '</div></div>';
 
-  (datos.dias || []).forEach(function (d) {
+  _dias.forEach(function (d) {
     var ejs = tpl[d] || [];
     h += '<div style="border:1.5px solid var(--border);border-radius:12px;padding:10px 12px;margin-bottom:8px;">';
     h += '<div style="font-size:12px;font-weight:900;color:var(--green);margin-bottom:6px;">' + (NOMBRES_DIA_FULL[d] || d) + ' · ' + ejs.length + ' ejercicios</div>';
@@ -41739,7 +41775,12 @@ function _hitPool() {
 }
 
 function generarWodYAgendar() {
-  if (!datos.dias || !datos.dias.length) { showToast('⚠️ Elige tus días de entrenamiento'); return; }
+  // Pide primero QUÉ DÍAS quieres de WOD
+  pedirDiasWod();
+}
+
+function _generarWodEnDias(dias) {
+  if (!dias || !dias.length) { showToast('⚠️ Marca al menos un día'); return; }
   if (!datos.nivel) { showToast('⚠️ Elige tu nivel'); return; }
 
   var pool = _hitPool();
@@ -41749,7 +41790,7 @@ function generarWodYAgendar() {
   var usados = {};
   var diasData = [];
 
-  datos.dias.forEach(function (d, i) {
+  dias.forEach(function (d, i) {
     // Elegir formato: variado entre días y acorde al tiempo
     var posibles = _WOD_FORMATOS.filter(function (f) { return f.min <= Math.max(10, min - 10); });
     if (!posibles.length) posibles = [_WOD_FORMATOS[3]];   // TABATA (el más corto)
@@ -41879,10 +41920,286 @@ function _guardarWodAuto() {
     try { renderCalendarioShared(offset); } catch (e) {}
   } catch (e) {}
 
+  // Unir los días del WOD al perfil
+  try {
+    var ORD2 = ['L','M','X','J','V','S','D'];
+    var u = (datos.dias || []).slice();
+    w.diasData.forEach(function (d) { if (u.indexOf(d.dia) === -1) u.push(d.dia); });
+    u.sort(function (a, b) { return ORD2.indexOf(a) - ORD2.indexOf(b); });
+    datos.dias = u;
+    if (typeof guardarDatosUsuario === 'function') guardarDatosUsuario();
+  } catch (e) {}
+
   if (navigator.vibrate) { try { navigator.vibrate(60); } catch (e) {} }
   if (typeof cerrarWellnessModal === 'function') cerrarWellnessModal();
   if (typeof showToast === 'function') showToast('✅ WOD agendado: ' + agendados.join(', '));
   _wodGenerado = null;
+}
+
+
+/* ================================================================
+   THRYX — SELECTOR DE DÍAS antes de generar
+   Permite repartir la semana: p.ej. 3 días de pesas + 2 de WOD.
+   ================================================================ */
+var _selDias = [];
+var _selModo = null;   // 'gym' | 'wod'
+var _DIAS_SEM = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
+var _DIA_NOM = { L:'Lunes', M:'Martes', X:'Miércoles', J:'Jueves', V:'Viernes', S:'Sábado', D:'Domingo' };
+
+// Qué hay ya asignado en el calendario para cada día
+function _asignacionDia(d) {
+  try {
+    var offset = (typeof _calOffset !== 'undefined') ? _calOffset : 0;
+    var sem = _getSemana(offset) || {};
+    var a = sem['asig_' + d];
+    if (!a) return null;
+    if (a.tipo === 'gym') {
+      var p = (misPlantillas || []).filter(function (x) { return x.id === a.id; })[0];
+      return { tipo: 'gym', nombre: p ? p.nombre : 'Rutina de pesas' };
+    }
+    if (a.tipo === 'hit') {
+      var h = (misHits || []).filter(function (x) { return x.id === a.id; })[0];
+      return { tipo: 'hit', nombre: h ? h.nombre : 'WOD' };
+    }
+  } catch (e) {}
+  return null;
+}
+
+function abrirSelectorDias(modo) {
+  _selModo = modo;
+  var esWod = (modo === 'wod');
+  var col = esWod ? '#F97316' : '#16A34A';
+  var titulo = esWod ? '🔥 ¿Qué días quieres WOD?' : '💪 ¿Qué días quieres pesas?';
+
+  // Por defecto: los días libres de tus días de entreno
+  if (!_selDias.length) {
+    var base = (datos.dias && datos.dias.length) ? datos.dias : [];
+    _selDias = base.filter(function (d) {
+      var a = _asignacionDia(d);
+      if (!a) return true;                              // día libre
+      return esWod ? (a.tipo === 'hit') : (a.tipo === 'gym');   // ya es de este tipo
+    });
+  }
+
+  var h = '<div style="line-height:1.5;">';
+  h += '<div style="background:' + col + '12;border-radius:10px;padding:11px;font-size:11px;color:var(--text);margin-bottom:12px;">Marca los días para ' + (esWod ? '<b>WOD / CrossFit</b>' : '<b>pesas</b>') + '. Puedes repartir la semana: por ejemplo 3 días de pesas y 2 de WOD.</div>';
+
+  _DIAS_SEM.forEach(function (d) {
+    var on = _selDias.indexOf(d) !== -1;
+    var esDiaEntreno = (datos.dias || []).indexOf(d) !== -1;
+    var a = _asignacionDia(d);
+
+    h += '<div onclick="_selDiaToggle(\'' + d + '\')" style="display:flex;align-items:center;gap:10px;background:var(--card);border:2px solid ' + (on ? col : 'var(--border)') + ';border-radius:12px;padding:10px 12px;margin-bottom:6px;cursor:pointer;">';
+    h += '<div style="width:34px;height:34px;border-radius:9px;background:' + (on ? col : 'var(--bg)') + ';color:' + (on ? '#fff' : 'var(--text-muted)') + ';display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;">' + d + '</div>';
+    h += '<div style="flex:1;min-width:0;">';
+    h += '<div style="font-size:12px;font-weight:800;color:var(--text);">' + _DIA_NOM[d] + (esDiaEntreno ? '' : ' <span style="font-size:9px;color:var(--text-muted);font-weight:600;">(no es día de entreno)</span>') + '</div>';
+    if (a) {
+      var ic = a.tipo === 'gym' ? '💪' : '🔥';
+      h += '<div style="font-size:10px;color:' + (a.tipo === 'gym' ? '#16A34A' : '#F97316') + ';font-weight:700;">' + ic + ' Ya tiene: ' + a.nombre + '</div>';
+    } else {
+      h += '<div style="font-size:10px;color:var(--text-muted);">Libre</div>';
+    }
+    h += '</div>';
+    h += '<span style="font-size:18px;flex-shrink:0;">' + (on ? '✅' : '⬜') + '</span>';
+    h += '</div>';
+  });
+
+  h += '<div id="_selDiasResumen" style="margin-top:10px;"></div>';
+  h += '<div id="_selDiasAviso" style="margin-top:8px;"></div>';
+  h += '<button onclick="_selDiasConfirmar()" style="width:100%;margin-top:10px;padding:14px;background:' + col + ';color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:900;cursor:pointer;font-family:inherit;">⚡ Generar en los días marcados</button>';
+  h += '</div>';
+
+  if (typeof _openWellnessModal === 'function') _openWellnessModal(h, titulo);
+  _selDiasResumen();
+  _selDiasAviso();
+}
+
+function _selDiaToggle(d) {
+  var i = _selDias.indexOf(d);
+  if (i === -1) _selDias.push(d); else _selDias.splice(i, 1);
+  abrirSelectorDias(_selModo);
+}
+
+// Muestra cómo queda la semana entera con lo que llevas marcado
+function _selDiasResumen() {
+  var el = document.getElementById('_selDiasResumen');
+  if (!el) return;
+  var esWod = (_selModo === 'wod');
+
+  var gym = 0, wod = 0, libre = 0;
+  var fila = '';
+  _DIAS_SEM.forEach(function (d) {
+    var tipo = null;
+    if (_selDias.indexOf(d) !== -1) {
+      tipo = esWod ? 'hit' : 'gym';           // lo que estoy marcando ahora
+    } else {
+      var a = _asignacionDia(d);
+      if (a) tipo = a.tipo;                   // lo que ya había
+    }
+    if (tipo === 'gym') gym++;
+    else if (tipo === 'hit') wod++;
+    else libre++;
+
+    var c = tipo === 'gym' ? '#16A34A' : tipo === 'hit' ? '#F97316' : 'var(--border)';
+    var ic = tipo === 'gym' ? '💪' : tipo === 'hit' ? '🔥' : '·';
+    fila += '<div style="flex:1;text-align:center;">';
+    fila += '<div style="font-size:9px;color:var(--text-muted);font-weight:800;margin-bottom:2px;">' + d + '</div>';
+    fila += '<div style="height:30px;border-radius:7px;background:' + (tipo ? c + '22' : 'var(--bg)') + ';border:1.5px solid ' + c + ';display:flex;align-items:center;justify-content:center;font-size:13px;">' + ic + '</div>';
+    fila += '</div>';
+  });
+
+  var h = '<div style="background:var(--bg);border-radius:12px;padding:10px;">';
+  h += '<div style="font-size:10px;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;">Cómo queda tu semana</div>';
+  h += '<div style="display:flex;gap:4px;margin-bottom:8px;">' + fila + '</div>';
+  h += '<div style="display:flex;gap:8px;justify-content:center;font-size:11px;font-weight:800;">';
+  h += '<span style="color:#16A34A;">💪 ' + gym + ' pesas</span>';
+  h += '<span style="color:#F97316;">🔥 ' + wod + ' WOD</span>';
+  h += '<span style="color:var(--text-muted);">😴 ' + libre + ' descanso</span>';
+  h += '</div></div>';
+  el.innerHTML = h;
+}
+
+function _selDiasAviso() {
+  var el = document.getElementById('_selDiasAviso');
+  if (!el) return;
+  var esWod = (_selModo === 'wod');
+  var pisados = _selDias.filter(function (d) {
+    var a = _asignacionDia(d);
+    return a && (esWod ? a.tipo === 'gym' : a.tipo === 'hit');
+  });
+  var h = '';
+  if (!_selDias.length) {
+    h = '<div style="background:#DC262612;border:1.5px solid #DC262640;border-radius:10px;padding:9px 11px;font-size:11px;color:#DC2626;font-weight:700;text-align:center;">Marca al menos un día</div>';
+  } else if (pisados.length) {
+    h = '<div style="background:#F59E0B12;border:1.5px solid #F59E0B50;border-radius:10px;padding:9px 11px;font-size:11px;color:#B45309;line-height:1.5;">⚠️ ' +
+        pisados.map(function (d) { return _DIA_NOM[d]; }).join(', ') +
+        (pisados.length === 1 ? ' ya tiene' : ' ya tienen') + ' ' + (esWod ? 'pesas' : 'un WOD') + ' asignado. Se sustituirá.</div>';
+  } else {
+    h = '<div style="font-size:11px;color:var(--text-muted);text-align:center;font-weight:700;">' + _selDias.length + ' día' + (_selDias.length !== 1 ? 's' : '') + ' seleccionado' + (_selDias.length !== 1 ? 's' : '') + '</div>';
+  }
+  el.innerHTML = h;
+}
+
+function _selDiasConfirmar() {
+  if (!_selDias.length) { showToast('⚠️ Marca al menos un día'); return; }
+  var dias = _selDias.slice();
+  var modo = _selModo;
+  if (typeof cerrarWellnessModal === 'function') cerrarWellnessModal();
+  setTimeout(function () {
+    if (modo === 'wod') _generarWodEnDias(dias);
+    else _generarGymEnDias(dias);
+  }, 200);
+}
+
+// Puntos de entrada nuevos (los botones llaman aquí)
+function pedirDiasGym() { _selDias = []; abrirSelectorDias('gym'); }
+function pedirDiasWod() { _selDias = []; abrirSelectorDias('wod'); }
+
+
+/* ================================================================
+   THRYX — LECTURA DE ETIQUETAS SIN API KEY (OCR en el móvil)
+   Usa Tesseract.js: el texto se reconoce EN TU PROPIO MÓVIL,
+   sin enviar nada a ningún servidor y sin necesitar clave.
+   ================================================================ */
+
+var _tessListo = false;
+
+function _cargarTesseract() {
+  return new Promise(function (resolve, reject) {
+    if (window.Tesseract) { resolve(window.Tesseract); return; }
+    var sc = document.createElement('script');
+    sc.src = 'https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/5.1.0/tesseract.min.js';
+    sc.onload = function () {
+      if (window.Tesseract) resolve(window.Tesseract);
+      else reject(new Error('no se pudo cargar el lector'));
+    };
+    sc.onerror = function () { reject(new Error('sin conexión para cargar el lector')); };
+    document.head.appendChild(sc);
+  });
+}
+
+function _ocrNum(t) {
+  if (!t) return 0;
+  t = String(t).replace(/,/g, '.').replace(/[^\d.]/g, '');
+  var v = parseFloat(t);
+  return isNaN(v) ? 0 : v;
+}
+
+// Extrae los valores nutricionales del texto que ha leído el OCR
+function _parsearEtiqueta(txt) {
+  var t = (txt || '').toLowerCase().replace(/[|¦]/g, ' ').replace(/\s+/g, ' ');
+
+  var buscar = function (claves) {
+    for (var i = 0; i < claves.length; i++) {
+      var re = new RegExp(claves[i] + '[^0-9]{0,25}([0-9]+(?:[.,][0-9]+)?)', 'i');
+      var m = t.match(re);
+      if (m) return _ocrNum(m[1]);
+    }
+    return 0;
+  };
+
+  // Energía: preferimos kcal; si solo hay kJ, convertimos
+  var kcal = 0;
+  var mk = t.match(/([0-9]{2,4})\s*kcal/);
+  if (mk) kcal = _ocrNum(mk[1]);
+  if (!kcal) {
+    var mj = t.match(/([0-9]{3,5})\s*kj/);
+    if (mj) kcal = Math.round(_ocrNum(mj[1]) / 4.184);
+  }
+  if (!kcal) kcal = buscar(['valor energetico', 'valor energético', 'energia', 'energía', 'energy']);
+
+  return {
+    kcal: kcal,
+    gras: buscar(['grasas', 'lipidos', 'lípidos', 'materia grasa', 'fat', 'gordura']),
+    saturadas: buscar(['de las cuales saturadas', 'saturadas', 'saturados', 'saturated']),
+    carb: buscar(['hidratos de carbono', 'hidratos', 'carbohidratos', 'glucidos', 'carbohydrate']),
+    azucar: buscar(['de los cuales azucares', 'azucares', 'azúcares', 'sugars']),
+    fibra: buscar(['fibra alimentaria', 'fibra', 'fibre', 'fiber']),
+    prot: buscar(['proteinas', 'proteínas', 'proteina', 'protein']),
+    sal: buscar(['sal ', 'sodio', 'salt'])
+  };
+}
+
+// Lee la etiqueta CON EL OCR DEL MÓVIL (sin clave, sin servidor)
+function _etiquetaOCR(dataUrl) {
+  return _cargarTesseract().then(function (T) {
+    return T.recognize(dataUrl, 'spa+eng', {
+      logger: function (m) {
+        if (m.status === 'recognizing text') {
+          var el = document.getElementById('_ocrPct');
+          if (el) el.textContent = Math.round((m.progress || 0) * 100) + '%';
+        }
+      }
+    });
+  }).then(function (res) {
+    var txt = (res && res.data && res.data.text) || '';
+    var v = _parsearEtiqueta(txt);
+    if (!v.kcal && !v.prot && !v.carb && !v.gras) return null;   // no ha leído nada
+    return {
+      nombre: 'Producto escaneado',
+      emoji: '🏷️',
+      marca: '',
+      liquido: false,
+      porcion: 100,
+      porcion_envase: '',
+      kcal: v.kcal, prot: v.prot, carb: v.carb, gras: v.gras,
+      saturadas: v.saturadas, azucar: v.azucar, fibra: v.fibra, sal: v.sal,
+      ingredientes: '',
+      texto: txt.slice(0, 400),
+      via: 'ocr'
+    };
+  });
+}
+
+function _ocrModalCargando() {
+  var b = '<div style="text-align:center;padding:24px 8px;">';
+  b += '<div style="font-size:38px;margin-bottom:10px;">🔎</div>';
+  b += '<div style="font-size:14px;font-weight:900;color:var(--text);margin-bottom:4px;">Leyendo la etiqueta…</div>';
+  b += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Se está leyendo <b>en tu móvil</b>, sin enviar la foto a ningún sitio.</div>';
+  b += '<div id="_ocrPct" style="font-size:26px;font-weight:900;color:var(--green);">0%</div>';
+  b += '<div style="font-size:10px;color:var(--text-muted);margin-top:8px;">La primera vez tarda un poco más (descarga el lector).</div>';
+  b += '</div>';
+  if (typeof _openWellnessModal === 'function') _openWellnessModal(b, '🏷️ Foto de la etiqueta');
 }
 
 </script>
