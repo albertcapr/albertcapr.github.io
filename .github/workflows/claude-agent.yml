@@ -1,0 +1,35 @@
+name: Agente Claude de Desarrollo
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  run-agent:
+    if: github.event.label.name == 'agente'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar Código
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Instalar SDK de Anthropic
+        run: npm install @anthropic-ai/sdk
+
+      - name: Ejecutar Agente Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: node agente.js
+
+      - name: Crear Pull Request con los cambios
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: "🤖 Cambios aplicados automáticamente por el Agente"
+          title: "Mejoras del Agente: ${{ github.event.issue.title }}"
+          body: "Este es un cambio automático sugerido por tu Agente Claude."
+          branch: "agente-parches"
